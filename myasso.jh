@@ -1,0 +1,559 @@
+
+
+/*
+*Une association est constitué de plusieurs membres et a plusieurs exercices
+* les activités se font dans les exercices
+*
+* Les groupes/roles d'utilisateurs(Administrateur, censorat, secretaire, President, trésoriers, 
+*chef de projet, chargé de communication, chargé des activités sociales) sont définis pour constituer le bureau
+**/
+  entity CompteTontine{
+  /**Inscription à la tontine est materialisé par la creation d'un compte tontine
+  *Un membre peux avoir plusieurs comptes/noms tontines
+  */
+  	etatDeCompte Boolean,  //permet de verifier si le membre est à jour de ses cotisations  a partir de cotisationTontine
+ 	libele String,
+    odreBeneficiere Integer,
+    matriculeCompte String required,
+    matriculeMenbre String required,
+    
+ }
+ 
+   
+  /**
+  *caisse ou petite tontine, bref le compte des cotisations obliguatoires
+  *caisse ou petite tontine, bref le compte des cotisations obliguatoires
+  */
+ 	
+ enum TypeOperation{
+ 	CREDIT, DEBIT
+ }
+ 
+  entity Tontine{
+  /**
+  *Un membre peux avoir plusieurs comptes/noms tontines
+  */
+    codeAssociation String required,
+ 	libele String,
+    nombreTour Integer,
+    nombreMaxPersonne Integer,
+    margeBeneficiaire Double,
+    montantPart Double,
+    amandeEchec Double,
+    dateDebut LocalDate,
+    dateFin LocalDate,
+    statutTontine StatutTontine,
+    description String,
+ }
+ 
+ enum StatutTontine{
+ 	CREE, OUVERTE, CLOTUREE
+ }
+ 
+  entity Banque{
+  	codeAssociation String required,
+ 	libelle String,
+    description String,
+    dateOuverture Instant, 
+    dateCloture Instant,
+ }
+ entity CompteBanque{
+ 	libelle String,
+    description String,
+    matriculeAdherant String
+    montantDisponnible Double,
+ }
+ entity CotisationBanque{
+ 	libelle String,
+    montant Double,
+    dateCotisation Instant,
+    montantCotise Double,
+    commentaire String,
+ 
+ }
+  entity DecaisementBanque{
+ 	libelle String,
+    montant Double,
+    dateDecaissement Instant,
+    montantDecaisse Double,
+    commentaire String,
+ }
+ entity PaiementBanque{
+ 	referencePaiement String required,
+ }
+ entity GestionnaireBanque{
+ 	matriculeMembre String,
+ }
+ 
+ 
+ entity GestionnaireTontine{
+  	matriculeAdherent String,
+  	codeTontine String,
+    datePriseFonction LocalDate,
+    dateFinFonction LocalDate,
+ }
+  enum Monnaie{
+ 	EURO, FRCFA, DOLLAR, DOLLAR_C
+ }
+entity CotisationTontine{
+  /**
+  *Un membre peux avoir plusieurs comptes/noms tontines
+  */
+  	montantCotise Double,
+    pieceJustifPath String,
+    
+    dateCotisation LocalDate,
+    dateValidation LocalDate,
+    commentaire String,
+    etat EtatCotisation /*echec ou cotisé*/
+ }
+ 
+ entity SessionTontine{
+ 	//moisConserne Mois,
+    libelle String
+    dateDebut LocalDate,
+    dateFin LocalDate,
+ } 
+ 
+ enum EtatCotisation{
+ 	ECHEC, COTISE, ENCOURS
+ }
+ entity DecaissementTontine{
+  /**
+  *Un membre peux avoir plusieurs comptes/noms tontines
+  */
+ 	libele String,
+    dateDecaissement LocalDate,
+    montantDecaisse Double,
+    commentaire String,
+ }
+ 
+ entity PaiementTontine{
+ 	referencePaiement String,
+ }
+ 
+  entity Paiement{
+  	codeAssociation String required,
+  	referencePaiement String,
+ 	matriculecmptEmet String required,
+    matriculecmptDest String required,
+    montantPaiement Double required,
+    datePaiement Instant,
+    modePaiement ModePaiement,
+    statutPaiement StatutPaiement,
+ }
+ 
+ enum StatutPaiement{
+ 	ENCOURS, PAYER, ECHEC_PAYEMENT
+ }
+ 
+ enum ServiceEmission{
+ 	TONTINE, SANCTION, BANQUE, COMPTE_ASSO
+ }
+
+entity Association {
+	codeAssociation String required
+	denomination String,
+    slogan String,
+    logoPath String,
+    reglementPath String,
+    statutPath String,
+    description String,
+    dateCreation LocalDate
+    fuseauHoraire String,
+    langue Langue,
+    presentation String,
+    
+}
+
+entity Monnaie{
+	libele String,
+}
+
+entity DocumentAssociation{
+
+	codeDocument String,
+    libele String,
+    description String,
+    dateEnregistrement LocalDate,
+    dateArchivage LocalDate,
+    version String,
+}
+
+/**
+ * The Employee entity.
+ */
+
+
+
+entity Exercise {
+	libele String,
+    observation String,
+    dateDebut LocalDate,
+    dateFin LocalDate,
+    statut StatutExercice,
+}
+
+enum StatutExercice{
+	OUVERT, FERME
+}
+
+
+entity Adresse {
+	departmentName String required
+    streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String,
+    pays String,
+}
+
+/**
+ * Fonctions des adhérent (membre, président sécrétaire ....)
+ * @author The JHipster team.
+ */
+entity Fonction {
+	title String,
+	description String
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity FonctionAdherent {
+	matriculeAdherent String required,
+    codeFonction String required,
+    datePriseFonction LocalDate required,
+    dateFinFonction LocalDate,
+    actif Boolean required,
+}
+
+//l'adhesion peut etre definit sur une periode(auquel cas elle sera renouveler a la fin de periode, prevoir un batch qui scrute 
+//les adhesion et envoi les relances afin que les membres regularisent leur situation de membre, mettre à jour le statut d'adhesion d'un membre en fonction de son adhesion)
+//ou sur toute la durée de l'association
+entity Adhesion {
+	statutAdhesion StatutAdhesion,
+	matriculePersonne String,
+    dateDebutAdhesion Instant,
+    dateFinAdhesion Instant,
+} 
+
+enum StatutAdhesion{
+	ENCOURS, ANNULE, PAYE, EXPIRE
+}
+
+enum ModePaiement{
+	ESPECE, CHEQUE, VISA, VIREMENT, MOBILE_MONEY
+}
+
+entity PaiementAdhesion{
+	referencePaiement String required,
+
+}
+
+entity FormuleAdhesion{
+	adhesionPeriodique Boolean,
+    dateDebut Instant,
+    dureeAdhesionMois Integer, //a voir: jour, mois, semaine, année
+    montantLibre Boolean,
+    description String,
+    tarif Double,
+    
+}
+/**
+ * Une personne peux etre adherent, nonAdherent ou AncienAdherent.
+ */
+ enum TypePersonne{
+ 	ADHERENT, NON_ADHERENT, ANCIEN_ADHERENT
+ }
+ 
+entity Personne {
+	/**
+	* The firstname attribute.
+	*/
+    idUser Long,
+    codeAssociation Long,
+    matricule String,
+	nom String,
+	prenom String,
+	dateNaissance LocalDate,
+	lieuNaissance Long,
+	dateInscription Instant,
+    profession String,
+    sexe Sexe,
+    photoPath String,
+    dateIntegration Instant,
+    isAdmin Boolean,
+    isDonateur Boolean,
+    isBenevole Boolean,
+    typePersonne TypePersonne,
+}
+
+
+
+entity FichePresence{
+	libelle String,
+	dateJour Instant,
+    description String,
+    codeAssemble String,
+    codeEvenement String,
+}
+
+entity Presence{
+	matriculeAdherant String required,
+    statutPresence StatutPresence,
+}
+
+
+ enum StatutPresence{
+ 	PRESENT, RETARD, ABSCENT
+ }
+/**
+ * The Employee entity.
+ */
+entity Contact {
+	/**
+	* The firstname attribute.
+	*/
+	email String,
+	telephone String,
+    mobile String,
+}
+/**
+ * The Employee entity.
+ */
+entity CompteRIB {
+	/**
+	* /IBAN attribute.
+	*/
+    iban String,
+	titulaireCompte String,
+    verifier Boolean,
+}
+
+enum Sexe{
+	MASCULIN, FEMININ
+}
+
+entity HistoriquePersonne {
+	dateAction Instant,
+	matriculePersonne String required,
+	action String,
+    result String,
+    description String,
+}
+//programmer une assemblée 
+//programmer une assemblee generale
+//creer une assemble
+ entity Assemble{
+   codeAssociation String required,
+   libele String,
+   enLigne Boolean,
+   dateSeance String,
+   lieuSeance String,
+   matriculeMembreRecoit String,
+   nature NatureAssemble,
+   compteRendu String,
+   resumeAssemble String,
+   documentCRPath String,
+ }
+ 
+ 
+ entity Evenement{
+ 	libele String,
+    codepot String,
+    montantPayer String,
+    description String,
+    budget Double,
+    dateEvenement Instant,
+ }
+ 
+  entity Pot{
+ 	libele String,
+    codepot String required,
+    montantCible Double,
+    description String,
+    dateDebutCollecte LocalDate
+    dateFinCollecte  LocalDate,
+    statut StatutPot,
+ }
+ //Anniverssaire, mariage, causes caritative,etc
+ entity TypePot{
+ libele String required,
+ descrption String,
+ }
+ 
+  entity ContributionPot{
+  	identifiant String,
+ 	matriculeContributeur String required,
+    montantContribution Double,
+    dateContribution Instant,
+ }
+ 
+ entity CommentairePot{
+ matriculeContributeur String required,
+ identifiantPot String required,
+ contenu String,
+ dateComentaire Instant,
+ }
+ 
+ 
+ 
+ enum StatutPot{
+ 	OUVERTE, FERMEE, CLOTURE
+ }
+
+
+ 
+ entity TypeEvenement{
+ 	libele String,
+    observation String,
+ }
+
+enum Langue {
+    FRENCH, ENGLISH, SPANISH
+}
+enum NatureAssemble {
+    ORDINAIRE, EXTRAORDINAIRE, MIXTE
+}
+entity Document {
+	libelle String,
+    docKey String,
+    path String,
+    typeDocument String // recu, facture, textes de loi, ...
+    
+}
+
+
+
+entity SanctionConfiguration {
+	codeAssociation String required,
+    type TypeSanction,
+    frais Double,
+}
+
+entity Sanction {
+	libelle String,
+    matriculeAdherent String required,
+    dateSanction LocalDate,
+    motifSanction String,
+    description String,
+    codeActivite String, //Activité pour laquelle la santion a été noté: Assemblé, Presence, Evenement,...
+    
+}
+
+entity SanctionConfiguration {
+	codeAssociation String required,
+    codeTontine String required,
+    type TypeSanction
+}
+
+entity PaiementSanction {
+    referencePaiement String required,
+}
+
+ enum StatutSanction{
+ 	NON_PAYE, PAYEE
+ }
+
+
+enum TypeSanction {
+    RETARD_PRESENCE, ECHEC_TONTINE, ABSCENCE_PRESENCE, ABSCENCE_EVENEMENT, AUTRE_SANCTION, SANCTION_ASSEMBLE
+}
+
+enum Mois{
+	JANVIER, FEVRIER, MARS, AVRIL, MAI, JUIN, JUILLET, AOUT, SEPTEMBRE, OCTOBRE, NOVEMBRE, DECEMBRE
+}
+//on peut creer un gestionnaire et l'attribuer des tontines a gerer
+//ils pourra de ce fait ajouter des adherents a une tontine, effectuer des cotisations pour de compte des adhérants
+//Valider la cotisation des adhérents, et publier l'etat de la tontine
+//une tontine est faite dans un exercice. une banque peut se prolonger sur plusieurs exercices
+//les depenses d'un evement peuvent provenir d'une cagnote ou du compteCaisse de l'association
+//Un evenement est organisé a un exercice
+
+/**
+
+**/
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	/**
+	* A relationship
+	*/
+	//Association to Personne{association},
+   // Association to Depense{association},
+   // Association to Assemble{association},
+   // Association to Cotisation{association},
+  //  Association to Evenement{association},
+    Association to Exercise{association},
+    Association to DocumentAssociation{association},
+	// Association to CompteTresorererie{association},
+    //NatureCotisation to Cotisation{natureCotisation},
+    TypeEvenement to Evenement{typeEvenement},
+  // NatureDepense to Depense{natureDepense},
+  //  Adherent to Evenement{adherentSoutenu},
+//	AnneeExercise to Cotisation{exercise},
+ //   AnneeExercise to Depense{exercise},
+   // AnneeExercise to Evenement{exercise},
+    Monnaie to Association{monnaie},
+    Personne to Contact{adherent},
+    Personne to CompteRIB{adherent},
+    Personne to HistoriquePersonne{personne},
+    Tontine to SessionTontine{tontine},
+    SessionTontine to CotisationTontine{sessionTontine},
+    SessionTontine to DecaissementTontine{tontine},
+    CotisationTontine to PaiementTontine{cotisationTontine},
+    DecaissementTontine to PaiementTontine{decaissementTontine},
+	Pot to ContributionPot{pot},
+    Pot to CommentairePot{pot},
+    TypePot to Pot{typePot},
+    
+    //CompteTontine to CotisTtnByCompte{compteTontine},
+    CompteTontine to CotisationTontine{compteTontine},
+    CompteTontine to DecaissementTontine{compteTontine},
+
+	//CotisationTontine to CotisTtnByCompte{cotisationTontine},
+    FichePresence to Presence{fichePresence},
+    Personne to Presence{adherant},
+    Adhesion to FormuleAdhesion{adhesion},
+    Adhesion to PaiementAdhesion{adhesion},
+    SanctionConfiguration to Sanction{sanctionConfig},
+    Sanction to PaiementSanction{sanction},
+    CompteTresorererie to OperationCompte{compte},
+    Personne to FonctionAdherent{adherent},
+    Fonction to FonctionAdherent{fonction},
+    Tontine to GestionnaireTontine{tontine},
+    
+    Banque to CompteBanque{banque},
+    Banque to GestionnaireBanque{banque},
+    CompteBanque to CotisationBanque{compteBanque},
+    CompteBanque to DecaisementBanque{compteBanque},
+	
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	//Association{siegeSociale} to Adresse,
+    Personne{adresse} to Adresse,
+	CompteTontine{tontine} to Tontine,
+    //Adresse to Assemble{lieuSeance},
+    //Association{sanctionConfiguration} to SanctionConfiguration,
+}
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+// set filter
+filter *
+
+//https://tontine.plus/guide#

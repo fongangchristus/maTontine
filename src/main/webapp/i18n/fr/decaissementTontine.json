@@ -1,0 +1,33 @@
+{
+  "maTontineApp": {
+    "decaissementTontine": {
+      "home": {
+        "title": "DecaissementTontines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Decaissement Tontine",
+        "createOrEditLabel": "Créer ou éditer un Decaissement Tontine",
+        "notFound": "Aucun Decaissement Tontine trouvé"
+      },
+      "created": "Un nouveau Decaissement Tontine a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Decaissement Tontine avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Decaissement Tontine avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Decaissement Tontine {{ id }} ?"
+      },
+      "detail": {
+        "title": "Decaissement Tontine"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "dateDecaissement": "Date Decaissement",
+      "montantDecaisse": "Montant Decaisse",
+      "commentaire": "Commentaire",
+      "paiementTontine": "Paiement Tontine",
+      "tontine": "Tontine",
+      "compteTontine": "Compte Tontine",
+      "help": {
+        "libele": "Un membre peux avoir plusieurs comptes/noms tontines"
+      }
+    }
+  }
+}

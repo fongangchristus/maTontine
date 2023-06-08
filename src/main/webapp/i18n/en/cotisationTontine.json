@@ -1,0 +1,35 @@
+{
+  "maTontineApp": {
+    "cotisationTontine": {
+      "home": {
+        "title": "Cotisation Tontines",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cotisation Tontine",
+        "createOrEditLabel": "Create or edit a Cotisation Tontine",
+        "notFound": "No Cotisation Tontines found"
+      },
+      "created": "A new Cotisation Tontine is created with identifier {{ param }}",
+      "updated": "A Cotisation Tontine is updated with identifier {{ param }}",
+      "deleted": "A Cotisation Tontine is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cotisation Tontine {{ id }}?"
+      },
+      "detail": {
+        "title": "Cotisation Tontine"
+      },
+      "id": "ID",
+      "montantCotise": "Montant Cotise",
+      "pieceJustifPath": "Piece Justif Path",
+      "dateCotisation": "Date Cotisation",
+      "dateValidation": "Date Validation",
+      "commentaire": "Commentaire",
+      "etat": "Etat",
+      "paiementTontine": "Paiement Tontine",
+      "sessionTontine": "Session Tontine",
+      "compteTontine": "Compte Tontine",
+      "help": {
+        "montantCotise": "Un membre peux avoir plusieurs comptes/noms tontines"
+      }
+    }
+  }
+}

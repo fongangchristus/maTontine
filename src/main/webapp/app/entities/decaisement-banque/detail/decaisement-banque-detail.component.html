@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="decaisementBanque">
+      <h2 data-cy="decaisementBanqueDetailsHeading">
+        <span jhiTranslate="maTontineApp.decaisementBanque.detail.title">Decaisement Banque</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.libelle">Libelle</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.libelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.montant">Montant</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.montant }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.dateDecaissement">Date Decaissement</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.dateDecaissement | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.montantDecaisse">Montant Decaisse</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.montantDecaisse }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ decaisementBanque.commentaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.decaisementBanque.compteBanque">Compte Banque</span></dt>
+        <dd>
+          <div *ngIf="decaisementBanque.compteBanque">
+            <a [routerLink]="['/compte-banque', decaisementBanque.compteBanque.id, 'view']">{{ decaisementBanque.compteBanque.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/decaisement-banque', decaisementBanque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

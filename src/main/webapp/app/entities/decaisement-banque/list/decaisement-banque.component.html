@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="DecaisementBanqueHeading">
+    <span jhiTranslate="maTontineApp.decaisementBanque.home.title">DecaisementBanques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.decaisementBanque.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-decaisement-banque"
+        [routerLink]="['/decaisement-banque/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.decaisementBanque.home.createLabel"> Créer un nouveau Decaisement Banque </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="decaisementBanques?.length === 0">
+    <span jhiTranslate="maTontineApp.decaisementBanque.home.notFound">Aucun Decaisement Banque trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="decaisementBanques && decaisementBanques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libelle">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.libelle">Libelle</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montant">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.montant">Montant</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateDecaissement">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.dateDecaissement">Date Decaissement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantDecaisse">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.montantDecaisse">Montant Decaisse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commentaire">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.commentaire">Commentaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="compteBanque.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.decaisementBanque.compteBanque">Compte Banque</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let decaisementBanque of decaisementBanques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/decaisement-banque', decaisementBanque.id, 'view']">{{ decaisementBanque.id }}</a>
+          </td>
+          <td>{{ decaisementBanque.libelle }}</td>
+          <td>{{ decaisementBanque.montant }}</td>
+          <td>{{ decaisementBanque.dateDecaissement | formatMediumDatetime }}</td>
+          <td>{{ decaisementBanque.montantDecaisse }}</td>
+          <td>{{ decaisementBanque.commentaire }}</td>
+          <td>
+            <div *ngIf="decaisementBanque.compteBanque">
+              <a [routerLink]="['/compte-banque', decaisementBanque.compteBanque.id, 'view']">{{ decaisementBanque.compteBanque.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/decaisement-banque', decaisementBanque.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/decaisement-banque', decaisementBanque.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(decaisementBanque)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="decaisementBanques && decaisementBanques.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

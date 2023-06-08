@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity FonctionAdherent.
+    -->
+    <changeSet id="20230608143615-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="adherent_id"
+                                 baseTableName="fonction_adherent"
+                                 constraintName="fk_fonction_adherent__adherent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personne"/>
+
+        <addForeignKeyConstraint baseColumnNames="fonction_id"
+                                 baseTableName="fonction_adherent"
+                                 constraintName="fk_fonction_adherent__fonction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fonction"/>
+    </changeSet>
+</databaseChangeLog>

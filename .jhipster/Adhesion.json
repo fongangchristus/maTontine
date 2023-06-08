@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143616",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "adhesion",
+  "fields": [
+    {
+      "fieldName": "statutAdhesion",
+      "fieldType": "StatutAdhesion",
+      "fieldValues": "ENCOURS,ANNULE,PAYE,EXPIRE"
+    },
+    {
+      "fieldName": "matriculePersonne",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDebutAdhesion",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateFinAdhesion",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Adhesion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "formuleAdhesion",
+      "otherEntityRelationshipName": "adhesion",
+      "relationshipName": "formuleAdhesion",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paiementAdhesion",
+      "otherEntityRelationshipName": "adhesion",
+      "relationshipName": "paiementAdhesion",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

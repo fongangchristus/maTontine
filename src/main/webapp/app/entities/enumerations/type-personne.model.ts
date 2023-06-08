@@ -1,0 +1,7 @@
+export enum TypePersonne {
+  ADHERENT = 'ADHERENT',
+
+  NON_ADHERENT = 'NON_ADHERENT',
+
+  ANCIEN_ADHERENT = 'ANCIEN_ADHERENT',
+}

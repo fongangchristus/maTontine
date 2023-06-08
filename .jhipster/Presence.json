@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143621",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "presence",
+  "fields": [
+    {
+      "fieldName": "matriculeAdherant",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "statutPresence",
+      "fieldType": "StatutPresence",
+      "fieldValues": "PRESENT,RETARD,ABSCENT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Presence",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fichePresence",
+      "otherEntityRelationshipName": "presence",
+      "relationshipName": "fichePresence",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "presence",
+      "relationshipName": "adherant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

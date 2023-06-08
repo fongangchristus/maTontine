@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compteTontine">
+      <h2 data-cy="compteTontineDetailsHeading"><span jhiTranslate="maTontineApp.compteTontine.detail.title">Compte Tontine</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compteTontine.id }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="maTontineApp.compteTontine.etatDeCompte"
+            [ngbTooltip]="'maTontineApp.compteTontine.help.etatDeCompte' | translate"
+            >Etat De Compte</span
+          >
+        </dt>
+        <dd>
+          <span>{{ compteTontine.etatDeCompte }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteTontine.libele">Libele</span></dt>
+        <dd>
+          <span>{{ compteTontine.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteTontine.odreBeneficiere">Odre Beneficiere</span></dt>
+        <dd>
+          <span>{{ compteTontine.odreBeneficiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteTontine.matriculeCompte">Matricule Compte</span></dt>
+        <dd>
+          <span>{{ compteTontine.matriculeCompte }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteTontine.matriculeMenbre">Matricule Menbre</span></dt>
+        <dd>
+          <span>{{ compteTontine.matriculeMenbre }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteTontine.tontine">Tontine</span></dt>
+        <dd>
+          <div *ngIf="compteTontine.tontine">
+            <a [routerLink]="['/tontine', compteTontine.tontine.id, 'view']">{{ compteTontine.tontine.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compte-tontine', compteTontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

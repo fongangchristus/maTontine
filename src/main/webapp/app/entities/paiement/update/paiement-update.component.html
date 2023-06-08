@@ -1,0 +1,208 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-paiement-heading" data-cy="PaiementCreateUpdateHeading" jhiTranslate="maTontineApp.paiement.home.createOrEditLabel">
+        Créer ou éditer un Paiement
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.codeAssociation" for="field_codeAssociation"
+            >Code Association</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeAssociation"
+            id="field_codeAssociation"
+            data-cy="codeAssociation"
+            formControlName="codeAssociation"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeAssociation')!.invalid &&
+              (editForm.get('codeAssociation')!.dirty || editForm.get('codeAssociation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeAssociation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.referencePaiement" for="field_referencePaiement"
+            >Reference Paiement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="referencePaiement"
+            id="field_referencePaiement"
+            data-cy="referencePaiement"
+            formControlName="referencePaiement"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.matriculecmptEmet" for="field_matriculecmptEmet"
+            >Matriculecmpt Emet</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculecmptEmet"
+            id="field_matriculecmptEmet"
+            data-cy="matriculecmptEmet"
+            formControlName="matriculecmptEmet"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculecmptEmet')!.invalid &&
+              (editForm.get('matriculecmptEmet')!.dirty || editForm.get('matriculecmptEmet')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculecmptEmet')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.matriculecmptDest" for="field_matriculecmptDest"
+            >Matriculecmpt Dest</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculecmptDest"
+            id="field_matriculecmptDest"
+            data-cy="matriculecmptDest"
+            formControlName="matriculecmptDest"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculecmptDest')!.invalid &&
+              (editForm.get('matriculecmptDest')!.dirty || editForm.get('matriculecmptDest')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculecmptDest')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.montantPaiement" for="field_montantPaiement"
+            >Montant Paiement</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="montantPaiement"
+            id="field_montantPaiement"
+            data-cy="montantPaiement"
+            formControlName="montantPaiement"
+          />
+          <div
+            *ngIf="
+              editForm.get('montantPaiement')!.invalid &&
+              (editForm.get('montantPaiement')!.dirty || editForm.get('montantPaiement')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('montantPaiement')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('montantPaiement')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.datePaiement" for="field_datePaiement">Date Paiement</label>
+          <div class="d-flex">
+            <input
+              id="field_datePaiement"
+              data-cy="datePaiement"
+              type="datetime-local"
+              class="form-control"
+              name="datePaiement"
+              formControlName="datePaiement"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.modePaiement" for="field_modePaiement">Mode Paiement</label>
+          <select class="form-control" name="modePaiement" formControlName="modePaiement" id="field_modePaiement" data-cy="modePaiement">
+            <option [ngValue]="null">{{ 'maTontineApp.ModePaiement.null' | translate }}</option>
+            <option *ngFor="let modePaiement of modePaiementValues" [value]="modePaiement">
+              {{ 'maTontineApp.ModePaiement.' + modePaiement | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.paiement.statutPaiement" for="field_statutPaiement">Statut Paiement</label>
+          <select
+            class="form-control"
+            name="statutPaiement"
+            formControlName="statutPaiement"
+            id="field_statutPaiement"
+            data-cy="statutPaiement"
+          >
+            <option [ngValue]="null">{{ 'maTontineApp.StatutPaiement.null' | translate }}</option>
+            <option *ngFor="let statutPaiement of statutPaiementValues" [value]="statutPaiement">
+              {{ 'maTontineApp.StatutPaiement.' + statutPaiement | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

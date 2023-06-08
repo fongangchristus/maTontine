@@ -1,0 +1,27 @@
+{
+  "maTontineApp": {
+    "sanctionConfiguration": {
+      "home": {
+        "title": "SanctionConfigurations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Sanction Configuration",
+        "createOrEditLabel": "Créer ou éditer un Sanction Configuration",
+        "notFound": "Aucun Sanction Configuration trouvé"
+      },
+      "created": "Un nouveau Sanction Configuration a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Sanction Configuration avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Sanction Configuration avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Sanction Configuration {{ id }} ?"
+      },
+      "detail": {
+        "title": "Sanction Configuration"
+      },
+      "id": "ID",
+      "codeAssociation": "Code Association",
+      "codeTontine": "Code Tontine",
+      "type": "Type",
+      "sanction": "Sanction"
+    }
+  }
+}

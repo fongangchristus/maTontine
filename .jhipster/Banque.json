@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143557",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "banque",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOuverture",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateCloture",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Banque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "compteBanque",
+      "otherEntityRelationshipName": "banque",
+      "relationshipName": "compteBanque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "gestionnaireBanque",
+      "otherEntityRelationshipName": "banque",
+      "relationshipName": "gestionnaireBanque",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

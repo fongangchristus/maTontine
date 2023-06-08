@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "compteRIB": {
+      "home": {
+        "title": "Compte RIBS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Compte RIB",
+        "createOrEditLabel": "Create or edit a Compte RIB",
+        "notFound": "No Compte RIBS found"
+      },
+      "created": "A new Compte RIB is created with identifier {{ param }}",
+      "updated": "A Compte RIB is updated with identifier {{ param }}",
+      "deleted": "A Compte RIB is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Compte RIB {{ id }}?"
+      },
+      "detail": {
+        "title": "Compte RIB"
+      },
+      "id": "ID",
+      "iban": "Iban",
+      "titulaireCompte": "Titulaire Compte",
+      "verifier": "Verifier",
+      "adherent": "Adherent",
+      "help": {
+        "iban": "/IBAN attribute."
+      }
+    }
+  }
+}

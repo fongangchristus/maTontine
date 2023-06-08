@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143618",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "formule_adhesion",
+  "fields": [
+    {
+      "fieldName": "adhesionPeriodique",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dureeAdhesionMois",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "montantLibre",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tarif",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "FormuleAdhesion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "adhesion",
+      "otherEntityRelationshipName": "formuleAdhesion",
+      "relationshipName": "adhesion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

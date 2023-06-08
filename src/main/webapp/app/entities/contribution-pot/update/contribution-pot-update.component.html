@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-contribution-pot-heading"
+        data-cy="ContributionPotCreateUpdateHeading"
+        jhiTranslate="maTontineApp.contributionPot.home.createOrEditLabel"
+      >
+        Créer ou éditer un Contribution Pot
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contributionPot.identifiant" for="field_identifiant">Identifiant</label>
+          <input
+            type="text"
+            class="form-control"
+            name="identifiant"
+            id="field_identifiant"
+            data-cy="identifiant"
+            formControlName="identifiant"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contributionPot.matriculeContributeur" for="field_matriculeContributeur"
+            >Matricule Contributeur</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeContributeur"
+            id="field_matriculeContributeur"
+            data-cy="matriculeContributeur"
+            formControlName="matriculeContributeur"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeContributeur')!.invalid &&
+              (editForm.get('matriculeContributeur')!.dirty || editForm.get('matriculeContributeur')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeContributeur')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contributionPot.montantContribution" for="field_montantContribution"
+            >Montant Contribution</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="montantContribution"
+            id="field_montantContribution"
+            data-cy="montantContribution"
+            formControlName="montantContribution"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contributionPot.dateContribution" for="field_dateContribution"
+            >Date Contribution</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateContribution"
+              data-cy="dateContribution"
+              type="datetime-local"
+              class="form-control"
+              name="dateContribution"
+              formControlName="dateContribution"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contributionPot.pot" for="field_pot">Pot</label>
+          <select class="form-control" id="field_pot" data-cy="pot" name="pot" formControlName="pot" [compareWith]="comparePot">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="potOption" *ngFor="let potOption of potsSharedCollection">{{ potOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

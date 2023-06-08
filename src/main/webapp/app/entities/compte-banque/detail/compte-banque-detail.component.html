@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compteBanque">
+      <h2 data-cy="compteBanqueDetailsHeading"><span jhiTranslate="maTontineApp.compteBanque.detail.title">Compte Banque</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compteBanque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteBanque.libelle">Libelle</span></dt>
+        <dd>
+          <span>{{ compteBanque.libelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteBanque.description">Description</span></dt>
+        <dd>
+          <span>{{ compteBanque.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteBanque.matriculeAdherant">Matricule Adherant</span></dt>
+        <dd>
+          <span>{{ compteBanque.matriculeAdherant }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteBanque.montantDisponnible">Montant Disponnible</span></dt>
+        <dd>
+          <span>{{ compteBanque.montantDisponnible }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteBanque.banque">Banque</span></dt>
+        <dd>
+          <div *ngIf="compteBanque.banque">
+            <a [routerLink]="['/banque', compteBanque.banque.id, 'view']">{{ compteBanque.banque.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compte-banque', compteBanque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

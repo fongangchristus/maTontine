@@ -1,0 +1,219 @@
+<div>
+  <h2 id="page-heading" data-cy="AssociationHeading">
+    <span jhiTranslate="maTontineApp.association.home.title">Associations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.association.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-association"
+        [routerLink]="['/association/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.association.home.createLabel"> Créer un nouveau Association </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="associations?.length === 0">
+    <span jhiTranslate="maTontineApp.association.home.notFound">Aucun Association trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="associations && associations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeAssociation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.codeAssociation">Code Association</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="denomination">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.denomination">Denomination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="slogan">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.slogan">Slogan</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="logoPath">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.logoPath">Logo Path</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reglementPath">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.reglementPath">Reglement Path</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="statutPath">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.statutPath">Statut Path</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateCreation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.dateCreation">Date Creation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fuseauHoraire">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.fuseauHoraire">Fuseau Horaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="langue">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.langue">Langue</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="presentation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.presentation">Presentation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="monnaie.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.monnaie">Monnaie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let association of associations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/association', association.id, 'view']">{{ association.id }}</a>
+          </td>
+          <td>{{ association.codeAssociation }}</td>
+          <td>{{ association.denomination }}</td>
+          <td>{{ association.slogan }}</td>
+          <td>{{ association.logoPath }}</td>
+          <td>{{ association.reglementPath }}</td>
+          <td>{{ association.statutPath }}</td>
+          <td>{{ association.description }}</td>
+          <td>{{ association.dateCreation | formatMediumDate }}</td>
+          <td>{{ association.fuseauHoraire }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.Langue.' + association.langue }}">{{ association.langue }}</td>
+          <td>{{ association.presentation }}</td>
+          <td>
+            <div *ngIf="association.monnaie">
+              <a [routerLink]="['/monnaie', association.monnaie.id, 'view']">{{ association.monnaie.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/exercise']"
+                [queryParams]="{ 'filter[associationId.in]': association.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.association.exercise' | translate) }"
+                  >Show Exercise</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/document-association']"
+                [queryParams]="{ 'filter[associationId.in]': association.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.association.documentAssociation' | translate) }"
+                  >Show Document Association</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/association', association.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/association', association.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(association)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="associations && associations.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

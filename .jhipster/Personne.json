@@ -1,0 +1,121 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143619",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "personne",
+  "fields": [
+    {
+      "fieldName": "idUser",
+      "fieldType": "Long",
+      "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "matricule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "dateInscription",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "photoPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateIntegration",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isAdmin",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isDonateur",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isBenevole",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "typePersonne",
+      "fieldType": "TypePersonne",
+      "fieldTypeJavadoc": "Une personne peux etre adherent, nonAdherent ou AncienAdherent.",
+      "fieldValues": "ADHERENT,NON_ADHERENT,ANCIEN_ADHERENT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Personne",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "adresse",
+      "ownerSide": true,
+      "relationshipName": "adresse",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "adherent",
+      "relationshipName": "contact",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "compteRIB",
+      "otherEntityRelationshipName": "adherent",
+      "relationshipName": "compteRIB",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "historiquePersonne",
+      "otherEntityRelationshipName": "personne",
+      "relationshipName": "historiquePersonne",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "presence",
+      "otherEntityRelationshipName": "adherant",
+      "relationshipName": "presence",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fonctionAdherent",
+      "otherEntityRelationshipName": "adherent",
+      "relationshipName": "fonctionAdherent",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

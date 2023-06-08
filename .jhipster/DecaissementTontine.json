@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143606",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "decaissement_tontine",
+  "fields": [
+    {
+      "fieldName": "libele",
+      "fieldType": "String",
+      "javadoc": "Un membre peux avoir plusieurs comptes/noms tontines"
+    },
+    {
+      "fieldName": "dateDecaissement",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "montantDecaisse",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DecaissementTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paiementTontine",
+      "otherEntityRelationshipName": "decaissementTontine",
+      "relationshipName": "paiementTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sessionTontine",
+      "otherEntityRelationshipName": "decaissementTontine",
+      "relationshipName": "tontine",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "compteTontine",
+      "otherEntityRelationshipName": "decaissementTontine",
+      "relationshipName": "compteTontine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

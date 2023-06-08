@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paiementSanction">
+      <h2 data-cy="paiementSanctionDetailsHeading">
+        <span jhiTranslate="maTontineApp.paiementSanction.detail.title">Paiement Sanction</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paiementSanction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiementSanction.referencePaiement">Reference Paiement</span></dt>
+        <dd>
+          <span>{{ paiementSanction.referencePaiement }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiementSanction.sanction">Sanction</span></dt>
+        <dd>
+          <div *ngIf="paiementSanction.sanction">
+            <a [routerLink]="['/sanction', paiementSanction.sanction.id, 'view']">{{ paiementSanction.sanction.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paiement-sanction', paiementSanction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

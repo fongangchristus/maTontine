@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "EtatCotisation": {
+      "null": "",
+      "ECHEC": "ECHEC",
+      "COTISE": "COTISE",
+      "ENCOURS": "ENCOURS"
+    }
+  }
+}

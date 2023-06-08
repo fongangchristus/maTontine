@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "StatutTontine": {
+      "null": "",
+      "CREE": "CREE",
+      "OUVERTE": "OUVERTE",
+      "CLOTUREE": "CLOTUREE"
+    }
+  }
+}

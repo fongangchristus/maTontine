@@ -1,0 +1,33 @@
+{
+  "maTontineApp": {
+    "pot": {
+      "home": {
+        "title": "Pots",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Pot",
+        "createOrEditLabel": "Créer ou éditer un Pot",
+        "notFound": "Aucun Pot trouvé"
+      },
+      "created": "Un nouveau Pot a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Pot avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Pot avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Pot {{ id }} ?"
+      },
+      "detail": {
+        "title": "Pot"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "codepot": "Codepot",
+      "montantCible": "Montant Cible",
+      "description": "Description",
+      "dateDebutCollecte": "Date Debut Collecte",
+      "dateFinCollecte": "Date Fin Collecte",
+      "statut": "Statut",
+      "contributionPot": "Contribution Pot",
+      "commentairePot": "Commentaire Pot",
+      "typePot": "Type Pot"
+    }
+  }
+}

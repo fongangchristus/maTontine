@@ -1,0 +1,26 @@
+{
+  "maTontineApp": {
+    "typePot": {
+      "home": {
+        "title": "TypePots",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Type Pot",
+        "createOrEditLabel": "Créer ou éditer un Type Pot",
+        "notFound": "Aucun Type Pot trouvé"
+      },
+      "created": "Un nouveau Type Pot a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Type Pot avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Type Pot avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Type Pot {{ id }} ?"
+      },
+      "detail": {
+        "title": "Type Pot"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "descrption": "Descrption",
+      "pot": "Pot"
+    }
+  }
+}

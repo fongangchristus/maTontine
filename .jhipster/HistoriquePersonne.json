@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143624",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "historique_personne",
+  "fields": [
+    {
+      "fieldName": "dateAction",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "matriculePersonne",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "result",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "HistoriquePersonne",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "historiquePersonne",
+      "relationshipName": "personne",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

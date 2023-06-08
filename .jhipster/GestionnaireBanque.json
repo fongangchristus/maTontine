@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143602",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "gestionnaire_banque",
+  "fields": [
+    {
+      "fieldName": "matriculeMembre",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "GestionnaireBanque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "banque",
+      "otherEntityRelationshipName": "gestionnaireBanque",
+      "relationshipName": "banque",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

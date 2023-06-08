@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="assemble">
+      <h2 data-cy="assembleDetailsHeading"><span jhiTranslate="maTontineApp.assemble.detail.title">Assemble</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ assemble.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.codeAssociation">Code Association</span></dt>
+        <dd>
+          <span>{{ assemble.codeAssociation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.libele">Libele</span></dt>
+        <dd>
+          <span>{{ assemble.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.enLigne">En Ligne</span></dt>
+        <dd>
+          <span>{{ assemble.enLigne }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.dateSeance">Date Seance</span></dt>
+        <dd>
+          <span>{{ assemble.dateSeance }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.lieuSeance">Lieu Seance</span></dt>
+        <dd>
+          <span>{{ assemble.lieuSeance }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.matriculeMembreRecoit">Matricule Membre Recoit</span></dt>
+        <dd>
+          <span>{{ assemble.matriculeMembreRecoit }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.nature">Nature</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.NatureAssemble.' + assemble.nature }}">{{ assemble.nature }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.compteRendu">Compte Rendu</span></dt>
+        <dd>
+          <span>{{ assemble.compteRendu }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.resumeAssemble">Resume Assemble</span></dt>
+        <dd>
+          <span>{{ assemble.resumeAssemble }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.assemble.documentCRPath">Document CR Path</span></dt>
+        <dd>
+          <span>{{ assemble.documentCRPath }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/assemble', assemble.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

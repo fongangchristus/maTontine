@@ -1,0 +1,48 @@
+{
+  "maTontineApp": {
+    "personne": {
+      "home": {
+        "title": "Personnes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Personne",
+        "createOrEditLabel": "Créer ou éditer un Personne",
+        "notFound": "Aucun Personne trouvé"
+      },
+      "created": "Un nouveau Personne a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Personne avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Personne avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Personne {{ id }} ?"
+      },
+      "detail": {
+        "title": "Personne"
+      },
+      "id": "ID",
+      "idUser": "Id User",
+      "codeAssociation": "Code Association",
+      "matricule": "Matricule",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "dateNaissance": "Date Naissance",
+      "lieuNaissance": "Lieu Naissance",
+      "dateInscription": "Date Inscription",
+      "profession": "Profession",
+      "sexe": "Sexe",
+      "photoPath": "Photo Path",
+      "dateIntegration": "Date Integration",
+      "isAdmin": "Is Admin",
+      "isDonateur": "Is Donateur",
+      "isBenevole": "Is Benevole",
+      "typePersonne": "Type Personne",
+      "adresse": "Adresse",
+      "contact": "Contact",
+      "compteRIB": "Compte RIB",
+      "historiquePersonne": "Historique Personne",
+      "presence": "Presence",
+      "fonctionAdherent": "Fonction Adherent",
+      "help": {
+        "idUser": "The firstname attribute."
+      }
+    }
+  }
+}

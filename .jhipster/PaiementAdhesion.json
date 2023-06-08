@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143617",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "paiement_adhesion",
+  "fields": [
+    {
+      "fieldName": "referencePaiement",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PaiementAdhesion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "adhesion",
+      "otherEntityRelationshipName": "paiementAdhesion",
+      "relationshipName": "adhesion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

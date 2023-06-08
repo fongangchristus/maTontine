@@ -1,0 +1,28 @@
+{
+  "maTontineApp": {
+    "commentairePot": {
+      "home": {
+        "title": "Commentaire Pots",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Commentaire Pot",
+        "createOrEditLabel": "Create or edit a Commentaire Pot",
+        "notFound": "No Commentaire Pots found"
+      },
+      "created": "A new Commentaire Pot is created with identifier {{ param }}",
+      "updated": "A Commentaire Pot is updated with identifier {{ param }}",
+      "deleted": "A Commentaire Pot is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commentaire Pot {{ id }}?"
+      },
+      "detail": {
+        "title": "Commentaire Pot"
+      },
+      "id": "ID",
+      "matriculeContributeur": "Matricule Contributeur",
+      "identifiantPot": "Identifiant Pot",
+      "contenu": "Contenu",
+      "dateComentaire": "Date Comentaire",
+      "pot": "Pot"
+    }
+  }
+}

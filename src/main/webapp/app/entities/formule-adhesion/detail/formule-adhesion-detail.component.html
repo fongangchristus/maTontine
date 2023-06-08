@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formuleAdhesion">
+      <h2 data-cy="formuleAdhesionDetailsHeading">
+        <span jhiTranslate="maTontineApp.formuleAdhesion.detail.title">Formule Adhesion</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.adhesionPeriodique">Adhesion Periodique</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.adhesionPeriodique }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.dateDebut">Date Debut</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.dateDebut | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.dureeAdhesionMois">Duree Adhesion Mois</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.dureeAdhesionMois }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.montantLibre">Montant Libre</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.montantLibre }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.description">Description</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.tarif">Tarif</span></dt>
+        <dd>
+          <span>{{ formuleAdhesion.tarif }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.formuleAdhesion.adhesion">Adhesion</span></dt>
+        <dd>
+          <div *ngIf="formuleAdhesion.adhesion">
+            <a [routerLink]="['/adhesion', formuleAdhesion.adhesion.id, 'view']">{{ formuleAdhesion.adhesion.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/formule-adhesion', formuleAdhesion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

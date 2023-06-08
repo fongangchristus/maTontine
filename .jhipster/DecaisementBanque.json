@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143600",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "decaisement_banque",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateDecaissement",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "montantDecaisse",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DecaisementBanque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "compteBanque",
+      "otherEntityRelationshipName": "decaisementBanque",
+      "relationshipName": "compteBanque",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

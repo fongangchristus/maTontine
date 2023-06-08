@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143558",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "compte_banque",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeAdherant",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montantDisponnible",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CompteBanque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "cotisationBanque",
+      "otherEntityRelationshipName": "compteBanque",
+      "relationshipName": "cotisationBanque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "decaisementBanque",
+      "otherEntityRelationshipName": "compteBanque",
+      "relationshipName": "decaisementBanque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "banque",
+      "otherEntityRelationshipName": "compteBanque",
+      "relationshipName": "banque",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

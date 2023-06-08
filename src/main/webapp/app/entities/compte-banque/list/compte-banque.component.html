@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="CompteBanqueHeading">
+    <span jhiTranslate="maTontineApp.compteBanque.home.title">CompteBanques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.compteBanque.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-compte-banque"
+        [routerLink]="['/compte-banque/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.compteBanque.home.createLabel"> Créer un nouveau Compte Banque </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="compteBanques?.length === 0">
+    <span jhiTranslate="maTontineApp.compteBanque.home.notFound">Aucun Compte Banque trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="compteBanques && compteBanques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libelle">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.compteBanque.libelle">Libelle</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.compteBanque.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="matriculeAdherant">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.compteBanque.matriculeAdherant">Matricule Adherant</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantDisponnible">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.compteBanque.montantDisponnible">Montant Disponnible</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="banque.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.compteBanque.banque">Banque</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compteBanque of compteBanques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/compte-banque', compteBanque.id, 'view']">{{ compteBanque.id }}</a>
+          </td>
+          <td>{{ compteBanque.libelle }}</td>
+          <td>{{ compteBanque.description }}</td>
+          <td>{{ compteBanque.matriculeAdherant }}</td>
+          <td>{{ compteBanque.montantDisponnible }}</td>
+          <td>
+            <div *ngIf="compteBanque.banque">
+              <a [routerLink]="['/banque', compteBanque.banque.id, 'view']">{{ compteBanque.banque.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cotisation-banque']"
+                [queryParams]="{ 'filter[compteBanqueId.in]': compteBanque.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.compteBanque.cotisationBanque' | translate) }"
+                  >Show Cotisation Banque</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/decaisement-banque']"
+                [queryParams]="{ 'filter[compteBanqueId.in]': compteBanque.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.compteBanque.decaisementBanque' | translate) }"
+                  >Show Decaisement Banque</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/compte-banque', compteBanque.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/compte-banque', compteBanque.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(compteBanque)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="compteBanques && compteBanques.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

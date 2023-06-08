@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143620",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "fiche_presence",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateJour",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeAssemble",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeEvenement",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "FichePresence",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "presence",
+      "otherEntityRelationshipName": "fichePresence",
+      "relationshipName": "presence",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

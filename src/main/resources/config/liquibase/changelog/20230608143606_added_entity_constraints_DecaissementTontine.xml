@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DecaissementTontine.
+    -->
+    <changeSet id="20230608143606-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="tontine_id"
+                                 baseTableName="decaissement_tontine"
+                                 constraintName="fk_decaissement_tontine__tontine_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="session_tontine"/>
+
+        <addForeignKeyConstraint baseColumnNames="compte_tontine_id"
+                                 baseTableName="decaissement_tontine"
+                                 constraintName="fk_decaissement_tontine__compte_tontine_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="compte_tontine"/>
+    </changeSet>
+</databaseChangeLog>

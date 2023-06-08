@@ -1,0 +1,123 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-commentaire-pot-heading"
+        data-cy="CommentairePotCreateUpdateHeading"
+        jhiTranslate="maTontineApp.commentairePot.home.createOrEditLabel"
+      >
+        Créer ou éditer un Commentaire Pot
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.commentairePot.matriculeContributeur" for="field_matriculeContributeur"
+            >Matricule Contributeur</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeContributeur"
+            id="field_matriculeContributeur"
+            data-cy="matriculeContributeur"
+            formControlName="matriculeContributeur"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeContributeur')!.invalid &&
+              (editForm.get('matriculeContributeur')!.dirty || editForm.get('matriculeContributeur')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeContributeur')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.commentairePot.identifiantPot" for="field_identifiantPot"
+            >Identifiant Pot</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="identifiantPot"
+            id="field_identifiantPot"
+            data-cy="identifiantPot"
+            formControlName="identifiantPot"
+          />
+          <div
+            *ngIf="
+              editForm.get('identifiantPot')!.invalid && (editForm.get('identifiantPot')!.dirty || editForm.get('identifiantPot')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('identifiantPot')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.commentairePot.contenu" for="field_contenu">Contenu</label>
+          <input type="text" class="form-control" name="contenu" id="field_contenu" data-cy="contenu" formControlName="contenu" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.commentairePot.dateComentaire" for="field_dateComentaire"
+            >Date Comentaire</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateComentaire"
+              data-cy="dateComentaire"
+              type="datetime-local"
+              class="form-control"
+              name="dateComentaire"
+              formControlName="dateComentaire"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.commentairePot.pot" for="field_pot">Pot</label>
+          <select class="form-control" id="field_pot" data-cy="pot" name="pot" formControlName="pot" [compareWith]="comparePot">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="potOption" *ngFor="let potOption of potsSharedCollection">{{ potOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

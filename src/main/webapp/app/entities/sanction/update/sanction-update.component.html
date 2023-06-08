@@ -1,0 +1,142 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-sanction-heading" data-cy="SanctionCreateUpdateHeading" jhiTranslate="maTontineApp.sanction.home.createOrEditLabel">
+        Créer ou éditer un Sanction
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.libelle" for="field_libelle">Libelle</label>
+          <input type="text" class="form-control" name="libelle" id="field_libelle" data-cy="libelle" formControlName="libelle" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.matriculeAdherent" for="field_matriculeAdherent"
+            >Matricule Adherent</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeAdherent"
+            id="field_matriculeAdherent"
+            data-cy="matriculeAdherent"
+            formControlName="matriculeAdherent"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeAdherent')!.invalid &&
+              (editForm.get('matriculeAdherent')!.dirty || editForm.get('matriculeAdherent')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeAdherent')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.dateSanction" for="field_dateSanction">Date Sanction</label>
+          <div class="input-group">
+            <input
+              id="field_dateSanction"
+              data-cy="dateSanction"
+              type="text"
+              class="form-control"
+              name="dateSanction"
+              ngbDatepicker
+              #dateSanctionDp="ngbDatepicker"
+              formControlName="dateSanction"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateSanctionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.motifSanction" for="field_motifSanction">Motif Sanction</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motifSanction"
+            id="field_motifSanction"
+            data-cy="motifSanction"
+            formControlName="motifSanction"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.codeActivite" for="field_codeActivite">Code Activite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeActivite"
+            id="field_codeActivite"
+            data-cy="codeActivite"
+            formControlName="codeActivite"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.sanction.sanctionConfig" for="field_sanctionConfig">Sanction Config</label>
+          <select
+            class="form-control"
+            id="field_sanctionConfig"
+            data-cy="sanctionConfig"
+            name="sanctionConfig"
+            formControlName="sanctionConfig"
+            [compareWith]="compareSanctionConfiguration"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sanctionConfigurationOption"
+              *ngFor="let sanctionConfigurationOption of sanctionConfigurationsSharedCollection"
+            >
+              {{ sanctionConfigurationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

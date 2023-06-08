@@ -1,0 +1,185 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-fonction-adherent-heading"
+        data-cy="FonctionAdherentCreateUpdateHeading"
+        jhiTranslate="maTontineApp.fonctionAdherent.home.createOrEditLabel"
+      >
+        Créer ou éditer un Fonction Adherent
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.matriculeAdherent" for="field_matriculeAdherent"
+            >Matricule Adherent</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeAdherent"
+            id="field_matriculeAdherent"
+            data-cy="matriculeAdherent"
+            formControlName="matriculeAdherent"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeAdherent')!.invalid &&
+              (editForm.get('matriculeAdherent')!.dirty || editForm.get('matriculeAdherent')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeAdherent')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.codeFonction" for="field_codeFonction">Code Fonction</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeFonction"
+            id="field_codeFonction"
+            data-cy="codeFonction"
+            formControlName="codeFonction"
+          />
+          <div
+            *ngIf="editForm.get('codeFonction')!.invalid && (editForm.get('codeFonction')!.dirty || editForm.get('codeFonction')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeFonction')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.datePriseFonction" for="field_datePriseFonction"
+            >Date Prise Fonction</label
+          >
+          <div class="input-group">
+            <input
+              id="field_datePriseFonction"
+              data-cy="datePriseFonction"
+              type="text"
+              class="form-control"
+              name="datePriseFonction"
+              ngbDatepicker
+              #datePriseFonctionDp="ngbDatepicker"
+              formControlName="datePriseFonction"
+            />
+            <button type="button" class="btn btn-secondary" (click)="datePriseFonctionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('datePriseFonction')!.invalid &&
+              (editForm.get('datePriseFonction')!.dirty || editForm.get('datePriseFonction')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('datePriseFonction')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.dateFinFonction" for="field_dateFinFonction"
+            >Date Fin Fonction</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateFinFonction"
+              data-cy="dateFinFonction"
+              type="text"
+              class="form-control"
+              name="dateFinFonction"
+              ngbDatepicker
+              #dateFinFonctionDp="ngbDatepicker"
+              formControlName="dateFinFonction"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinFonctionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.actif" for="field_actif">Actif</label>
+          <input type="checkbox" class="form-check" name="actif" id="field_actif" data-cy="actif" formControlName="actif" />
+          <div *ngIf="editForm.get('actif')!.invalid && (editForm.get('actif')!.dirty || editForm.get('actif')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('actif')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.adherent" for="field_adherent">Adherent</label>
+          <select
+            class="form-control"
+            id="field_adherent"
+            data-cy="adherent"
+            name="adherent"
+            formControlName="adherent"
+            [compareWith]="comparePersonne"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="personneOption" *ngFor="let personneOption of personnesSharedCollection">{{ personneOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.fonctionAdherent.fonction" for="field_fonction">Fonction</label>
+          <select
+            class="form-control"
+            id="field_fonction"
+            data-cy="fonction"
+            name="fonction"
+            formControlName="fonction"
+            [compareWith]="compareFonction"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="fonctionOption" *ngFor="let fonctionOption of fonctionsSharedCollection">{{ fonctionOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

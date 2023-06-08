@@ -1,0 +1,33 @@
+{
+  "maTontineApp": {
+    "pot": {
+      "home": {
+        "title": "Pots",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pot",
+        "createOrEditLabel": "Create or edit a Pot",
+        "notFound": "No Pots found"
+      },
+      "created": "A new Pot is created with identifier {{ param }}",
+      "updated": "A Pot is updated with identifier {{ param }}",
+      "deleted": "A Pot is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pot {{ id }}?"
+      },
+      "detail": {
+        "title": "Pot"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "codepot": "Codepot",
+      "montantCible": "Montant Cible",
+      "description": "Description",
+      "dateDebutCollecte": "Date Debut Collecte",
+      "dateFinCollecte": "Date Fin Collecte",
+      "statut": "Statut",
+      "contributionPot": "Contribution Pot",
+      "commentairePot": "Commentaire Pot",
+      "typePot": "Type Pot"
+    }
+  }
+}

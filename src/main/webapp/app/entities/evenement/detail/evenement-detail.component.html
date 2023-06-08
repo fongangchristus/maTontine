@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="evenement">
+      <h2 data-cy="evenementDetailsHeading"><span jhiTranslate="maTontineApp.evenement.detail.title">Evenement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ evenement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.libele">Libele</span></dt>
+        <dd>
+          <span>{{ evenement.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.codepot">Codepot</span></dt>
+        <dd>
+          <span>{{ evenement.codepot }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.montantPayer">Montant Payer</span></dt>
+        <dd>
+          <span>{{ evenement.montantPayer }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.description">Description</span></dt>
+        <dd>
+          <span>{{ evenement.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.budget">Budget</span></dt>
+        <dd>
+          <span>{{ evenement.budget }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.dateEvenement">Date Evenement</span></dt>
+        <dd>
+          <span>{{ evenement.dateEvenement | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.evenement.typeEvenement">Type Evenement</span></dt>
+        <dd>
+          <div *ngIf="evenement.typeEvenement">
+            <a [routerLink]="['/type-evenement', evenement.typeEvenement.id, 'view']">{{ evenement.typeEvenement.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/evenement', evenement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

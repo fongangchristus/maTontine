@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "compteBanque": {
+      "home": {
+        "title": "Compte Banques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Compte Banque",
+        "createOrEditLabel": "Create or edit a Compte Banque",
+        "notFound": "No Compte Banques found"
+      },
+      "created": "A new Compte Banque is created with identifier {{ param }}",
+      "updated": "A Compte Banque is updated with identifier {{ param }}",
+      "deleted": "A Compte Banque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Compte Banque {{ id }}?"
+      },
+      "detail": {
+        "title": "Compte Banque"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "description": "Description",
+      "matriculeAdherant": "Matricule Adherant",
+      "montantDisponnible": "Montant Disponnible",
+      "cotisationBanque": "Cotisation Banque",
+      "decaisementBanque": "Decaisement Banque",
+      "banque": "Banque"
+    }
+  }
+}

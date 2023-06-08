@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "StatutPaiement": {
+      "null": "",
+      "ENCOURS": "ENCOURS",
+      "PAYER": "PAYER",
+      "ECHEC_PAYEMENT": "ECHEC_PAYEMENT"
+    }
+  }
+}

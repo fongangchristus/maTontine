@@ -1,0 +1,26 @@
+{
+  "maTontineApp": {
+    "paiementTontine": {
+      "home": {
+        "title": "PaiementTontines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Paiement Tontine",
+        "createOrEditLabel": "Créer ou éditer un Paiement Tontine",
+        "notFound": "Aucun Paiement Tontine trouvé"
+      },
+      "created": "Un nouveau Paiement Tontine a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Paiement Tontine avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Paiement Tontine avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Paiement Tontine {{ id }} ?"
+      },
+      "detail": {
+        "title": "Paiement Tontine"
+      },
+      "id": "ID",
+      "referencePaiement": "Reference Paiement",
+      "cotisationTontine": "Cotisation Tontine",
+      "decaissementTontine": "Decaissement Tontine"
+    }
+  }
+}

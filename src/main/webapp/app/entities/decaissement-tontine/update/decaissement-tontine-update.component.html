@@ -1,0 +1,132 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-decaissement-tontine-heading"
+        data-cy="DecaissementTontineCreateUpdateHeading"
+        jhiTranslate="maTontineApp.decaissementTontine.home.createOrEditLabel"
+      >
+        Créer ou éditer un Decaissement Tontine
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="maTontineApp.decaissementTontine.libele"
+            for="field_libele"
+            [ngbTooltip]="'maTontineApp.decaissementTontine.help.libele' | translate"
+            >Libele</label
+          >
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.decaissementTontine.dateDecaissement" for="field_dateDecaissement"
+            >Date Decaissement</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateDecaissement"
+              data-cy="dateDecaissement"
+              type="text"
+              class="form-control"
+              name="dateDecaissement"
+              ngbDatepicker
+              #dateDecaissementDp="ngbDatepicker"
+              formControlName="dateDecaissement"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDecaissementDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.decaissementTontine.montantDecaisse" for="field_montantDecaisse"
+            >Montant Decaisse</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="montantDecaisse"
+            id="field_montantDecaisse"
+            data-cy="montantDecaisse"
+            formControlName="montantDecaisse"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.decaissementTontine.commentaire" for="field_commentaire">Commentaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="commentaire"
+            id="field_commentaire"
+            data-cy="commentaire"
+            formControlName="commentaire"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.decaissementTontine.tontine" for="field_tontine">Tontine</label>
+          <select
+            class="form-control"
+            id="field_tontine"
+            data-cy="tontine"
+            name="tontine"
+            formControlName="tontine"
+            [compareWith]="compareSessionTontine"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="sessionTontineOption" *ngFor="let sessionTontineOption of sessionTontinesSharedCollection">
+              {{ sessionTontineOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.decaissementTontine.compteTontine" for="field_compteTontine"
+            >Compte Tontine</label
+          >
+          <select
+            class="form-control"
+            id="field_compteTontine"
+            data-cy="compteTontine"
+            name="compteTontine"
+            formControlName="compteTontine"
+            [compareWith]="compareCompteTontine"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="compteTontineOption" *ngFor="let compteTontineOption of compteTontinesSharedCollection">
+              {{ compteTontineOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

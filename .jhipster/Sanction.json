@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143634",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "sanction",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeAdherent",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateSanction",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "motifSanction",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeActivite",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Sanction",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paiementSanction",
+      "otherEntityRelationshipName": "sanction",
+      "relationshipName": "paiementSanction",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sanctionConfiguration",
+      "otherEntityRelationshipName": "sanction",
+      "relationshipName": "sanctionConfig",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

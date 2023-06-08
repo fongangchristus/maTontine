@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity PaiementTontine.
+    -->
+    <changeSet id="20230608143607-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="cotisation_tontine_id"
+                                 baseTableName="paiement_tontine"
+                                 constraintName="fk_paiement_tontine__cotisation_tontine_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cotisation_tontine"/>
+
+        <addForeignKeyConstraint baseColumnNames="decaissement_tontine_id"
+                                 baseTableName="paiement_tontine"
+                                 constraintName="fk_paiement_tontine__decaissement_tontine_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="decaissement_tontine"/>
+    </changeSet>
+</databaseChangeLog>

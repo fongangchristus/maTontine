@@ -1,0 +1,208 @@
+<div>
+  <h2 id="page-heading" data-cy="TontineHeading">
+    <span jhiTranslate="maTontineApp.tontine.home.title">Tontines</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.tontine.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tontine"
+        [routerLink]="['/tontine/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.tontine.home.createLabel"> Créer un nouveau Tontine </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tontines?.length === 0">
+    <span jhiTranslate="maTontineApp.tontine.home.notFound">Aucun Tontine trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="tontines && tontines.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeAssociation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.codeAssociation">Code Association</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libele">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.libele">Libele</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombreTour">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.nombreTour">Nombre Tour</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombreMaxPersonne">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.nombreMaxPersonne">Nombre Max Personne</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="margeBeneficiaire">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.margeBeneficiaire">Marge Beneficiaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantPart">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.montantPart">Montant Part</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="amandeEchec">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.amandeEchec">Amande Echec</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateDebut">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.dateDebut">Date Debut</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateFin">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.dateFin">Date Fin</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="statutTontine">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.statutTontine">Statut Tontine</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tontine of tontines; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tontine', tontine.id, 'view']">{{ tontine.id }}</a>
+          </td>
+          <td>{{ tontine.codeAssociation }}</td>
+          <td>{{ tontine.libele }}</td>
+          <td>{{ tontine.nombreTour }}</td>
+          <td>{{ tontine.nombreMaxPersonne }}</td>
+          <td>{{ tontine.margeBeneficiaire }}</td>
+          <td>{{ tontine.montantPart }}</td>
+          <td>{{ tontine.amandeEchec }}</td>
+          <td>{{ tontine.dateDebut | formatMediumDate }}</td>
+          <td>{{ tontine.dateFin | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.StatutTontine.' + tontine.statutTontine }}">{{ tontine.statutTontine }}</td>
+          <td>{{ tontine.description }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/session-tontine']"
+                [queryParams]="{ 'filter[tontineId.in]': tontine.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.tontine.sessionTontine' | translate) }"
+                  >Show Session Tontine</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/gestionnaire-tontine']"
+                [queryParams]="{ 'filter[tontineId.in]': tontine.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.tontine.gestionnaireTontine' | translate) }"
+                  >Show Gestionnaire Tontine</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/tontine', tontine.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/tontine', tontine.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(tontine)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="tontines && tontines.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

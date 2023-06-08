@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143559",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "cotisation_banque",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateCotisation",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "montantCotise",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CotisationBanque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "compteBanque",
+      "otherEntityRelationshipName": "cotisationBanque",
+      "relationshipName": "compteBanque",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

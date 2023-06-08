@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pot">
+      <h2 data-cy="potDetailsHeading"><span jhiTranslate="maTontineApp.pot.detail.title">Pot</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pot.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.libele">Libele</span></dt>
+        <dd>
+          <span>{{ pot.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.codepot">Codepot</span></dt>
+        <dd>
+          <span>{{ pot.codepot }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.montantCible">Montant Cible</span></dt>
+        <dd>
+          <span>{{ pot.montantCible }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.description">Description</span></dt>
+        <dd>
+          <span>{{ pot.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.dateDebutCollecte">Date Debut Collecte</span></dt>
+        <dd>
+          <span>{{ pot.dateDebutCollecte | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.dateFinCollecte">Date Fin Collecte</span></dt>
+        <dd>
+          <span>{{ pot.dateFinCollecte | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.StatutPot.' + pot.statut }}">{{ pot.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.pot.typePot">Type Pot</span></dt>
+        <dd>
+          <div *ngIf="pot.typePot">
+            <a [routerLink]="['/type-pot', pot.typePot.id, 'view']">{{ pot.typePot.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pot', pot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "NatureAssemble": {
+      "null": "",
+      "ORDINAIRE": "ORDINAIRE",
+      "EXTRAORDINAIRE": "EXTRAORDINAIRE",
+      "MIXTE": "MIXTE"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contributionPot">
+      <h2 data-cy="contributionPotDetailsHeading">
+        <span jhiTranslate="maTontineApp.contributionPot.detail.title">Contribution Pot</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contributionPot.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contributionPot.identifiant">Identifiant</span></dt>
+        <dd>
+          <span>{{ contributionPot.identifiant }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contributionPot.matriculeContributeur">Matricule Contributeur</span></dt>
+        <dd>
+          <span>{{ contributionPot.matriculeContributeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contributionPot.montantContribution">Montant Contribution</span></dt>
+        <dd>
+          <span>{{ contributionPot.montantContribution }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contributionPot.dateContribution">Date Contribution</span></dt>
+        <dd>
+          <span>{{ contributionPot.dateContribution | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contributionPot.pot">Pot</span></dt>
+        <dd>
+          <div *ngIf="contributionPot.pot">
+            <a [routerLink]="['/pot', contributionPot.pot.id, 'view']">{{ contributionPot.pot.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contribution-pot', contributionPot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

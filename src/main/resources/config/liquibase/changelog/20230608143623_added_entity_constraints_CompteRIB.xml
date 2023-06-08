@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity CompteRIB.
+    -->
+    <changeSet id="20230608143623-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="adherent_id"
+                                 baseTableName="compte_rib"
+                                 constraintName="fk_compte_rib__adherent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personne"/>
+    </changeSet>
+</databaseChangeLog>

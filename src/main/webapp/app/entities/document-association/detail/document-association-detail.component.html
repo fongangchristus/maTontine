@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentAssociation">
+      <h2 data-cy="documentAssociationDetailsHeading">
+        <span jhiTranslate="maTontineApp.documentAssociation.detail.title">Document Association</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentAssociation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.codeDocument">Code Document</span></dt>
+        <dd>
+          <span>{{ documentAssociation.codeDocument }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.libele">Libele</span></dt>
+        <dd>
+          <span>{{ documentAssociation.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.description">Description</span></dt>
+        <dd>
+          <span>{{ documentAssociation.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.dateEnregistrement">Date Enregistrement</span></dt>
+        <dd>
+          <span>{{ documentAssociation.dateEnregistrement | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.dateArchivage">Date Archivage</span></dt>
+        <dd>
+          <span>{{ documentAssociation.dateArchivage | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.version">Version</span></dt>
+        <dd>
+          <span>{{ documentAssociation.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.documentAssociation.association">Association</span></dt>
+        <dd>
+          <div *ngIf="documentAssociation.association">
+            <a [routerLink]="['/association', documentAssociation.association.id, 'view']">{{ documentAssociation.association.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-association', documentAssociation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143614",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "fonction",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Fonctions des adhérent (membre, président sécrétaire ....)\\n@author The JHipster team.",
+  "jpaMetamodelFiltering": true,
+  "name": "Fonction",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fonctionAdherent",
+      "otherEntityRelationshipName": "fonction",
+      "relationshipName": "fonctionAdherent",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

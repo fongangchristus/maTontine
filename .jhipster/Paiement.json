@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143608",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "paiement",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "referencePaiement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculecmptEmet",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "matriculecmptDest",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montantPaiement",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "datePaiement",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "modePaiement",
+      "fieldType": "ModePaiement",
+      "fieldValues": "ESPECE,CHEQUE,VISA,VIREMENT,MOBILE_MONEY"
+    },
+    {
+      "fieldName": "statutPaiement",
+      "fieldType": "StatutPaiement",
+      "fieldValues": "ENCOURS,PAYER,ECHEC_PAYEMENT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Paiement",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

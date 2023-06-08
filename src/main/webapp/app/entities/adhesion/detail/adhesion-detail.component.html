@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="adhesion">
+      <h2 data-cy="adhesionDetailsHeading"><span jhiTranslate="maTontineApp.adhesion.detail.title">Adhesion</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ adhesion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.adhesion.statutAdhesion">Statut Adhesion</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.StatutAdhesion.' + adhesion.statutAdhesion }}">{{ adhesion.statutAdhesion }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.adhesion.matriculePersonne">Matricule Personne</span></dt>
+        <dd>
+          <span>{{ adhesion.matriculePersonne }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.adhesion.dateDebutAdhesion">Date Debut Adhesion</span></dt>
+        <dd>
+          <span>{{ adhesion.dateDebutAdhesion | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.adhesion.dateFinAdhesion">Date Fin Adhesion</span></dt>
+        <dd>
+          <span>{{ adhesion.dateFinAdhesion | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/adhesion', adhesion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

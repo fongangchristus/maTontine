@@ -1,0 +1,33 @@
+{
+  "maTontineApp": {
+    "assemble": {
+      "home": {
+        "title": "Assembles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Assemble",
+        "createOrEditLabel": "Créer ou éditer un Assemble",
+        "notFound": "Aucun Assemble trouvé"
+      },
+      "created": "Un nouveau Assemble a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Assemble avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Assemble avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Assemble {{ id }} ?"
+      },
+      "detail": {
+        "title": "Assemble"
+      },
+      "id": "ID",
+      "codeAssociation": "Code Association",
+      "libele": "Libele",
+      "enLigne": "En Ligne",
+      "dateSeance": "Date Seance",
+      "lieuSeance": "Lieu Seance",
+      "matriculeMembreRecoit": "Matricule Membre Recoit",
+      "nature": "Nature",
+      "compteRendu": "Compte Rendu",
+      "resumeAssemble": "Resume Assemble",
+      "documentCRPath": "Document CR Path"
+    }
+  }
+}

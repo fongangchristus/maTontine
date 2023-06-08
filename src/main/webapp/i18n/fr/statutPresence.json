@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "StatutPresence": {
+      "null": "",
+      "PRESENT": "PRESENT",
+      "RETARD": "RETARD",
+      "ABSCENT": "ABSCENT"
+    }
+  }
+}

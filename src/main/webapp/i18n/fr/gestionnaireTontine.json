@@ -1,0 +1,28 @@
+{
+  "maTontineApp": {
+    "gestionnaireTontine": {
+      "home": {
+        "title": "GestionnaireTontines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Gestionnaire Tontine",
+        "createOrEditLabel": "Créer ou éditer un Gestionnaire Tontine",
+        "notFound": "Aucun Gestionnaire Tontine trouvé"
+      },
+      "created": "Un nouveau Gestionnaire Tontine a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Gestionnaire Tontine avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Gestionnaire Tontine avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Gestionnaire Tontine {{ id }} ?"
+      },
+      "detail": {
+        "title": "Gestionnaire Tontine"
+      },
+      "id": "ID",
+      "matriculeAdherent": "Matricule Adherent",
+      "codeTontine": "Code Tontine",
+      "datePriseFonction": "Date Prise Fonction",
+      "dateFinFonction": "Date Fin Fonction",
+      "tontine": "Tontine"
+    }
+  }
+}

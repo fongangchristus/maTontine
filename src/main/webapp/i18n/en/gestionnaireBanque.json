@@ -1,0 +1,25 @@
+{
+  "maTontineApp": {
+    "gestionnaireBanque": {
+      "home": {
+        "title": "Gestionnaire Banques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Gestionnaire Banque",
+        "createOrEditLabel": "Create or edit a Gestionnaire Banque",
+        "notFound": "No Gestionnaire Banques found"
+      },
+      "created": "A new Gestionnaire Banque is created with identifier {{ param }}",
+      "updated": "A Gestionnaire Banque is updated with identifier {{ param }}",
+      "deleted": "A Gestionnaire Banque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gestionnaire Banque {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestionnaire Banque"
+      },
+      "id": "ID",
+      "matriculeMembre": "Matricule Membre",
+      "banque": "Banque"
+    }
+  }
+}

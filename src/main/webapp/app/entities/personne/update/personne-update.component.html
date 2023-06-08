@@ -1,0 +1,218 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-personne-heading" data-cy="PersonneCreateUpdateHeading" jhiTranslate="maTontineApp.personne.home.createOrEditLabel">
+        Créer ou éditer un Personne
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="maTontineApp.personne.idUser"
+            for="field_idUser"
+            [ngbTooltip]="'maTontineApp.personne.help.idUser' | translate"
+            >Id User</label
+          >
+          <input type="number" class="form-control" name="idUser" id="field_idUser" data-cy="idUser" formControlName="idUser" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.codeAssociation" for="field_codeAssociation"
+            >Code Association</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="codeAssociation"
+            id="field_codeAssociation"
+            data-cy="codeAssociation"
+            formControlName="codeAssociation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.matricule" for="field_matricule">Matricule</label>
+          <input type="text" class="form-control" name="matricule" id="field_matricule" data-cy="matricule" formControlName="matricule" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.lieuNaissance" for="field_lieuNaissance">Lieu Naissance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="lieuNaissance"
+            id="field_lieuNaissance"
+            data-cy="lieuNaissance"
+            formControlName="lieuNaissance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.dateInscription" for="field_dateInscription"
+            >Date Inscription</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateInscription"
+              data-cy="dateInscription"
+              type="datetime-local"
+              class="form-control"
+              name="dateInscription"
+              formControlName="dateInscription"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.profession" for="field_profession">Profession</label>
+          <input
+            type="text"
+            class="form-control"
+            name="profession"
+            id="field_profession"
+            data-cy="profession"
+            formControlName="profession"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.sexe" for="field_sexe">Sexe</label>
+          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+            <option [ngValue]="null">{{ 'maTontineApp.Sexe.null' | translate }}</option>
+            <option *ngFor="let sexe of sexeValues" [value]="sexe">{{ 'maTontineApp.Sexe.' + sexe | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.photoPath" for="field_photoPath">Photo Path</label>
+          <input type="text" class="form-control" name="photoPath" id="field_photoPath" data-cy="photoPath" formControlName="photoPath" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.dateIntegration" for="field_dateIntegration"
+            >Date Integration</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateIntegration"
+              data-cy="dateIntegration"
+              type="datetime-local"
+              class="form-control"
+              name="dateIntegration"
+              formControlName="dateIntegration"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.isAdmin" for="field_isAdmin">Is Admin</label>
+          <input type="checkbox" class="form-check" name="isAdmin" id="field_isAdmin" data-cy="isAdmin" formControlName="isAdmin" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.isDonateur" for="field_isDonateur">Is Donateur</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isDonateur"
+            id="field_isDonateur"
+            data-cy="isDonateur"
+            formControlName="isDonateur"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.isBenevole" for="field_isBenevole">Is Benevole</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isBenevole"
+            id="field_isBenevole"
+            data-cy="isBenevole"
+            formControlName="isBenevole"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.typePersonne" for="field_typePersonne">Type Personne</label>
+          <select class="form-control" name="typePersonne" formControlName="typePersonne" id="field_typePersonne" data-cy="typePersonne">
+            <option [ngValue]="null">{{ 'maTontineApp.TypePersonne.null' | translate }}</option>
+            <option *ngFor="let typePersonne of typePersonneValues" [value]="typePersonne">
+              {{ 'maTontineApp.TypePersonne.' + typePersonne | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.personne.adresse" for="field_adresse">Adresse</label>
+          <select
+            class="form-control"
+            id="field_adresse"
+            data-cy="adresse"
+            name="adresse"
+            formControlName="adresse"
+            [compareWith]="compareAdresse"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="adresseOption" *ngFor="let adresseOption of adressesSharedCollection">{{ adresseOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cotisationBanque">
+      <h2 data-cy="cotisationBanqueDetailsHeading">
+        <span jhiTranslate="maTontineApp.cotisationBanque.detail.title">Cotisation Banque</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.libelle">Libelle</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.libelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.montant">Montant</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.montant }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.dateCotisation">Date Cotisation</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.dateCotisation | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.montantCotise">Montant Cotise</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.montantCotise }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ cotisationBanque.commentaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationBanque.compteBanque">Compte Banque</span></dt>
+        <dd>
+          <div *ngIf="cotisationBanque.compteBanque">
+            <a [routerLink]="['/compte-banque', cotisationBanque.compteBanque.id, 'view']">{{ cotisationBanque.compteBanque.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cotisation-banque', cotisationBanque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

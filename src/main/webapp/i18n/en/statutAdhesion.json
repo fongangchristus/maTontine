@@ -1,0 +1,11 @@
+{
+  "maTontineApp": {
+    "StatutAdhesion": {
+      "null": "",
+      "ENCOURS": "ENCOURS",
+      "ANNULE": "ANNULE",
+      "PAYE": "PAYE",
+      "EXPIRE": "EXPIRE"
+    }
+  }
+}

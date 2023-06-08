@@ -1,0 +1,171 @@
+<div>
+  <h2 id="page-heading" data-cy="AssembleHeading">
+    <span jhiTranslate="maTontineApp.assemble.home.title">Assembles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.assemble.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-assemble"
+        [routerLink]="['/assemble/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.assemble.home.createLabel"> Créer un nouveau Assemble </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="assembles?.length === 0">
+    <span jhiTranslate="maTontineApp.assemble.home.notFound">Aucun Assemble trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="assembles && assembles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeAssociation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.codeAssociation">Code Association</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libele">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.libele">Libele</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="enLigne">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.enLigne">En Ligne</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateSeance">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.dateSeance">Date Seance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lieuSeance">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.lieuSeance">Lieu Seance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="matriculeMembreRecoit">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.matriculeMembreRecoit">Matricule Membre Recoit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nature">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.nature">Nature</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="compteRendu">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.compteRendu">Compte Rendu</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="resumeAssemble">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.resumeAssemble">Resume Assemble</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="documentCRPath">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.assemble.documentCRPath">Document CR Path</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let assemble of assembles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/assemble', assemble.id, 'view']">{{ assemble.id }}</a>
+          </td>
+          <td>{{ assemble.codeAssociation }}</td>
+          <td>{{ assemble.libele }}</td>
+          <td>{{ assemble.enLigne }}</td>
+          <td>{{ assemble.dateSeance }}</td>
+          <td>{{ assemble.lieuSeance }}</td>
+          <td>{{ assemble.matriculeMembreRecoit }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.NatureAssemble.' + assemble.nature }}">{{ assemble.nature }}</td>
+          <td>{{ assemble.compteRendu }}</td>
+          <td>{{ assemble.resumeAssemble }}</td>
+          <td>{{ assemble.documentCRPath }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/assemble', assemble.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/assemble', assemble.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(assemble)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="assembles && assembles.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

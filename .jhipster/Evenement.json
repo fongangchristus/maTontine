@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143626",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "evenement",
+  "fields": [
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codepot",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montantPayer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "budget",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateEvenement",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Evenement",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "typeEvenement",
+      "otherEntityRelationshipName": "evenement",
+      "relationshipName": "typeEvenement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

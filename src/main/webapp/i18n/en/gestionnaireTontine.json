@@ -1,0 +1,28 @@
+{
+  "maTontineApp": {
+    "gestionnaireTontine": {
+      "home": {
+        "title": "Gestionnaire Tontines",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Gestionnaire Tontine",
+        "createOrEditLabel": "Create or edit a Gestionnaire Tontine",
+        "notFound": "No Gestionnaire Tontines found"
+      },
+      "created": "A new Gestionnaire Tontine is created with identifier {{ param }}",
+      "updated": "A Gestionnaire Tontine is updated with identifier {{ param }}",
+      "deleted": "A Gestionnaire Tontine is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gestionnaire Tontine {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestionnaire Tontine"
+      },
+      "id": "ID",
+      "matriculeAdherent": "Matricule Adherent",
+      "codeTontine": "Code Tontine",
+      "datePriseFonction": "Date Prise Fonction",
+      "dateFinFonction": "Date Fin Fonction",
+      "tontine": "Tontine"
+    }
+  }
+}

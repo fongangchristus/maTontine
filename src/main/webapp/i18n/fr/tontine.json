@@ -1,0 +1,39 @@
+{
+  "maTontineApp": {
+    "tontine": {
+      "home": {
+        "title": "Tontines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Tontine",
+        "createOrEditLabel": "Créer ou éditer un Tontine",
+        "notFound": "Aucun Tontine trouvé"
+      },
+      "created": "Un nouveau Tontine a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tontine avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tontine avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Tontine {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tontine"
+      },
+      "id": "ID",
+      "codeAssociation": "Code Association",
+      "libele": "Libele",
+      "nombreTour": "Nombre Tour",
+      "nombreMaxPersonne": "Nombre Max Personne",
+      "margeBeneficiaire": "Marge Beneficiaire",
+      "montantPart": "Montant Part",
+      "amandeEchec": "Amande Echec",
+      "dateDebut": "Date Debut",
+      "dateFin": "Date Fin",
+      "statutTontine": "Statut Tontine",
+      "description": "Description",
+      "sessionTontine": "Session Tontine",
+      "gestionnaireTontine": "Gestionnaire Tontine",
+      "help": {
+        "codeAssociation": "Un membre peux avoir plusieurs comptes/noms tontines"
+      }
+    }
+  }
+}

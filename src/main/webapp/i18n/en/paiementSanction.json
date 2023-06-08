@@ -1,0 +1,25 @@
+{
+  "maTontineApp": {
+    "paiementSanction": {
+      "home": {
+        "title": "Paiement Sanctions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Paiement Sanction",
+        "createOrEditLabel": "Create or edit a Paiement Sanction",
+        "notFound": "No Paiement Sanctions found"
+      },
+      "created": "A new Paiement Sanction is created with identifier {{ param }}",
+      "updated": "A Paiement Sanction is updated with identifier {{ param }}",
+      "deleted": "A Paiement Sanction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paiement Sanction {{ id }}?"
+      },
+      "detail": {
+        "title": "Paiement Sanction"
+      },
+      "id": "ID",
+      "referencePaiement": "Reference Paiement",
+      "sanction": "Sanction"
+    }
+  }
+}

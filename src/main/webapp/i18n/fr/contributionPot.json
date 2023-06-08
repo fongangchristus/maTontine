@@ -1,0 +1,28 @@
+{
+  "maTontineApp": {
+    "contributionPot": {
+      "home": {
+        "title": "ContributionPots",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contribution Pot",
+        "createOrEditLabel": "Créer ou éditer un Contribution Pot",
+        "notFound": "Aucun Contribution Pot trouvé"
+      },
+      "created": "Un nouveau Contribution Pot a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contribution Pot avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contribution Pot avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Contribution Pot {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contribution Pot"
+      },
+      "id": "ID",
+      "identifiant": "Identifiant",
+      "matriculeContributeur": "Matricule Contributeur",
+      "montantContribution": "Montant Contribution",
+      "dateContribution": "Date Contribution",
+      "pot": "Pot"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143629",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "contribution_pot",
+  "fields": [
+    {
+      "fieldName": "identifiant",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeContributeur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montantContribution",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateContribution",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ContributionPot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pot",
+      "otherEntityRelationshipName": "contributionPot",
+      "relationshipName": "pot",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

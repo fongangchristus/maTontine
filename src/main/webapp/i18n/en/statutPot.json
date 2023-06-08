@@ -1,0 +1,10 @@
+{
+  "maTontineApp": {
+    "StatutPot": {
+      "null": "",
+      "OUVERTE": "OUVERTE",
+      "FERMEE": "FERMEE",
+      "CLOTURE": "CLOTURE"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-adhesion-heading" data-cy="AdhesionCreateUpdateHeading" jhiTranslate="maTontineApp.adhesion.home.createOrEditLabel">
+        Créer ou éditer un Adhesion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.adhesion.statutAdhesion" for="field_statutAdhesion">Statut Adhesion</label>
+          <select
+            class="form-control"
+            name="statutAdhesion"
+            formControlName="statutAdhesion"
+            id="field_statutAdhesion"
+            data-cy="statutAdhesion"
+          >
+            <option [ngValue]="null">{{ 'maTontineApp.StatutAdhesion.null' | translate }}</option>
+            <option *ngFor="let statutAdhesion of statutAdhesionValues" [value]="statutAdhesion">
+              {{ 'maTontineApp.StatutAdhesion.' + statutAdhesion | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.adhesion.matriculePersonne" for="field_matriculePersonne"
+            >Matricule Personne</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculePersonne"
+            id="field_matriculePersonne"
+            data-cy="matriculePersonne"
+            formControlName="matriculePersonne"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.adhesion.dateDebutAdhesion" for="field_dateDebutAdhesion"
+            >Date Debut Adhesion</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateDebutAdhesion"
+              data-cy="dateDebutAdhesion"
+              type="datetime-local"
+              class="form-control"
+              name="dateDebutAdhesion"
+              formControlName="dateDebutAdhesion"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.adhesion.dateFinAdhesion" for="field_dateFinAdhesion"
+            >Date Fin Adhesion</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateFinAdhesion"
+              data-cy="dateFinAdhesion"
+              type="datetime-local"
+              class="form-control"
+              name="dateFinAdhesion"
+              formControlName="dateFinAdhesion"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

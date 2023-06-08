@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "decaisementBanque": {
+      "home": {
+        "title": "Decaisement Banques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Decaisement Banque",
+        "createOrEditLabel": "Create or edit a Decaisement Banque",
+        "notFound": "No Decaisement Banques found"
+      },
+      "created": "A new Decaisement Banque is created with identifier {{ param }}",
+      "updated": "A Decaisement Banque is updated with identifier {{ param }}",
+      "deleted": "A Decaisement Banque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Decaisement Banque {{ id }}?"
+      },
+      "detail": {
+        "title": "Decaisement Banque"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "montant": "Montant",
+      "dateDecaissement": "Date Decaissement",
+      "montantDecaisse": "Montant Decaisse",
+      "commentaire": "Commentaire",
+      "compteBanque": "Compte Banque"
+    }
+  }
+}

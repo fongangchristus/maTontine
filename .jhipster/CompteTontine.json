@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143555",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "compte_tontine",
+  "fields": [
+    {
+      "fieldName": "etatDeCompte",
+      "fieldType": "Boolean",
+      "javadoc": "Inscription à la tontine est materialisé par la creation d'un compte tontine\\nUn membre peux avoir plusieurs comptes/noms tontines"
+    },
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "odreBeneficiere",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "matriculeCompte",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "matriculeMenbre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CompteTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tontine",
+      "ownerSide": true,
+      "relationshipName": "tontine",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "cotisationTontine",
+      "otherEntityRelationshipName": "compteTontine",
+      "relationshipName": "cotisationTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "decaissementTontine",
+      "otherEntityRelationshipName": "compteTontine",
+      "relationshipName": "decaissementTontine",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

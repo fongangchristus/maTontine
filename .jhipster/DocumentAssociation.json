@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143611",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "document_association",
+  "fields": [
+    {
+      "fieldName": "codeDocument",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateEnregistrement",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateArchivage",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DocumentAssociation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "association",
+      "otherEntityRelationshipName": "documentAssociation",
+      "relationshipName": "association",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

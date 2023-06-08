@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compteRIB">
+      <h2 data-cy="compteRIBDetailsHeading"><span jhiTranslate="maTontineApp.compteRIB.detail.title">Compte RIB</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compteRIB.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteRIB.iban" [ngbTooltip]="'maTontineApp.compteRIB.help.iban' | translate">Iban</span></dt>
+        <dd>
+          <span>{{ compteRIB.iban }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteRIB.titulaireCompte">Titulaire Compte</span></dt>
+        <dd>
+          <span>{{ compteRIB.titulaireCompte }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteRIB.verifier">Verifier</span></dt>
+        <dd>
+          <span>{{ compteRIB.verifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.compteRIB.adherent">Adherent</span></dt>
+        <dd>
+          <div *ngIf="compteRIB.adherent">
+            <a [routerLink]="['/personne', compteRIB.adherent.id, 'view']">{{ compteRIB.adherent.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compte-rib', compteRIB.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

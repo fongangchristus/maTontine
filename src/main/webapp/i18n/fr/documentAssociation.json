@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "documentAssociation": {
+      "home": {
+        "title": "DocumentAssociations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Document Association",
+        "createOrEditLabel": "Créer ou éditer un Document Association",
+        "notFound": "Aucun Document Association trouvé"
+      },
+      "created": "Un nouveau Document Association a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Document Association avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Document Association avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Document Association {{ id }} ?"
+      },
+      "detail": {
+        "title": "Document Association"
+      },
+      "id": "ID",
+      "codeDocument": "Code Document",
+      "libele": "Libele",
+      "description": "Description",
+      "dateEnregistrement": "Date Enregistrement",
+      "dateArchivage": "Date Archivage",
+      "version": "Version",
+      "association": "Association"
+    }
+  }
+}

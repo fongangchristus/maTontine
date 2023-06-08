@@ -1,0 +1,76 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143556",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tontine",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Un membre peux avoir plusieurs comptes/noms tontines"
+    },
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreTour",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nombreMaxPersonne",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "margeBeneficiaire",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "montantPart",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "amandeEchec",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "statutTontine",
+      "fieldType": "StatutTontine",
+      "fieldValues": "CREE,OUVERTE,CLOTUREE"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Tontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sessionTontine",
+      "otherEntityRelationshipName": "tontine",
+      "relationshipName": "sessionTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "gestionnaireTontine",
+      "otherEntityRelationshipName": "tontine",
+      "relationshipName": "gestionnaireTontine",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

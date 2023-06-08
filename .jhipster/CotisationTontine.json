@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143604",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "cotisation_tontine",
+  "fields": [
+    {
+      "fieldName": "montantCotise",
+      "fieldType": "Double",
+      "javadoc": "Un membre peux avoir plusieurs comptes/noms tontines"
+    },
+    {
+      "fieldName": "pieceJustifPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCotisation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateValidation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "EtatCotisation",
+      "fieldValues": "ECHEC,COTISE,ENCOURS"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CotisationTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "paiementTontine",
+      "otherEntityRelationshipName": "cotisationTontine",
+      "relationshipName": "paiementTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sessionTontine",
+      "otherEntityRelationshipName": "cotisationTontine",
+      "relationshipName": "sessionTontine",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "compteTontine",
+      "otherEntityRelationshipName": "cotisationTontine",
+      "relationshipName": "compteTontine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

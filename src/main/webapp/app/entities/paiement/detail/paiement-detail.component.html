@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paiement">
+      <h2 data-cy="paiementDetailsHeading"><span jhiTranslate="maTontineApp.paiement.detail.title">Paiement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paiement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.codeAssociation">Code Association</span></dt>
+        <dd>
+          <span>{{ paiement.codeAssociation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.referencePaiement">Reference Paiement</span></dt>
+        <dd>
+          <span>{{ paiement.referencePaiement }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.matriculecmptEmet">Matriculecmpt Emet</span></dt>
+        <dd>
+          <span>{{ paiement.matriculecmptEmet }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.matriculecmptDest">Matriculecmpt Dest</span></dt>
+        <dd>
+          <span>{{ paiement.matriculecmptDest }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.montantPaiement">Montant Paiement</span></dt>
+        <dd>
+          <span>{{ paiement.montantPaiement }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.datePaiement">Date Paiement</span></dt>
+        <dd>
+          <span>{{ paiement.datePaiement | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.modePaiement">Mode Paiement</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.ModePaiement.' + paiement.modePaiement }}">{{ paiement.modePaiement }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiement.statutPaiement">Statut Paiement</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.StatutPaiement.' + paiement.statutPaiement }}">{{ paiement.statutPaiement }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paiement', paiement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

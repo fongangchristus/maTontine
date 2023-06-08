@@ -1,0 +1,25 @@
+{
+  "maTontineApp": {
+    "paiementAdhesion": {
+      "home": {
+        "title": "PaiementAdhesions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Paiement Adhesion",
+        "createOrEditLabel": "Créer ou éditer un Paiement Adhesion",
+        "notFound": "Aucun Paiement Adhesion trouvé"
+      },
+      "created": "Un nouveau Paiement Adhesion a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Paiement Adhesion avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Paiement Adhesion avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Paiement Adhesion {{ id }} ?"
+      },
+      "detail": {
+        "title": "Paiement Adhesion"
+      },
+      "id": "ID",
+      "referencePaiement": "Reference Paiement",
+      "adhesion": "Adhesion"
+    }
+  }
+}

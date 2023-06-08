@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tontine">
+      <h2 data-cy="tontineDetailsHeading"><span jhiTranslate="maTontineApp.tontine.detail.title">Tontine</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ tontine.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="maTontineApp.tontine.codeAssociation" [ngbTooltip]="'maTontineApp.tontine.help.codeAssociation' | translate"
+            >Code Association</span
+          >
+        </dt>
+        <dd>
+          <span>{{ tontine.codeAssociation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.libele">Libele</span></dt>
+        <dd>
+          <span>{{ tontine.libele }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.nombreTour">Nombre Tour</span></dt>
+        <dd>
+          <span>{{ tontine.nombreTour }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.nombreMaxPersonne">Nombre Max Personne</span></dt>
+        <dd>
+          <span>{{ tontine.nombreMaxPersonne }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.margeBeneficiaire">Marge Beneficiaire</span></dt>
+        <dd>
+          <span>{{ tontine.margeBeneficiaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.montantPart">Montant Part</span></dt>
+        <dd>
+          <span>{{ tontine.montantPart }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.amandeEchec">Amande Echec</span></dt>
+        <dd>
+          <span>{{ tontine.amandeEchec }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.dateDebut">Date Debut</span></dt>
+        <dd>
+          <span>{{ tontine.dateDebut | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.dateFin">Date Fin</span></dt>
+        <dd>
+          <span>{{ tontine.dateFin | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.statutTontine">Statut Tontine</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.StatutTontine.' + tontine.statutTontine }}">{{ tontine.statutTontine }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.description">Description</span></dt>
+        <dd>
+          <span>{{ tontine.description }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/tontine', tontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

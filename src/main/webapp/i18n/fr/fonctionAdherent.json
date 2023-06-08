@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "fonctionAdherent": {
+      "home": {
+        "title": "FonctionAdherents",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Fonction Adherent",
+        "createOrEditLabel": "Créer ou éditer un Fonction Adherent",
+        "notFound": "Aucun Fonction Adherent trouvé"
+      },
+      "created": "Un nouveau Fonction Adherent a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Fonction Adherent avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Fonction Adherent avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Fonction Adherent {{ id }} ?"
+      },
+      "detail": {
+        "title": "Fonction Adherent"
+      },
+      "id": "ID",
+      "matriculeAdherent": "Matricule Adherent",
+      "codeFonction": "Code Fonction",
+      "datePriseFonction": "Date Prise Fonction",
+      "dateFinFonction": "Date Fin Fonction",
+      "actif": "Actif",
+      "adherent": "Adherent",
+      "fonction": "Fonction"
+    }
+  }
+}

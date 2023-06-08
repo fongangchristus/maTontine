@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="CotisationBanqueHeading">
+    <span jhiTranslate="maTontineApp.cotisationBanque.home.title">CotisationBanques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.cotisationBanque.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cotisation-banque"
+        [routerLink]="['/cotisation-banque/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.cotisationBanque.home.createLabel"> Créer un nouveau Cotisation Banque </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cotisationBanques?.length === 0">
+    <span jhiTranslate="maTontineApp.cotisationBanque.home.notFound">Aucun Cotisation Banque trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="cotisationBanques && cotisationBanques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libelle">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.libelle">Libelle</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montant">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.montant">Montant</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateCotisation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.dateCotisation">Date Cotisation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantCotise">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.montantCotise">Montant Cotise</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commentaire">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.commentaire">Commentaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="compteBanque.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.cotisationBanque.compteBanque">Compte Banque</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cotisationBanque of cotisationBanques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cotisation-banque', cotisationBanque.id, 'view']">{{ cotisationBanque.id }}</a>
+          </td>
+          <td>{{ cotisationBanque.libelle }}</td>
+          <td>{{ cotisationBanque.montant }}</td>
+          <td>{{ cotisationBanque.dateCotisation | formatMediumDatetime }}</td>
+          <td>{{ cotisationBanque.montantCotise }}</td>
+          <td>{{ cotisationBanque.commentaire }}</td>
+          <td>
+            <div *ngIf="cotisationBanque.compteBanque">
+              <a [routerLink]="['/compte-banque', cotisationBanque.compteBanque.id, 'view']">{{ cotisationBanque.compteBanque.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cotisation-banque', cotisationBanque.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cotisation-banque', cotisationBanque.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(cotisationBanque)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="cotisationBanques && cotisationBanques.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commentairePot">
+      <h2 data-cy="commentairePotDetailsHeading"><span jhiTranslate="maTontineApp.commentairePot.detail.title">Commentaire Pot</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commentairePot.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.commentairePot.matriculeContributeur">Matricule Contributeur</span></dt>
+        <dd>
+          <span>{{ commentairePot.matriculeContributeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.commentairePot.identifiantPot">Identifiant Pot</span></dt>
+        <dd>
+          <span>{{ commentairePot.identifiantPot }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.commentairePot.contenu">Contenu</span></dt>
+        <dd>
+          <span>{{ commentairePot.contenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.commentairePot.dateComentaire">Date Comentaire</span></dt>
+        <dd>
+          <span>{{ commentairePot.dateComentaire | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.commentairePot.pot">Pot</span></dt>
+        <dd>
+          <div *ngIf="commentairePot.pot">
+            <a [routerLink]="['/pot', commentairePot.pot.id, 'view']">{{ commentairePot.pot.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/commentaire-pot', commentairePot.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "adhesion": {
+      "home": {
+        "title": "Adhesions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Adhesion",
+        "createOrEditLabel": "Créer ou éditer un Adhesion",
+        "notFound": "Aucun Adhesion trouvé"
+      },
+      "created": "Un nouveau Adhesion a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Adhesion avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Adhesion avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Adhesion {{ id }} ?"
+      },
+      "detail": {
+        "title": "Adhesion"
+      },
+      "id": "ID",
+      "statutAdhesion": "Statut Adhesion",
+      "matriculePersonne": "Matricule Personne",
+      "dateDebutAdhesion": "Date Debut Adhesion",
+      "dateFinAdhesion": "Date Fin Adhesion",
+      "formuleAdhesion": "Formule Adhesion",
+      "paiementAdhesion": "Paiement Adhesion"
+    }
+  }
+}

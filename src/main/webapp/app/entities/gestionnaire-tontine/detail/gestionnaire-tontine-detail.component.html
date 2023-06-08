@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="gestionnaireTontine">
+      <h2 data-cy="gestionnaireTontineDetailsHeading">
+        <span jhiTranslate="maTontineApp.gestionnaireTontine.detail.title">Gestionnaire Tontine</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ gestionnaireTontine.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.gestionnaireTontine.matriculeAdherent">Matricule Adherent</span></dt>
+        <dd>
+          <span>{{ gestionnaireTontine.matriculeAdherent }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.gestionnaireTontine.codeTontine">Code Tontine</span></dt>
+        <dd>
+          <span>{{ gestionnaireTontine.codeTontine }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.gestionnaireTontine.datePriseFonction">Date Prise Fonction</span></dt>
+        <dd>
+          <span>{{ gestionnaireTontine.datePriseFonction | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.gestionnaireTontine.dateFinFonction">Date Fin Fonction</span></dt>
+        <dd>
+          <span>{{ gestionnaireTontine.dateFinFonction | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.gestionnaireTontine.tontine">Tontine</span></dt>
+        <dd>
+          <div *ngIf="gestionnaireTontine.tontine">
+            <a [routerLink]="['/tontine', gestionnaireTontine.tontine.id, 'view']">{{ gestionnaireTontine.tontine.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/gestionnaire-tontine', gestionnaireTontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "maTontineApp": {
+    "typeEvenement": {
+      "home": {
+        "title": "Type Evenements",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Type Evenement",
+        "createOrEditLabel": "Create or edit a Type Evenement",
+        "notFound": "No Type Evenements found"
+      },
+      "created": "A new Type Evenement is created with identifier {{ param }}",
+      "updated": "A Type Evenement is updated with identifier {{ param }}",
+      "deleted": "A Type Evenement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Type Evenement {{ id }}?"
+      },
+      "detail": {
+        "title": "Type Evenement"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "observation": "Observation",
+      "evenement": "Evenement"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "maTontineApp": {
+    "paiementBanque": {
+      "home": {
+        "title": "Paiement Banques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Paiement Banque",
+        "createOrEditLabel": "Create or edit a Paiement Banque",
+        "notFound": "No Paiement Banques found"
+      },
+      "created": "A new Paiement Banque is created with identifier {{ param }}",
+      "updated": "A Paiement Banque is updated with identifier {{ param }}",
+      "deleted": "A Paiement Banque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paiement Banque {{ id }}?"
+      },
+      "detail": {
+        "title": "Paiement Banque"
+      },
+      "id": "ID",
+      "referencePaiement": "Reference Paiement"
+    }
+  }
+}

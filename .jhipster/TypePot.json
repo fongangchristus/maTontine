@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143628",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "type_pot",
+  "fields": [
+    {
+      "fieldName": "libele",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descrption",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "TypePot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pot",
+      "otherEntityRelationshipName": "typePot",
+      "relationshipName": "pot",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

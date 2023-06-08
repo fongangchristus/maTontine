@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "cotisationBanque": {
+      "home": {
+        "title": "CotisationBanques",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cotisation Banque",
+        "createOrEditLabel": "Créer ou éditer un Cotisation Banque",
+        "notFound": "Aucun Cotisation Banque trouvé"
+      },
+      "created": "Un nouveau Cotisation Banque a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cotisation Banque avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cotisation Banque avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Cotisation Banque {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cotisation Banque"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "montant": "Montant",
+      "dateCotisation": "Date Cotisation",
+      "montantCotise": "Montant Cotise",
+      "commentaire": "Commentaire",
+      "compteBanque": "Compte Banque"
+    }
+  }
+}

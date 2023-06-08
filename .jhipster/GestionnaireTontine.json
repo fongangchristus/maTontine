@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143603",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "gestionnaire_tontine",
+  "fields": [
+    {
+      "fieldName": "matriculeAdherent",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeTontine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datePriseFonction",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFinFonction",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "GestionnaireTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tontine",
+      "otherEntityRelationshipName": "gestionnaireTontine",
+      "relationshipName": "tontine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

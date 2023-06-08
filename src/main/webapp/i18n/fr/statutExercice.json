@@ -1,0 +1,9 @@
+{
+  "maTontineApp": {
+    "StatutExercice": {
+      "null": "",
+      "OUVERT": "OUVERT",
+      "FERME": "FERME"
+    }
+  }
+}

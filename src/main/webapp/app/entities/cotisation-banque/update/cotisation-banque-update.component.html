@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-cotisation-banque-heading"
+        data-cy="CotisationBanqueCreateUpdateHeading"
+        jhiTranslate="maTontineApp.cotisationBanque.home.createOrEditLabel"
+      >
+        Créer ou éditer un Cotisation Banque
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.libelle" for="field_libelle">Libelle</label>
+          <input type="text" class="form-control" name="libelle" id="field_libelle" data-cy="libelle" formControlName="libelle" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.montant" for="field_montant">Montant</label>
+          <input type="number" class="form-control" name="montant" id="field_montant" data-cy="montant" formControlName="montant" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.dateCotisation" for="field_dateCotisation"
+            >Date Cotisation</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateCotisation"
+              data-cy="dateCotisation"
+              type="datetime-local"
+              class="form-control"
+              name="dateCotisation"
+              formControlName="dateCotisation"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.montantCotise" for="field_montantCotise"
+            >Montant Cotise</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="montantCotise"
+            id="field_montantCotise"
+            data-cy="montantCotise"
+            formControlName="montantCotise"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.commentaire" for="field_commentaire">Commentaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="commentaire"
+            id="field_commentaire"
+            data-cy="commentaire"
+            formControlName="commentaire"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.cotisationBanque.compteBanque" for="field_compteBanque">Compte Banque</label>
+          <select
+            class="form-control"
+            id="field_compteBanque"
+            data-cy="compteBanque"
+            name="compteBanque"
+            formControlName="compteBanque"
+            [compareWith]="compareCompteBanque"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="compteBanqueOption" *ngFor="let compteBanqueOption of compteBanquesSharedCollection">
+              {{ compteBanqueOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

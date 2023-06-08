@@ -1,0 +1,190 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-association-heading"
+        data-cy="AssociationCreateUpdateHeading"
+        jhiTranslate="maTontineApp.association.home.createOrEditLabel"
+      >
+        Créer ou éditer un Association
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.codeAssociation" for="field_codeAssociation"
+            >Code Association</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeAssociation"
+            id="field_codeAssociation"
+            data-cy="codeAssociation"
+            formControlName="codeAssociation"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeAssociation')!.invalid &&
+              (editForm.get('codeAssociation')!.dirty || editForm.get('codeAssociation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeAssociation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.denomination" for="field_denomination">Denomination</label>
+          <input
+            type="text"
+            class="form-control"
+            name="denomination"
+            id="field_denomination"
+            data-cy="denomination"
+            formControlName="denomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.slogan" for="field_slogan">Slogan</label>
+          <input type="text" class="form-control" name="slogan" id="field_slogan" data-cy="slogan" formControlName="slogan" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.logoPath" for="field_logoPath">Logo Path</label>
+          <input type="text" class="form-control" name="logoPath" id="field_logoPath" data-cy="logoPath" formControlName="logoPath" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.reglementPath" for="field_reglementPath">Reglement Path</label>
+          <input
+            type="text"
+            class="form-control"
+            name="reglementPath"
+            id="field_reglementPath"
+            data-cy="reglementPath"
+            formControlName="reglementPath"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.statutPath" for="field_statutPath">Statut Path</label>
+          <input
+            type="text"
+            class="form-control"
+            name="statutPath"
+            id="field_statutPath"
+            data-cy="statutPath"
+            formControlName="statutPath"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.dateCreation" for="field_dateCreation">Date Creation</label>
+          <div class="input-group">
+            <input
+              id="field_dateCreation"
+              data-cy="dateCreation"
+              type="text"
+              class="form-control"
+              name="dateCreation"
+              ngbDatepicker
+              #dateCreationDp="ngbDatepicker"
+              formControlName="dateCreation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateCreationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.fuseauHoraire" for="field_fuseauHoraire">Fuseau Horaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fuseauHoraire"
+            id="field_fuseauHoraire"
+            data-cy="fuseauHoraire"
+            formControlName="fuseauHoraire"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.langue" for="field_langue">Langue</label>
+          <select class="form-control" name="langue" formControlName="langue" id="field_langue" data-cy="langue">
+            <option [ngValue]="null">{{ 'maTontineApp.Langue.null' | translate }}</option>
+            <option *ngFor="let langue of langueValues" [value]="langue">{{ 'maTontineApp.Langue.' + langue | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.presentation" for="field_presentation">Presentation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="presentation"
+            id="field_presentation"
+            data-cy="presentation"
+            formControlName="presentation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.association.monnaie" for="field_monnaie">Monnaie</label>
+          <select
+            class="form-control"
+            id="field_monnaie"
+            data-cy="monnaie"
+            name="monnaie"
+            formControlName="monnaie"
+            [compareWith]="compareMonnaie"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="monnaieOption" *ngFor="let monnaieOption of monnaiesSharedCollection">{{ monnaieOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

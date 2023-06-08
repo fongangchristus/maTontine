@@ -1,0 +1,34 @@
+{
+  "maTontineApp": {
+    "compteTontine": {
+      "home": {
+        "title": "Compte Tontines",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Compte Tontine",
+        "createOrEditLabel": "Create or edit a Compte Tontine",
+        "notFound": "No Compte Tontines found"
+      },
+      "created": "A new Compte Tontine is created with identifier {{ param }}",
+      "updated": "A Compte Tontine is updated with identifier {{ param }}",
+      "deleted": "A Compte Tontine is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Compte Tontine {{ id }}?"
+      },
+      "detail": {
+        "title": "Compte Tontine"
+      },
+      "id": "ID",
+      "etatDeCompte": "Etat De Compte",
+      "libele": "Libele",
+      "odreBeneficiere": "Odre Beneficiere",
+      "matriculeCompte": "Matricule Compte",
+      "matriculeMenbre": "Matricule Menbre",
+      "tontine": "Tontine",
+      "cotisationTontine": "Cotisation Tontine",
+      "decaissementTontine": "Decaissement Tontine",
+      "help": {
+        "etatDeCompte": "Inscription à la tontine est materialisé par la creation d&#39;un compte tontine\nUn membre peux avoir plusieurs comptes/noms tontines"
+      }
+    }
+  }
+}

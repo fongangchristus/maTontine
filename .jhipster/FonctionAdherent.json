@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143615",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "fonction_adherent",
+  "fields": [
+    {
+      "fieldName": "matriculeAdherent",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeFonction",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "datePriseFonction",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateFinFonction",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "actif",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Task entity.\\n@author The JHipster team.",
+  "jpaMetamodelFiltering": true,
+  "name": "FonctionAdherent",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "fonctionAdherent",
+      "relationshipName": "adherent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fonction",
+      "otherEntityRelationshipName": "fonctionAdherent",
+      "relationshipName": "fonction",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

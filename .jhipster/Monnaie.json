@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143610",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "monnaie",
+  "fields": [
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Monnaie",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "association",
+      "otherEntityRelationshipName": "monnaie",
+      "relationshipName": "association",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

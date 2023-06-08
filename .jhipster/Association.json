@@ -1,0 +1,82 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143609",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "association",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "denomination",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "slogan",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logoPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reglementPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statutPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCreation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "fuseauHoraire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "langue",
+      "fieldType": "Langue",
+      "fieldValues": "FRENCH,ENGLISH,SPANISH"
+    },
+    {
+      "fieldName": "presentation",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Association",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "A relationship",
+      "otherEntityName": "exercise",
+      "otherEntityRelationshipName": "association",
+      "relationshipName": "exercise",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "documentAssociation",
+      "otherEntityRelationshipName": "association",
+      "relationshipName": "documentAssociation",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "monnaie",
+      "otherEntityRelationshipName": "association",
+      "relationshipName": "monnaie",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

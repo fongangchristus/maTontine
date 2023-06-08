@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143625",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "assemble",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enLigne",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateSeance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lieuSeance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeMembreRecoit",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nature",
+      "fieldType": "NatureAssemble",
+      "fieldValues": "ORDINAIRE,EXTRAORDINAIRE,MIXTE"
+    },
+    {
+      "fieldName": "compteRendu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resumeAssemble",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentCRPath",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Assemble",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

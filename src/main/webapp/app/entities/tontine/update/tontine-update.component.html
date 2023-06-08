@@ -1,0 +1,197 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-tontine-heading" data-cy="TontineCreateUpdateHeading" jhiTranslate="maTontineApp.tontine.home.createOrEditLabel">
+        Créer ou éditer un Tontine
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="maTontineApp.tontine.codeAssociation"
+            for="field_codeAssociation"
+            [ngbTooltip]="'maTontineApp.tontine.help.codeAssociation' | translate"
+            >Code Association</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeAssociation"
+            id="field_codeAssociation"
+            data-cy="codeAssociation"
+            formControlName="codeAssociation"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeAssociation')!.invalid &&
+              (editForm.get('codeAssociation')!.dirty || editForm.get('codeAssociation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeAssociation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.libele" for="field_libele">Libele</label>
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.nombreTour" for="field_nombreTour">Nombre Tour</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreTour"
+            id="field_nombreTour"
+            data-cy="nombreTour"
+            formControlName="nombreTour"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.nombreMaxPersonne" for="field_nombreMaxPersonne"
+            >Nombre Max Personne</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="nombreMaxPersonne"
+            id="field_nombreMaxPersonne"
+            data-cy="nombreMaxPersonne"
+            formControlName="nombreMaxPersonne"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.margeBeneficiaire" for="field_margeBeneficiaire"
+            >Marge Beneficiaire</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="margeBeneficiaire"
+            id="field_margeBeneficiaire"
+            data-cy="margeBeneficiaire"
+            formControlName="margeBeneficiaire"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.montantPart" for="field_montantPart">Montant Part</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantPart"
+            id="field_montantPart"
+            data-cy="montantPart"
+            formControlName="montantPart"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.amandeEchec" for="field_amandeEchec">Amande Echec</label>
+          <input
+            type="number"
+            class="form-control"
+            name="amandeEchec"
+            id="field_amandeEchec"
+            data-cy="amandeEchec"
+            formControlName="amandeEchec"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateDebut" for="field_dateDebut">Date Debut</label>
+          <div class="input-group">
+            <input
+              id="field_dateDebut"
+              data-cy="dateDebut"
+              type="text"
+              class="form-control"
+              name="dateDebut"
+              ngbDatepicker
+              #dateDebutDp="ngbDatepicker"
+              formControlName="dateDebut"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateFin" for="field_dateFin">Date Fin</label>
+          <div class="input-group">
+            <input
+              id="field_dateFin"
+              data-cy="dateFin"
+              type="text"
+              class="form-control"
+              name="dateFin"
+              ngbDatepicker
+              #dateFinDp="ngbDatepicker"
+              formControlName="dateFin"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.statutTontine" for="field_statutTontine">Statut Tontine</label>
+          <select
+            class="form-control"
+            name="statutTontine"
+            formControlName="statutTontine"
+            id="field_statutTontine"
+            data-cy="statutTontine"
+          >
+            <option [ngValue]="null">{{ 'maTontineApp.StatutTontine.null' | translate }}</option>
+            <option *ngFor="let statutTontine of statutTontineValues" [value]="statutTontine">
+              {{ 'maTontineApp.StatutTontine.' + statutTontine | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

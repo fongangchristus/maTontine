@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "fonctionAdherent": {
+      "home": {
+        "title": "Fonction Adherents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fonction Adherent",
+        "createOrEditLabel": "Create or edit a Fonction Adherent",
+        "notFound": "No Fonction Adherents found"
+      },
+      "created": "A new Fonction Adherent is created with identifier {{ param }}",
+      "updated": "A Fonction Adherent is updated with identifier {{ param }}",
+      "deleted": "A Fonction Adherent is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fonction Adherent {{ id }}?"
+      },
+      "detail": {
+        "title": "Fonction Adherent"
+      },
+      "id": "ID",
+      "matriculeAdherent": "Matricule Adherent",
+      "codeFonction": "Code Fonction",
+      "datePriseFonction": "Date Prise Fonction",
+      "dateFinFonction": "Date Fin Fonction",
+      "actif": "Actif",
+      "adherent": "Adherent",
+      "fonction": "Fonction"
+    }
+  }
+}

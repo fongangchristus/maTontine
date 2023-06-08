@@ -1,0 +1,156 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-assemble-heading" data-cy="AssembleCreateUpdateHeading" jhiTranslate="maTontineApp.assemble.home.createOrEditLabel">
+        Créer ou éditer un Assemble
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.codeAssociation" for="field_codeAssociation"
+            >Code Association</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeAssociation"
+            id="field_codeAssociation"
+            data-cy="codeAssociation"
+            formControlName="codeAssociation"
+          />
+          <div
+            *ngIf="
+              editForm.get('codeAssociation')!.invalid &&
+              (editForm.get('codeAssociation')!.dirty || editForm.get('codeAssociation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeAssociation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.libele" for="field_libele">Libele</label>
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.enLigne" for="field_enLigne">En Ligne</label>
+          <input type="checkbox" class="form-check" name="enLigne" id="field_enLigne" data-cy="enLigne" formControlName="enLigne" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.dateSeance" for="field_dateSeance">Date Seance</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dateSeance"
+            id="field_dateSeance"
+            data-cy="dateSeance"
+            formControlName="dateSeance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.lieuSeance" for="field_lieuSeance">Lieu Seance</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lieuSeance"
+            id="field_lieuSeance"
+            data-cy="lieuSeance"
+            formControlName="lieuSeance"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.matriculeMembreRecoit" for="field_matriculeMembreRecoit"
+            >Matricule Membre Recoit</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeMembreRecoit"
+            id="field_matriculeMembreRecoit"
+            data-cy="matriculeMembreRecoit"
+            formControlName="matriculeMembreRecoit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.nature" for="field_nature">Nature</label>
+          <select class="form-control" name="nature" formControlName="nature" id="field_nature" data-cy="nature">
+            <option [ngValue]="null">{{ 'maTontineApp.NatureAssemble.null' | translate }}</option>
+            <option *ngFor="let natureAssemble of natureAssembleValues" [value]="natureAssemble">
+              {{ 'maTontineApp.NatureAssemble.' + natureAssemble | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.compteRendu" for="field_compteRendu">Compte Rendu</label>
+          <input
+            type="text"
+            class="form-control"
+            name="compteRendu"
+            id="field_compteRendu"
+            data-cy="compteRendu"
+            formControlName="compteRendu"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.resumeAssemble" for="field_resumeAssemble">Resume Assemble</label>
+          <input
+            type="text"
+            class="form-control"
+            name="resumeAssemble"
+            id="field_resumeAssemble"
+            data-cy="resumeAssemble"
+            formControlName="resumeAssemble"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.assemble.documentCRPath" for="field_documentCRPath">Document CR Path</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentCRPath"
+            id="field_documentCRPath"
+            data-cy="documentCRPath"
+            formControlName="documentCRPath"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

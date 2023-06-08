@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143627",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "pot",
+  "fields": [
+    {
+      "fieldName": "libele",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codepot",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montantCible",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDebutCollecte",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFinCollecte",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutPot",
+      "fieldValues": "OUVERTE,FERMEE,CLOTURE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Pot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contributionPot",
+      "otherEntityRelationshipName": "pot",
+      "relationshipName": "contributionPot",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "commentairePot",
+      "otherEntityRelationshipName": "pot",
+      "relationshipName": "commentairePot",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "typePot",
+      "otherEntityRelationshipName": "pot",
+      "relationshipName": "typePot",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

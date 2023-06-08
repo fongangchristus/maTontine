@@ -1,0 +1,30 @@
+{
+  "maTontineApp": {
+    "banque": {
+      "home": {
+        "title": "Banques",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Banque",
+        "createOrEditLabel": "Créer ou éditer un Banque",
+        "notFound": "Aucun Banque trouvé"
+      },
+      "created": "Un nouveau Banque a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Banque avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Banque avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Banque {{ id }} ?"
+      },
+      "detail": {
+        "title": "Banque"
+      },
+      "id": "ID",
+      "codeAssociation": "Code Association",
+      "libelle": "Libelle",
+      "description": "Description",
+      "dateOuverture": "Date Ouverture",
+      "dateCloture": "Date Cloture",
+      "compteBanque": "Compte Banque",
+      "gestionnaireBanque": "Gestionnaire Banque"
+    }
+  }
+}

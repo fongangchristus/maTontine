@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="association">
+      <h2 data-cy="associationDetailsHeading"><span jhiTranslate="maTontineApp.association.detail.title">Association</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ association.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.codeAssociation">Code Association</span></dt>
+        <dd>
+          <span>{{ association.codeAssociation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.denomination">Denomination</span></dt>
+        <dd>
+          <span>{{ association.denomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.slogan">Slogan</span></dt>
+        <dd>
+          <span>{{ association.slogan }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.logoPath">Logo Path</span></dt>
+        <dd>
+          <span>{{ association.logoPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.reglementPath">Reglement Path</span></dt>
+        <dd>
+          <span>{{ association.reglementPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.statutPath">Statut Path</span></dt>
+        <dd>
+          <span>{{ association.statutPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.description">Description</span></dt>
+        <dd>
+          <span>{{ association.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.dateCreation">Date Creation</span></dt>
+        <dd>
+          <span>{{ association.dateCreation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.fuseauHoraire">Fuseau Horaire</span></dt>
+        <dd>
+          <span>{{ association.fuseauHoraire }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.langue">Langue</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.Langue.' + association.langue }}">{{ association.langue }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.presentation">Presentation</span></dt>
+        <dd>
+          <span>{{ association.presentation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.association.monnaie">Monnaie</span></dt>
+        <dd>
+          <div *ngIf="association.monnaie">
+            <a [routerLink]="['/monnaie', association.monnaie.id, 'view']">{{ association.monnaie.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/association', association.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

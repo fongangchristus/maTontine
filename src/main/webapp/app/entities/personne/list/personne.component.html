@@ -1,0 +1,299 @@
+<div>
+  <h2 id="page-heading" data-cy="PersonneHeading">
+    <span jhiTranslate="maTontineApp.personne.home.title">Personnes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.personne.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-personne"
+        [routerLink]="['/personne/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.personne.home.createLabel"> Créer un nouveau Personne </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="personnes?.length === 0">
+    <span jhiTranslate="maTontineApp.personne.home.notFound">Aucun Personne trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="personnes && personnes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idUser">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.idUser">Id User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeAssociation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.codeAssociation">Code Association</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="matricule">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.matricule">Matricule</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nom">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.nom">Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prenom">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.prenom">Prenom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateNaissance">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.dateNaissance">Date Naissance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lieuNaissance">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.lieuNaissance">Lieu Naissance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateInscription">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.dateInscription">Date Inscription</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="profession">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.profession">Profession</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sexe">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.sexe">Sexe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photoPath">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.photoPath">Photo Path</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateIntegration">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.dateIntegration">Date Integration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isAdmin">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.isAdmin">Is Admin</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDonateur">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.isDonateur">Is Donateur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isBenevole">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.isBenevole">Is Benevole</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="typePersonne">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.typePersonne">Type Personne</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="adresse.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.adresse">Adresse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personne of personnes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/personne', personne.id, 'view']">{{ personne.id }}</a>
+          </td>
+          <td>{{ personne.idUser }}</td>
+          <td>{{ personne.codeAssociation }}</td>
+          <td>{{ personne.matricule }}</td>
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.dateNaissance | formatMediumDate }}</td>
+          <td>{{ personne.lieuNaissance }}</td>
+          <td>{{ personne.dateInscription | formatMediumDatetime }}</td>
+          <td>{{ personne.profession }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.Sexe.' + personne.sexe }}">{{ personne.sexe }}</td>
+          <td>{{ personne.photoPath }}</td>
+          <td>{{ personne.dateIntegration | formatMediumDatetime }}</td>
+          <td>{{ personne.isAdmin }}</td>
+          <td>{{ personne.isDonateur }}</td>
+          <td>{{ personne.isBenevole }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.TypePersonne.' + personne.typePersonne }}">{{ personne.typePersonne }}</td>
+          <td>
+            <div *ngIf="personne.adresse">
+              <a [routerLink]="['/adresse', personne.adresse.id, 'view']">{{ personne.adresse.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact']"
+                [queryParams]="{ 'filter[adherentId.in]': personne.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.personne.contact' | translate) }"
+                  >Show Contact</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/compte-rib']"
+                [queryParams]="{ 'filter[adherentId.in]': personne.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.personne.compteRIB' | translate) }"
+                  >Show Compte RIB</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/historique-personne']"
+                [queryParams]="{ 'filter[personneId.in]': personne.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.personne.historiquePersonne' | translate) }"
+                  >Show Historique Personne</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/presence']"
+                [queryParams]="{ 'filter[adherantId.in]': personne.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.personne.presence' | translate) }"
+                  >Show Presence</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/fonction-adherent']"
+                [queryParams]="{ 'filter[adherentId.in]': personne.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.personne.fonctionAdherent' | translate) }"
+                  >Show Fonction Adherent</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/personne', personne.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/personne', personne.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(personne)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="personnes && personnes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

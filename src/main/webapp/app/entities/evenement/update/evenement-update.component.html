@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-evenement-heading" data-cy="EvenementCreateUpdateHeading" jhiTranslate="maTontineApp.evenement.home.createOrEditLabel">
+        Créer ou éditer un Evenement
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.libele" for="field_libele">Libele</label>
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.codepot" for="field_codepot">Codepot</label>
+          <input type="text" class="form-control" name="codepot" id="field_codepot" data-cy="codepot" formControlName="codepot" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.montantPayer" for="field_montantPayer">Montant Payer</label>
+          <input
+            type="text"
+            class="form-control"
+            name="montantPayer"
+            id="field_montantPayer"
+            data-cy="montantPayer"
+            formControlName="montantPayer"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.budget" for="field_budget">Budget</label>
+          <input type="number" class="form-control" name="budget" id="field_budget" data-cy="budget" formControlName="budget" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.dateEvenement" for="field_dateEvenement">Date Evenement</label>
+          <div class="d-flex">
+            <input
+              id="field_dateEvenement"
+              data-cy="dateEvenement"
+              type="datetime-local"
+              class="form-control"
+              name="dateEvenement"
+              formControlName="dateEvenement"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.evenement.typeEvenement" for="field_typeEvenement">Type Evenement</label>
+          <select
+            class="form-control"
+            id="field_typeEvenement"
+            data-cy="typeEvenement"
+            name="typeEvenement"
+            formControlName="typeEvenement"
+            [compareWith]="compareTypeEvenement"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="typeEvenementOption" *ngFor="let typeEvenementOption of typeEvenementsSharedCollection">
+              {{ typeEvenementOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

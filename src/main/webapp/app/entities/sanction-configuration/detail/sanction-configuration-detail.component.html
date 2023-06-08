@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sanctionConfiguration">
+      <h2 data-cy="sanctionConfigurationDetailsHeading">
+        <span jhiTranslate="maTontineApp.sanctionConfiguration.detail.title">Sanction Configuration</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sanctionConfiguration.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanctionConfiguration.codeAssociation">Code Association</span></dt>
+        <dd>
+          <span>{{ sanctionConfiguration.codeAssociation }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanctionConfiguration.codeTontine">Code Tontine</span></dt>
+        <dd>
+          <span>{{ sanctionConfiguration.codeTontine }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanctionConfiguration.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.TypeSanction.' + sanctionConfiguration.type }}">{{ sanctionConfiguration.type }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sanction-configuration', sanctionConfiguration.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "historiquePersonne": {
+      "home": {
+        "title": "HistoriquePersonnes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Historique Personne",
+        "createOrEditLabel": "Créer ou éditer un Historique Personne",
+        "notFound": "Aucun Historique Personne trouvé"
+      },
+      "created": "Un nouveau Historique Personne a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Historique Personne avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Historique Personne avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Historique Personne {{ id }} ?"
+      },
+      "detail": {
+        "title": "Historique Personne"
+      },
+      "id": "ID",
+      "dateAction": "Date Action",
+      "matriculePersonne": "Matricule Personne",
+      "action": "Action",
+      "result": "Result",
+      "description": "Description",
+      "personne": "Personne"
+    }
+  }
+}

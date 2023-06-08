@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sanction">
+      <h2 data-cy="sanctionDetailsHeading"><span jhiTranslate="maTontineApp.sanction.detail.title">Sanction</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sanction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.libelle">Libelle</span></dt>
+        <dd>
+          <span>{{ sanction.libelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.matriculeAdherent">Matricule Adherent</span></dt>
+        <dd>
+          <span>{{ sanction.matriculeAdherent }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.dateSanction">Date Sanction</span></dt>
+        <dd>
+          <span>{{ sanction.dateSanction | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.motifSanction">Motif Sanction</span></dt>
+        <dd>
+          <span>{{ sanction.motifSanction }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.description">Description</span></dt>
+        <dd>
+          <span>{{ sanction.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.codeActivite">Code Activite</span></dt>
+        <dd>
+          <span>{{ sanction.codeActivite }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sanction.sanctionConfig">Sanction Config</span></dt>
+        <dd>
+          <div *ngIf="sanction.sanctionConfig">
+            <a [routerLink]="['/sanction-configuration', sanction.sanctionConfig.id, 'view']">{{ sanction.sanctionConfig.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sanction', sanction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

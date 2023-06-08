@@ -1,0 +1,11 @@
+id;id_user;code_association;matricule;nom;prenom;date_naissance;lieu_naissance;date_inscription;profession;sexe;photo_path;date_integration;is_admin;is_donateur;is_benevole;type_personne
+1;36616;76127;Auvergne Platinum;Money Saint-Denis;Industrial Toys front-end;2023-06-08;16129;2023-06-07T20:41:57;extensible;MASCULIN;Steel didactic b;2023-06-07T23:51:01;false;true;true;ADHERENT
+2;52429;24374;a;Berkshire;reintermediate partnerships 24/7;2023-06-07;21469;2023-06-07T15:06:55;whiteboard Soap;FEMININ;THX;2023-06-08T04:04:29;true;false;false;NON_ADHERENT
+3;95104;34122;Incredible Tools;Exclusive;Maldives Designer local;2023-06-07;90271;2023-06-08T03:32:26;digital orchid;FEMININ;a a;2023-06-07T17:13:52;true;true;true;ANCIEN_ADHERENT
+4;81958;1124;object-oriented Frozen;Pizza Towels withdrawal;Analyste;2023-06-08;33195;2023-06-07T23:31:44;Berkshire;FEMININ;turquoise Ball Tools;2023-06-07T14:39:09;false;true;false;NON_ADHERENT
+5;22844;18274;Soft;Salad;Cotton Manager b;2023-06-07;18398;2023-06-08T08:42:58;global virtual;MASCULIN;Movies users Awesome;2023-06-07T16:52:23;true;true;true;ANCIEN_ADHERENT
+6;63965;9171;c impactful;deliver Mandatory;PNG;2023-06-08;66477;2023-06-08T11:53:22;Outdoors Plastic Rupee;FEMININ;Tenge Cross-platform;2023-06-08T05:43:34;false;false;false;NON_ADHERENT
+7;92772;17938;Baby sensor;Visionary generate;Plastic;2023-06-07;32526;2023-06-07T22:06:55;mobile du;MASCULIN;Frozen;2023-06-07T21:26:01;true;true;false;NON_ADHERENT
+8;37484;99376;e-business next;Beauty optical;Money primary;2023-06-08;98125;2023-06-08T00:49:45;reinvent Wooden;MASCULIN;navigating Sharable Metal;2023-06-08T07:42:57;true;false;true;NON_ADHERENT
+9;31785;91280;defect Keyboard redundant;c solid;online monitor;2023-06-07;16784;2023-06-07T22:15:21;Garden Avon;FEMININ;Market eyeballs;2023-06-07T16:56:10;false;false;true;ADHERENT
+10;60024;12285;Plastic;copying redundant;bluetooth;2023-06-08;27221;2023-06-07T14:53:34;Car;MASCULIN;a Horizontal deploy;2023-06-08T04:06:20;true;false;true;NON_ADHERENT

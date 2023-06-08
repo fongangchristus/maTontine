@@ -1,0 +1,142 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pot-heading" data-cy="PotCreateUpdateHeading" jhiTranslate="maTontineApp.pot.home.createOrEditLabel">
+        Créer ou éditer un Pot
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.libele" for="field_libele">Libele</label>
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.codepot" for="field_codepot">Codepot</label>
+          <input type="text" class="form-control" name="codepot" id="field_codepot" data-cy="codepot" formControlName="codepot" />
+          <div *ngIf="editForm.get('codepot')!.invalid && (editForm.get('codepot')!.dirty || editForm.get('codepot')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codepot')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.montantCible" for="field_montantCible">Montant Cible</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantCible"
+            id="field_montantCible"
+            data-cy="montantCible"
+            formControlName="montantCible"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.dateDebutCollecte" for="field_dateDebutCollecte"
+            >Date Debut Collecte</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateDebutCollecte"
+              data-cy="dateDebutCollecte"
+              type="text"
+              class="form-control"
+              name="dateDebutCollecte"
+              ngbDatepicker
+              #dateDebutCollecteDp="ngbDatepicker"
+              formControlName="dateDebutCollecte"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDebutCollecteDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.dateFinCollecte" for="field_dateFinCollecte">Date Fin Collecte</label>
+          <div class="input-group">
+            <input
+              id="field_dateFinCollecte"
+              data-cy="dateFinCollecte"
+              type="text"
+              class="form-control"
+              name="dateFinCollecte"
+              ngbDatepicker
+              #dateFinCollecteDp="ngbDatepicker"
+              formControlName="dateFinCollecte"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinCollecteDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.statut" for="field_statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'maTontineApp.StatutPot.null' | translate }}</option>
+            <option *ngFor="let statutPot of statutPotValues" [value]="statutPot">
+              {{ 'maTontineApp.StatutPot.' + statutPot | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.pot.typePot" for="field_typePot">Type Pot</label>
+          <select
+            class="form-control"
+            id="field_typePot"
+            data-cy="typePot"
+            name="typePot"
+            formControlName="typePot"
+            [compareWith]="compareTypePot"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="typePotOption" *ngFor="let typePotOption of typePotsSharedCollection">{{ typePotOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

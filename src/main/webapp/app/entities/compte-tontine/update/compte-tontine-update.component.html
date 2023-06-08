@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-compte-tontine-heading"
+        data-cy="CompteTontineCreateUpdateHeading"
+        jhiTranslate="maTontineApp.compteTontine.home.createOrEditLabel"
+      >
+        Créer ou éditer un Compte Tontine
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="maTontineApp.compteTontine.etatDeCompte"
+            for="field_etatDeCompte"
+            [ngbTooltip]="'maTontineApp.compteTontine.help.etatDeCompte' | translate"
+            >Etat De Compte</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="etatDeCompte"
+            id="field_etatDeCompte"
+            data-cy="etatDeCompte"
+            formControlName="etatDeCompte"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.compteTontine.libele" for="field_libele">Libele</label>
+          <input type="text" class="form-control" name="libele" id="field_libele" data-cy="libele" formControlName="libele" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.compteTontine.odreBeneficiere" for="field_odreBeneficiere"
+            >Odre Beneficiere</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="odreBeneficiere"
+            id="field_odreBeneficiere"
+            data-cy="odreBeneficiere"
+            formControlName="odreBeneficiere"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.compteTontine.matriculeCompte" for="field_matriculeCompte"
+            >Matricule Compte</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeCompte"
+            id="field_matriculeCompte"
+            data-cy="matriculeCompte"
+            formControlName="matriculeCompte"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeCompte')!.invalid &&
+              (editForm.get('matriculeCompte')!.dirty || editForm.get('matriculeCompte')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeCompte')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.compteTontine.matriculeMenbre" for="field_matriculeMenbre"
+            >Matricule Menbre</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeMenbre"
+            id="field_matriculeMenbre"
+            data-cy="matriculeMenbre"
+            formControlName="matriculeMenbre"
+          />
+          <div
+            *ngIf="
+              editForm.get('matriculeMenbre')!.invalid &&
+              (editForm.get('matriculeMenbre')!.dirty || editForm.get('matriculeMenbre')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('matriculeMenbre')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.compteTontine.tontine" for="field_tontine">Tontine</label>
+          <select
+            class="form-control"
+            id="field_tontine"
+            data-cy="tontine"
+            name="tontine"
+            formControlName="tontine"
+            [compareWith]="compareTontine"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="tontineOption" *ngFor="let tontineOption of tontinesSharedCollection">{{ tontineOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

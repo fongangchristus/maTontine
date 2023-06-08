@@ -1,0 +1,181 @@
+<div>
+  <h2 id="page-heading" data-cy="PotHeading">
+    <span jhiTranslate="maTontineApp.pot.home.title">Pots</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="maTontineApp.pot.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pot"
+        [routerLink]="['/pot/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="maTontineApp.pot.home.createLabel"> Créer un nouveau Pot </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pots?.length === 0">
+    <span jhiTranslate="maTontineApp.pot.home.notFound">Aucun Pot trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="pots && pots.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="libele">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.libele">Libele</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codepot">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.codepot">Codepot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantCible">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.montantCible">Montant Cible</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateDebutCollecte">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.dateDebutCollecte">Date Debut Collecte</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateFinCollecte">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.dateFinCollecte">Date Fin Collecte</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="statut">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.statut">Statut</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="typePot.id">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.pot.typePot">Type Pot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pot of pots; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pot', pot.id, 'view']">{{ pot.id }}</a>
+          </td>
+          <td>{{ pot.libele }}</td>
+          <td>{{ pot.codepot }}</td>
+          <td>{{ pot.montantCible }}</td>
+          <td>{{ pot.description }}</td>
+          <td>{{ pot.dateDebutCollecte | formatMediumDate }}</td>
+          <td>{{ pot.dateFinCollecte | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.StatutPot.' + pot.statut }}">{{ pot.statut }}</td>
+          <td>
+            <div *ngIf="pot.typePot">
+              <a [routerLink]="['/type-pot', pot.typePot.id, 'view']">{{ pot.typePot.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contribution-pot']"
+                [queryParams]="{ 'filter[potId.in]': pot.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.pot.contributionPot' | translate) }"
+                  >Show Contribution Pot</span
+                >
+              </button>
+              <button
+                type="submit"
+                [routerLink]="['/commentaire-pot']"
+                [queryParams]="{ 'filter[potId.in]': pot.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('maTontineApp.pot.commentairePot' | translate) }"
+                  >Show Commentaire Pot</span
+                >
+              </button>
+              <button type="submit" [routerLink]="['/pot', pot.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/pot', pot.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(pot)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pots && pots.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

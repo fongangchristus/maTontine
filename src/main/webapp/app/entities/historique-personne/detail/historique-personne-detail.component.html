@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="historiquePersonne">
+      <h2 data-cy="historiquePersonneDetailsHeading">
+        <span jhiTranslate="maTontineApp.historiquePersonne.detail.title">Historique Personne</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.dateAction">Date Action</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.dateAction | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.matriculePersonne">Matricule Personne</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.matriculePersonne }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.action">Action</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.action }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.result">Result</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.result }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.description">Description</span></dt>
+        <dd>
+          <span>{{ historiquePersonne.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.historiquePersonne.personne">Personne</span></dt>
+        <dd>
+          <div *ngIf="historiquePersonne.personne">
+            <a [routerLink]="['/personne', historiquePersonne.personne.id, 'view']">{{ historiquePersonne.personne.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/historique-personne', historiquePersonne.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

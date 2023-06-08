@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sessionTontine">
+      <h2 data-cy="sessionTontineDetailsHeading"><span jhiTranslate="maTontineApp.sessionTontine.detail.title">Session Tontine</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sessionTontine.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sessionTontine.libelle">Libelle</span></dt>
+        <dd>
+          <span>{{ sessionTontine.libelle }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sessionTontine.dateDebut">Date Debut</span></dt>
+        <dd>
+          <span>{{ sessionTontine.dateDebut | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sessionTontine.dateFin">Date Fin</span></dt>
+        <dd>
+          <span>{{ sessionTontine.dateFin | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.sessionTontine.tontine">Tontine</span></dt>
+        <dd>
+          <div *ngIf="sessionTontine.tontine">
+            <a [routerLink]="['/tontine', sessionTontine.tontine.id, 'view']">{{ sessionTontine.tontine.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/session-tontine', sessionTontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

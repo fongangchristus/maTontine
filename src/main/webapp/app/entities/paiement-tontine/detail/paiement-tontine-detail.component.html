@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paiementTontine">
+      <h2 data-cy="paiementTontineDetailsHeading">
+        <span jhiTranslate="maTontineApp.paiementTontine.detail.title">Paiement Tontine</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ paiementTontine.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiementTontine.referencePaiement">Reference Paiement</span></dt>
+        <dd>
+          <span>{{ paiementTontine.referencePaiement }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiementTontine.cotisationTontine">Cotisation Tontine</span></dt>
+        <dd>
+          <div *ngIf="paiementTontine.cotisationTontine">
+            <a [routerLink]="['/cotisation-tontine', paiementTontine.cotisationTontine.id, 'view']">{{
+              paiementTontine.cotisationTontine.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.paiementTontine.decaissementTontine">Decaissement Tontine</span></dt>
+        <dd>
+          <div *ngIf="paiementTontine.decaissementTontine">
+            <a [routerLink]="['/decaissement-tontine', paiementTontine.decaissementTontine.id, 'view']">{{
+              paiementTontine.decaissementTontine.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paiement-tontine', paiementTontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

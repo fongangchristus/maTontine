@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143607",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "paiement_tontine",
+  "fields": [
+    {
+      "fieldName": "referencePaiement",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "PaiementTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "cotisationTontine",
+      "otherEntityRelationshipName": "paiementTontine",
+      "relationshipName": "cotisationTontine",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "decaissementTontine",
+      "otherEntityRelationshipName": "paiementTontine",
+      "relationshipName": "decaissementTontine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

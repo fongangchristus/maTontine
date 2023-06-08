@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143605",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "session_tontine",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SessionTontine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "cotisationTontine",
+      "otherEntityRelationshipName": "sessionTontine",
+      "relationshipName": "cotisationTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "decaissementTontine",
+      "otherEntityRelationshipName": "tontine",
+      "relationshipName": "decaissementTontine",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tontine",
+      "otherEntityRelationshipName": "sessionTontine",
+      "relationshipName": "tontine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

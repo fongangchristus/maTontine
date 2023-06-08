@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fonctionAdherent">
+      <h2 data-cy="fonctionAdherentDetailsHeading">
+        <span jhiTranslate="maTontineApp.fonctionAdherent.detail.title">Fonction Adherent</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.matriculeAdherent">Matricule Adherent</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.matriculeAdherent }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.codeFonction">Code Fonction</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.codeFonction }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.datePriseFonction">Date Prise Fonction</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.datePriseFonction | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.dateFinFonction">Date Fin Fonction</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.dateFinFonction | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.actif">Actif</span></dt>
+        <dd>
+          <span>{{ fonctionAdherent.actif }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.adherent">Adherent</span></dt>
+        <dd>
+          <div *ngIf="fonctionAdherent.adherent">
+            <a [routerLink]="['/personne', fonctionAdherent.adherent.id, 'view']">{{ fonctionAdherent.adherent.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.fonctionAdherent.fonction">Fonction</span></dt>
+        <dd>
+          <div *ngIf="fonctionAdherent.fonction">
+            <a [routerLink]="['/fonction', fonctionAdherent.fonction.id, 'view']">{{ fonctionAdherent.fonction.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fonction-adherent', fonctionAdherent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

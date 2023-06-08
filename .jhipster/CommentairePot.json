@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143630",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "commentaire_pot",
+  "fields": [
+    {
+      "fieldName": "matriculeContributeur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifiantPot",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateComentaire",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CommentairePot",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pot",
+      "otherEntityRelationshipName": "commentairePot",
+      "relationshipName": "pot",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

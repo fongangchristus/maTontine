@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "sessionTontine": {
+      "home": {
+        "title": "SessionTontines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Session Tontine",
+        "createOrEditLabel": "Créer ou éditer un Session Tontine",
+        "notFound": "Aucun Session Tontine trouvé"
+      },
+      "created": "Un nouveau Session Tontine a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Session Tontine avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Session Tontine avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Session Tontine {{ id }} ?"
+      },
+      "detail": {
+        "title": "Session Tontine"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "dateDebut": "Date Debut",
+      "dateFin": "Date Fin",
+      "cotisationTontine": "Cotisation Tontine",
+      "decaissementTontine": "Decaissement Tontine",
+      "tontine": "Tontine"
+    }
+  }
+}

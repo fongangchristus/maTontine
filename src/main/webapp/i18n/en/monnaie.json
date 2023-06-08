@@ -1,0 +1,25 @@
+{
+  "maTontineApp": {
+    "monnaie": {
+      "home": {
+        "title": "Monnaies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Monnaie",
+        "createOrEditLabel": "Create or edit a Monnaie",
+        "notFound": "No Monnaies found"
+      },
+      "created": "A new Monnaie is created with identifier {{ param }}",
+      "updated": "A Monnaie is updated with identifier {{ param }}",
+      "deleted": "A Monnaie is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Monnaie {{ id }}?"
+      },
+      "detail": {
+        "title": "Monnaie"
+      },
+      "id": "ID",
+      "libele": "Libele",
+      "association": "Association"
+    }
+  }
+}

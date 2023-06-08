@@ -1,0 +1,31 @@
+{
+  "maTontineApp": {
+    "sanction": {
+      "home": {
+        "title": "Sanctions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sanction",
+        "createOrEditLabel": "Create or edit a Sanction",
+        "notFound": "No Sanctions found"
+      },
+      "created": "A new Sanction is created with identifier {{ param }}",
+      "updated": "A Sanction is updated with identifier {{ param }}",
+      "deleted": "A Sanction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sanction {{ id }}?"
+      },
+      "detail": {
+        "title": "Sanction"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "matriculeAdherent": "Matricule Adherent",
+      "dateSanction": "Date Sanction",
+      "motifSanction": "Motif Sanction",
+      "description": "Description",
+      "codeActivite": "Code Activite",
+      "paiementSanction": "Paiement Sanction",
+      "sanctionConfig": "Sanction Config"
+    }
+  }
+}

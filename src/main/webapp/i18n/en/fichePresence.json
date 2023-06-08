@@ -1,0 +1,29 @@
+{
+  "maTontineApp": {
+    "fichePresence": {
+      "home": {
+        "title": "Fiche Presences",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fiche Presence",
+        "createOrEditLabel": "Create or edit a Fiche Presence",
+        "notFound": "No Fiche Presences found"
+      },
+      "created": "A new Fiche Presence is created with identifier {{ param }}",
+      "updated": "A Fiche Presence is updated with identifier {{ param }}",
+      "deleted": "A Fiche Presence is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fiche Presence {{ id }}?"
+      },
+      "detail": {
+        "title": "Fiche Presence"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "dateJour": "Date Jour",
+      "description": "Description",
+      "codeAssemble": "Code Assemble",
+      "codeEvenement": "Code Evenement",
+      "presence": "Presence"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230608143633",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "sanction_configuration",
+  "fields": [
+    {
+      "fieldName": "codeAssociation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeTontine",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeSanction",
+      "fieldValues": "RETARD_PRESENCE,ECHEC_TONTINE,ABSCENCE_PRESENCE,ABSCENCE_EVENEMENT,AUTRE_SANCTION,SANCTION_ASSEMBLE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SanctionConfiguration",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sanction",
+      "otherEntityRelationshipName": "sanctionConfig",
+      "relationshipName": "sanction",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cotisationTontine">
+      <h2 data-cy="cotisationTontineDetailsHeading">
+        <span jhiTranslate="maTontineApp.cotisationTontine.detail.title">Cotisation Tontine</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cotisationTontine.id }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="maTontineApp.cotisationTontine.montantCotise"
+            [ngbTooltip]="'maTontineApp.cotisationTontine.help.montantCotise' | translate"
+            >Montant Cotise</span
+          >
+        </dt>
+        <dd>
+          <span>{{ cotisationTontine.montantCotise }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.pieceJustifPath">Piece Justif Path</span></dt>
+        <dd>
+          <span>{{ cotisationTontine.pieceJustifPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.dateCotisation">Date Cotisation</span></dt>
+        <dd>
+          <span>{{ cotisationTontine.dateCotisation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.dateValidation">Date Validation</span></dt>
+        <dd>
+          <span>{{ cotisationTontine.dateValidation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ cotisationTontine.commentaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.etat">Etat</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'maTontineApp.EtatCotisation.' + cotisationTontine.etat }}">{{ cotisationTontine.etat }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.sessionTontine">Session Tontine</span></dt>
+        <dd>
+          <div *ngIf="cotisationTontine.sessionTontine">
+            <a [routerLink]="['/session-tontine', cotisationTontine.sessionTontine.id, 'view']">{{
+              cotisationTontine.sessionTontine.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.cotisationTontine.compteTontine">Compte Tontine</span></dt>
+        <dd>
+          <div *ngIf="cotisationTontine.compteTontine">
+            <a [routerLink]="['/compte-tontine', cotisationTontine.compteTontine.id, 'view']">{{ cotisationTontine.compteTontine.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cotisation-tontine', cotisationTontine.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

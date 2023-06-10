@@ -15,7 +15,7 @@ describe('Banque e2e test', () => {
   const banquePageUrlPattern = new RegExp('/banque(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const banqueSample = { codeAssociation: 'programming e-commerce engineer' };
+  const banqueSample = { codeAssociation: 'interface b Directeur' };
 
   let banque;
 
@@ -169,6 +169,10 @@ describe('Banque e2e test', () => {
       cy.get(`[data-cy="dateOuverture"]`).type('2023-06-07T23:11').blur().should('have.value', '2023-06-07T23:11');
 
       cy.get(`[data-cy="dateCloture"]`).type('2023-06-08T06:20').blur().should('have.value', '2023-06-08T06:20');
+
+      cy.get(`[data-cy="penaliteRetardRnbrsmnt"]`).type('78406').should('have.value', '78406');
+
+      cy.get(`[data-cy="tauxInteretPret"]`).type('83283').should('have.value', '83283');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

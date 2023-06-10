@@ -60,6 +60,15 @@ public class Association implements Serializable {
     @Column(name = "presentation")
     private String presentation;
 
+    @Column(name = "siege_social")
+    private String siegeSocial;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "is_actif")
+    private Boolean isActif;
+
     /**
      * A relationship
      */
@@ -233,6 +242,45 @@ public class Association implements Serializable {
         this.presentation = presentation;
     }
 
+    public String getSiegeSocial() {
+        return this.siegeSocial;
+    }
+
+    public Association siegeSocial(String siegeSocial) {
+        this.setSiegeSocial(siegeSocial);
+        return this;
+    }
+
+    public void setSiegeSocial(String siegeSocial) {
+        this.siegeSocial = siegeSocial;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Association email(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getIsActif() {
+        return this.isActif;
+    }
+
+    public Association isActif(Boolean isActif) {
+        this.setIsActif(isActif);
+        return this;
+    }
+
+    public void setIsActif(Boolean isActif) {
+        this.isActif = isActif;
+    }
+
     public Set<Exercise> getExercises() {
         return this.exercises;
     }
@@ -343,6 +391,9 @@ public class Association implements Serializable {
             ", fuseauHoraire='" + getFuseauHoraire() + "'" +
             ", langue='" + getLangue() + "'" +
             ", presentation='" + getPresentation() + "'" +
+            ", siegeSocial='" + getSiegeSocial() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", isActif='" + getIsActif() + "'" +
             "}";
     }
 }

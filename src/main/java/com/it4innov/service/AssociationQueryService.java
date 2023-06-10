@@ -123,6 +123,15 @@ public class AssociationQueryService extends QueryService<Association> {
             if (criteria.getPresentation() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPresentation(), Association_.presentation));
             }
+            if (criteria.getSiegeSocial() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getSiegeSocial(), Association_.siegeSocial));
+            }
+            if (criteria.getEmail() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEmail(), Association_.email));
+            }
+            if (criteria.getIsActif() != null) {
+                specification = specification.and(buildSpecification(criteria.getIsActif(), Association_.isActif));
+            }
             if (criteria.getExerciseId() != null) {
                 specification =
                     specification.and(

@@ -69,6 +69,10 @@ public class PersonneCriteria implements Serializable, Criteria {
 
     private StringFilter prenom;
 
+    private StringFilter telephone;
+
+    private StringFilter email;
+
     private LocalDateFilter dateNaissance;
 
     private LongFilter lieuNaissance;
@@ -114,6 +118,8 @@ public class PersonneCriteria implements Serializable, Criteria {
         this.matricule = other.matricule == null ? null : other.matricule.copy();
         this.nom = other.nom == null ? null : other.nom.copy();
         this.prenom = other.prenom == null ? null : other.prenom.copy();
+        this.telephone = other.telephone == null ? null : other.telephone.copy();
+        this.email = other.email == null ? null : other.email.copy();
         this.dateNaissance = other.dateNaissance == null ? null : other.dateNaissance.copy();
         this.lieuNaissance = other.lieuNaissance == null ? null : other.lieuNaissance.copy();
         this.dateInscription = other.dateInscription == null ? null : other.dateInscription.copy();
@@ -227,6 +233,36 @@ public class PersonneCriteria implements Serializable, Criteria {
 
     public void setPrenom(StringFilter prenom) {
         this.prenom = prenom;
+    }
+
+    public StringFilter getTelephone() {
+        return telephone;
+    }
+
+    public StringFilter telephone() {
+        if (telephone == null) {
+            telephone = new StringFilter();
+        }
+        return telephone;
+    }
+
+    public void setTelephone(StringFilter telephone) {
+        this.telephone = telephone;
+    }
+
+    public StringFilter getEmail() {
+        return email;
+    }
+
+    public StringFilter email() {
+        if (email == null) {
+            email = new StringFilter();
+        }
+        return email;
+    }
+
+    public void setEmail(StringFilter email) {
+        this.email = email;
     }
 
     public LocalDateFilter getDateNaissance() {
@@ -508,6 +544,8 @@ public class PersonneCriteria implements Serializable, Criteria {
             Objects.equals(matricule, that.matricule) &&
             Objects.equals(nom, that.nom) &&
             Objects.equals(prenom, that.prenom) &&
+            Objects.equals(telephone, that.telephone) &&
+            Objects.equals(email, that.email) &&
             Objects.equals(dateNaissance, that.dateNaissance) &&
             Objects.equals(lieuNaissance, that.lieuNaissance) &&
             Objects.equals(dateInscription, that.dateInscription) &&
@@ -538,6 +576,8 @@ public class PersonneCriteria implements Serializable, Criteria {
             matricule,
             nom,
             prenom,
+            telephone,
+            email,
             dateNaissance,
             lieuNaissance,
             dateInscription,
@@ -569,6 +609,8 @@ public class PersonneCriteria implements Serializable, Criteria {
             (matricule != null ? "matricule=" + matricule + ", " : "") +
             (nom != null ? "nom=" + nom + ", " : "") +
             (prenom != null ? "prenom=" + prenom + ", " : "") +
+            (telephone != null ? "telephone=" + telephone + ", " : "") +
+            (email != null ? "email=" + email + ", " : "") +
             (dateNaissance != null ? "dateNaissance=" + dateNaissance + ", " : "") +
             (lieuNaissance != null ? "lieuNaissance=" + lieuNaissance + ", " : "") +
             (dateInscription != null ? "dateInscription=" + dateInscription + ", " : "") +

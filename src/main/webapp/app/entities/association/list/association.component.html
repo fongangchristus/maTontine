@@ -106,6 +106,24 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="siegeSocial">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.siegeSocial">Siege Social</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.email">Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isActif">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.association.isActif">Is Actif</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="monnaie.id">
             <div class="d-flex">
               <span jhiTranslate="maTontineApp.association.monnaie">Monnaie</span>
@@ -131,6 +149,9 @@
           <td>{{ association.fuseauHoraire }}</td>
           <td jhiTranslate="{{ 'maTontineApp.Langue.' + association.langue }}">{{ association.langue }}</td>
           <td>{{ association.presentation }}</td>
+          <td>{{ association.siegeSocial }}</td>
+          <td>{{ association.email }}</td>
+          <td>{{ association.isActif }}</td>
           <td>
             <div *ngIf="association.monnaie">
               <a [routerLink]="['/monnaie', association.monnaie.id, 'view']">{{ association.monnaie.id }}</a>

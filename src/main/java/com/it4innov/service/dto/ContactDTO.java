@@ -17,6 +17,8 @@ public class ContactDTO implements Serializable {
      * The firstname attribute.
      */
     @Schema(description = "The firstname attribute.")
+    private Boolean isParDefaut;
+
     private String email;
 
     private String telephone;
@@ -31,6 +33,14 @@ public class ContactDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getIsParDefaut() {
+        return isParDefaut;
+    }
+
+    public void setIsParDefaut(Boolean isParDefaut) {
+        this.isParDefaut = isParDefaut;
     }
 
     public String getEmail() {
@@ -91,6 +101,7 @@ public class ContactDTO implements Serializable {
     public String toString() {
         return "ContactDTO{" +
             "id=" + getId() +
+            ", isParDefaut='" + getIsParDefaut() + "'" +
             ", email='" + getEmail() + "'" +
             ", telephone='" + getTelephone() + "'" +
             ", mobile='" + getMobile() + "'" +

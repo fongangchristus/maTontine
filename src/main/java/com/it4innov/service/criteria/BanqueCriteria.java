@@ -33,6 +33,10 @@ public class BanqueCriteria implements Serializable, Criteria {
 
     private InstantFilter dateCloture;
 
+    private DoubleFilter penaliteRetardRnbrsmnt;
+
+    private DoubleFilter tauxInteretPret;
+
     private LongFilter compteBanqueId;
 
     private LongFilter gestionnaireBanqueId;
@@ -48,6 +52,8 @@ public class BanqueCriteria implements Serializable, Criteria {
         this.description = other.description == null ? null : other.description.copy();
         this.dateOuverture = other.dateOuverture == null ? null : other.dateOuverture.copy();
         this.dateCloture = other.dateCloture == null ? null : other.dateCloture.copy();
+        this.penaliteRetardRnbrsmnt = other.penaliteRetardRnbrsmnt == null ? null : other.penaliteRetardRnbrsmnt.copy();
+        this.tauxInteretPret = other.tauxInteretPret == null ? null : other.tauxInteretPret.copy();
         this.compteBanqueId = other.compteBanqueId == null ? null : other.compteBanqueId.copy();
         this.gestionnaireBanqueId = other.gestionnaireBanqueId == null ? null : other.gestionnaireBanqueId.copy();
         this.distinct = other.distinct;
@@ -148,6 +154,36 @@ public class BanqueCriteria implements Serializable, Criteria {
         this.dateCloture = dateCloture;
     }
 
+    public DoubleFilter getPenaliteRetardRnbrsmnt() {
+        return penaliteRetardRnbrsmnt;
+    }
+
+    public DoubleFilter penaliteRetardRnbrsmnt() {
+        if (penaliteRetardRnbrsmnt == null) {
+            penaliteRetardRnbrsmnt = new DoubleFilter();
+        }
+        return penaliteRetardRnbrsmnt;
+    }
+
+    public void setPenaliteRetardRnbrsmnt(DoubleFilter penaliteRetardRnbrsmnt) {
+        this.penaliteRetardRnbrsmnt = penaliteRetardRnbrsmnt;
+    }
+
+    public DoubleFilter getTauxInteretPret() {
+        return tauxInteretPret;
+    }
+
+    public DoubleFilter tauxInteretPret() {
+        if (tauxInteretPret == null) {
+            tauxInteretPret = new DoubleFilter();
+        }
+        return tauxInteretPret;
+    }
+
+    public void setTauxInteretPret(DoubleFilter tauxInteretPret) {
+        this.tauxInteretPret = tauxInteretPret;
+    }
+
     public LongFilter getCompteBanqueId() {
         return compteBanqueId;
     }
@@ -202,6 +238,8 @@ public class BanqueCriteria implements Serializable, Criteria {
             Objects.equals(description, that.description) &&
             Objects.equals(dateOuverture, that.dateOuverture) &&
             Objects.equals(dateCloture, that.dateCloture) &&
+            Objects.equals(penaliteRetardRnbrsmnt, that.penaliteRetardRnbrsmnt) &&
+            Objects.equals(tauxInteretPret, that.tauxInteretPret) &&
             Objects.equals(compteBanqueId, that.compteBanqueId) &&
             Objects.equals(gestionnaireBanqueId, that.gestionnaireBanqueId) &&
             Objects.equals(distinct, that.distinct)
@@ -217,6 +255,8 @@ public class BanqueCriteria implements Serializable, Criteria {
             description,
             dateOuverture,
             dateCloture,
+            penaliteRetardRnbrsmnt,
+            tauxInteretPret,
             compteBanqueId,
             gestionnaireBanqueId,
             distinct
@@ -233,6 +273,8 @@ public class BanqueCriteria implements Serializable, Criteria {
             (description != null ? "description=" + description + ", " : "") +
             (dateOuverture != null ? "dateOuverture=" + dateOuverture + ", " : "") +
             (dateCloture != null ? "dateCloture=" + dateCloture + ", " : "") +
+            (penaliteRetardRnbrsmnt != null ? "penaliteRetardRnbrsmnt=" + penaliteRetardRnbrsmnt + ", " : "") +
+            (tauxInteretPret != null ? "tauxInteretPret=" + tauxInteretPret + ", " : "") +
             (compteBanqueId != null ? "compteBanqueId=" + compteBanqueId + ", " : "") +
             (gestionnaireBanqueId != null ? "gestionnaireBanqueId=" + gestionnaireBanqueId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +

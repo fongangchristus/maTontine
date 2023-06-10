@@ -10,6 +10,8 @@ export interface IPersonne {
   matricule?: string | null;
   nom?: string | null;
   prenom?: string | null;
+  telephone?: string | null;
+  email?: string | null;
   dateNaissance?: dayjs.Dayjs | null;
   lieuNaissance?: number | null;
   dateInscription?: dayjs.Dayjs | null;

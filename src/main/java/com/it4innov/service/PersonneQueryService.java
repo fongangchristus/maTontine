@@ -105,6 +105,12 @@ public class PersonneQueryService extends QueryService<Personne> {
             if (criteria.getPrenom() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPrenom(), Personne_.prenom));
             }
+            if (criteria.getTelephone() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTelephone(), Personne_.telephone));
+            }
+            if (criteria.getEmail() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEmail(), Personne_.email));
+            }
             if (criteria.getDateNaissance() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDateNaissance(), Personne_.dateNaissance));
             }

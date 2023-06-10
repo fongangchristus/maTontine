@@ -23,7 +23,7 @@
             <column name="nombre_tour" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="nombre_max_personne" type="integer">
+            <column name="nombre_personne" type="integer">
                 <constraints nullable="true" />
             </column>
             <column name="marge_beneficiaire" type="double">
@@ -32,13 +32,22 @@
             <column name="montant_part" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="amande_echec" type="double">
+            <column name="montant_cagnote" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="date_debut" type="date">
+            <column name="penalite_retard_cotisation" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="date_fin" type="date">
+            <column name="type_penalite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_creation" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_premier_tour" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_dernier_tour" type="date">
                 <constraints nullable="true" />
             </column>
             <column name="statut_tontine" type="varchar(255)">
@@ -71,12 +80,15 @@
             <column name="code_association" type="string"/>
             <column name="libele" type="string"/>
             <column name="nombre_tour" type="numeric"/>
-            <column name="nombre_max_personne" type="numeric"/>
+            <column name="nombre_personne" type="numeric"/>
             <column name="marge_beneficiaire" type="numeric"/>
             <column name="montant_part" type="numeric"/>
-            <column name="amande_echec" type="numeric"/>
-            <column name="date_debut" type="date"/>
-            <column name="date_fin" type="date"/>
+            <column name="montant_cagnote" type="numeric"/>
+            <column name="penalite_retard_cotisation" type="numeric"/>
+            <column name="type_penalite" type="string"/>
+            <column name="date_creation" type="date"/>
+            <column name="date_premier_tour" type="date"/>
+            <column name="date_dernier_tour" type="date"/>
             <column name="statut_tontine" type="string"/>
             <column name="description" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

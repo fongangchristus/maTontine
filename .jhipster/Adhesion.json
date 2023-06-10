@@ -8,7 +8,7 @@
     {
       "fieldName": "statutAdhesion",
       "fieldType": "StatutAdhesion",
-      "fieldValues": "ENCOURS,ANNULE,PAYE,EXPIRE"
+      "fieldValues": "ACTIVE,DESACTIVE"
     },
     {
       "fieldName": "matriculePersonne",

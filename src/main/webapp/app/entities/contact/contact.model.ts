@@ -2,6 +2,7 @@ import { IPersonne } from 'app/entities/personne/personne.model';
 
 export interface IContact {
   id: number;
+  isParDefaut?: boolean | null;
   email?: string | null;
   telephone?: string | null;
   mobile?: string | null;

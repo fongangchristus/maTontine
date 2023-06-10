@@ -72,6 +72,15 @@ class AssociationResourceIT {
     private static final String DEFAULT_PRESENTATION = "AAAAAAAAAA";
     private static final String UPDATED_PRESENTATION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_SIEGE_SOCIAL = "AAAAAAAAAA";
+    private static final String UPDATED_SIEGE_SOCIAL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_IS_ACTIF = false;
+    private static final Boolean UPDATED_IS_ACTIF = true;
+
     private static final String ENTITY_API_URL = "/api/associations";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -110,7 +119,10 @@ class AssociationResourceIT {
             .dateCreation(DEFAULT_DATE_CREATION)
             .fuseauHoraire(DEFAULT_FUSEAU_HORAIRE)
             .langue(DEFAULT_LANGUE)
-            .presentation(DEFAULT_PRESENTATION);
+            .presentation(DEFAULT_PRESENTATION)
+            .siegeSocial(DEFAULT_SIEGE_SOCIAL)
+            .email(DEFAULT_EMAIL)
+            .isActif(DEFAULT_IS_ACTIF);
         return association;
     }
 
@@ -132,7 +144,10 @@ class AssociationResourceIT {
             .dateCreation(UPDATED_DATE_CREATION)
             .fuseauHoraire(UPDATED_FUSEAU_HORAIRE)
             .langue(UPDATED_LANGUE)
-            .presentation(UPDATED_PRESENTATION);
+            .presentation(UPDATED_PRESENTATION)
+            .siegeSocial(UPDATED_SIEGE_SOCIAL)
+            .email(UPDATED_EMAIL)
+            .isActif(UPDATED_IS_ACTIF);
         return association;
     }
 
@@ -168,6 +183,9 @@ class AssociationResourceIT {
         assertThat(testAssociation.getFuseauHoraire()).isEqualTo(DEFAULT_FUSEAU_HORAIRE);
         assertThat(testAssociation.getLangue()).isEqualTo(DEFAULT_LANGUE);
         assertThat(testAssociation.getPresentation()).isEqualTo(DEFAULT_PRESENTATION);
+        assertThat(testAssociation.getSiegeSocial()).isEqualTo(DEFAULT_SIEGE_SOCIAL);
+        assertThat(testAssociation.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testAssociation.getIsActif()).isEqualTo(DEFAULT_IS_ACTIF);
     }
 
     @Test
@@ -233,7 +251,10 @@ class AssociationResourceIT {
             .andExpect(jsonPath("$.[*].dateCreation").value(hasItem(DEFAULT_DATE_CREATION.toString())))
             .andExpect(jsonPath("$.[*].fuseauHoraire").value(hasItem(DEFAULT_FUSEAU_HORAIRE)))
             .andExpect(jsonPath("$.[*].langue").value(hasItem(DEFAULT_LANGUE.toString())))
-            .andExpect(jsonPath("$.[*].presentation").value(hasItem(DEFAULT_PRESENTATION)));
+            .andExpect(jsonPath("$.[*].presentation").value(hasItem(DEFAULT_PRESENTATION)))
+            .andExpect(jsonPath("$.[*].siegeSocial").value(hasItem(DEFAULT_SIEGE_SOCIAL)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].isActif").value(hasItem(DEFAULT_IS_ACTIF.booleanValue())));
     }
 
     @Test
@@ -258,7 +279,10 @@ class AssociationResourceIT {
             .andExpect(jsonPath("$.dateCreation").value(DEFAULT_DATE_CREATION.toString()))
             .andExpect(jsonPath("$.fuseauHoraire").value(DEFAULT_FUSEAU_HORAIRE))
             .andExpect(jsonPath("$.langue").value(DEFAULT_LANGUE.toString()))
-            .andExpect(jsonPath("$.presentation").value(DEFAULT_PRESENTATION));
+            .andExpect(jsonPath("$.presentation").value(DEFAULT_PRESENTATION))
+            .andExpect(jsonPath("$.siegeSocial").value(DEFAULT_SIEGE_SOCIAL))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.isActif").value(DEFAULT_IS_ACTIF.booleanValue()));
     }
 
     @Test
@@ -996,6 +1020,175 @@ class AssociationResourceIT {
 
     @Test
     @Transactional
+    void getAllAssociationsBySiegeSocialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where siegeSocial equals to DEFAULT_SIEGE_SOCIAL
+        defaultAssociationShouldBeFound("siegeSocial.equals=" + DEFAULT_SIEGE_SOCIAL);
+
+        // Get all the associationList where siegeSocial equals to UPDATED_SIEGE_SOCIAL
+        defaultAssociationShouldNotBeFound("siegeSocial.equals=" + UPDATED_SIEGE_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsBySiegeSocialIsInShouldWork() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where siegeSocial in DEFAULT_SIEGE_SOCIAL or UPDATED_SIEGE_SOCIAL
+        defaultAssociationShouldBeFound("siegeSocial.in=" + DEFAULT_SIEGE_SOCIAL + "," + UPDATED_SIEGE_SOCIAL);
+
+        // Get all the associationList where siegeSocial equals to UPDATED_SIEGE_SOCIAL
+        defaultAssociationShouldNotBeFound("siegeSocial.in=" + UPDATED_SIEGE_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsBySiegeSocialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where siegeSocial is not null
+        defaultAssociationShouldBeFound("siegeSocial.specified=true");
+
+        // Get all the associationList where siegeSocial is null
+        defaultAssociationShouldNotBeFound("siegeSocial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsBySiegeSocialContainsSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where siegeSocial contains DEFAULT_SIEGE_SOCIAL
+        defaultAssociationShouldBeFound("siegeSocial.contains=" + DEFAULT_SIEGE_SOCIAL);
+
+        // Get all the associationList where siegeSocial contains UPDATED_SIEGE_SOCIAL
+        defaultAssociationShouldNotBeFound("siegeSocial.contains=" + UPDATED_SIEGE_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsBySiegeSocialNotContainsSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where siegeSocial does not contain DEFAULT_SIEGE_SOCIAL
+        defaultAssociationShouldNotBeFound("siegeSocial.doesNotContain=" + DEFAULT_SIEGE_SOCIAL);
+
+        // Get all the associationList where siegeSocial does not contain UPDATED_SIEGE_SOCIAL
+        defaultAssociationShouldBeFound("siegeSocial.doesNotContain=" + UPDATED_SIEGE_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByEmailIsEqualToSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where email equals to DEFAULT_EMAIL
+        defaultAssociationShouldBeFound("email.equals=" + DEFAULT_EMAIL);
+
+        // Get all the associationList where email equals to UPDATED_EMAIL
+        defaultAssociationShouldNotBeFound("email.equals=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByEmailIsInShouldWork() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where email in DEFAULT_EMAIL or UPDATED_EMAIL
+        defaultAssociationShouldBeFound("email.in=" + DEFAULT_EMAIL + "," + UPDATED_EMAIL);
+
+        // Get all the associationList where email equals to UPDATED_EMAIL
+        defaultAssociationShouldNotBeFound("email.in=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByEmailIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where email is not null
+        defaultAssociationShouldBeFound("email.specified=true");
+
+        // Get all the associationList where email is null
+        defaultAssociationShouldNotBeFound("email.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByEmailContainsSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where email contains DEFAULT_EMAIL
+        defaultAssociationShouldBeFound("email.contains=" + DEFAULT_EMAIL);
+
+        // Get all the associationList where email contains UPDATED_EMAIL
+        defaultAssociationShouldNotBeFound("email.contains=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByEmailNotContainsSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where email does not contain DEFAULT_EMAIL
+        defaultAssociationShouldNotBeFound("email.doesNotContain=" + DEFAULT_EMAIL);
+
+        // Get all the associationList where email does not contain UPDATED_EMAIL
+        defaultAssociationShouldBeFound("email.doesNotContain=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByIsActifIsEqualToSomething() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where isActif equals to DEFAULT_IS_ACTIF
+        defaultAssociationShouldBeFound("isActif.equals=" + DEFAULT_IS_ACTIF);
+
+        // Get all the associationList where isActif equals to UPDATED_IS_ACTIF
+        defaultAssociationShouldNotBeFound("isActif.equals=" + UPDATED_IS_ACTIF);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByIsActifIsInShouldWork() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where isActif in DEFAULT_IS_ACTIF or UPDATED_IS_ACTIF
+        defaultAssociationShouldBeFound("isActif.in=" + DEFAULT_IS_ACTIF + "," + UPDATED_IS_ACTIF);
+
+        // Get all the associationList where isActif equals to UPDATED_IS_ACTIF
+        defaultAssociationShouldNotBeFound("isActif.in=" + UPDATED_IS_ACTIF);
+    }
+
+    @Test
+    @Transactional
+    void getAllAssociationsByIsActifIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        associationRepository.saveAndFlush(association);
+
+        // Get all the associationList where isActif is not null
+        defaultAssociationShouldBeFound("isActif.specified=true");
+
+        // Get all the associationList where isActif is null
+        defaultAssociationShouldNotBeFound("isActif.specified=false");
+    }
+
+    @Test
+    @Transactional
     void getAllAssociationsByExerciseIsEqualToSomething() throws Exception {
         Exercise exercise;
         if (TestUtil.findAll(em, Exercise.class).isEmpty()) {
@@ -1082,7 +1275,10 @@ class AssociationResourceIT {
             .andExpect(jsonPath("$.[*].dateCreation").value(hasItem(DEFAULT_DATE_CREATION.toString())))
             .andExpect(jsonPath("$.[*].fuseauHoraire").value(hasItem(DEFAULT_FUSEAU_HORAIRE)))
             .andExpect(jsonPath("$.[*].langue").value(hasItem(DEFAULT_LANGUE.toString())))
-            .andExpect(jsonPath("$.[*].presentation").value(hasItem(DEFAULT_PRESENTATION)));
+            .andExpect(jsonPath("$.[*].presentation").value(hasItem(DEFAULT_PRESENTATION)))
+            .andExpect(jsonPath("$.[*].siegeSocial").value(hasItem(DEFAULT_SIEGE_SOCIAL)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].isActif").value(hasItem(DEFAULT_IS_ACTIF.booleanValue())));
 
         // Check, that the count call also returns 1
         restAssociationMockMvc
@@ -1141,7 +1337,10 @@ class AssociationResourceIT {
             .dateCreation(UPDATED_DATE_CREATION)
             .fuseauHoraire(UPDATED_FUSEAU_HORAIRE)
             .langue(UPDATED_LANGUE)
-            .presentation(UPDATED_PRESENTATION);
+            .presentation(UPDATED_PRESENTATION)
+            .siegeSocial(UPDATED_SIEGE_SOCIAL)
+            .email(UPDATED_EMAIL)
+            .isActif(UPDATED_IS_ACTIF);
         AssociationDTO associationDTO = associationMapper.toDto(updatedAssociation);
 
         restAssociationMockMvc
@@ -1167,6 +1366,9 @@ class AssociationResourceIT {
         assertThat(testAssociation.getFuseauHoraire()).isEqualTo(UPDATED_FUSEAU_HORAIRE);
         assertThat(testAssociation.getLangue()).isEqualTo(UPDATED_LANGUE);
         assertThat(testAssociation.getPresentation()).isEqualTo(UPDATED_PRESENTATION);
+        assertThat(testAssociation.getSiegeSocial()).isEqualTo(UPDATED_SIEGE_SOCIAL);
+        assertThat(testAssociation.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testAssociation.getIsActif()).isEqualTo(UPDATED_IS_ACTIF);
     }
 
     @Test
@@ -1253,7 +1455,8 @@ class AssociationResourceIT {
             .statutPath(UPDATED_STATUT_PATH)
             .dateCreation(UPDATED_DATE_CREATION)
             .fuseauHoraire(UPDATED_FUSEAU_HORAIRE)
-            .presentation(UPDATED_PRESENTATION);
+            .presentation(UPDATED_PRESENTATION)
+            .isActif(UPDATED_IS_ACTIF);
 
         restAssociationMockMvc
             .perform(
@@ -1278,6 +1481,9 @@ class AssociationResourceIT {
         assertThat(testAssociation.getFuseauHoraire()).isEqualTo(UPDATED_FUSEAU_HORAIRE);
         assertThat(testAssociation.getLangue()).isEqualTo(DEFAULT_LANGUE);
         assertThat(testAssociation.getPresentation()).isEqualTo(UPDATED_PRESENTATION);
+        assertThat(testAssociation.getSiegeSocial()).isEqualTo(DEFAULT_SIEGE_SOCIAL);
+        assertThat(testAssociation.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testAssociation.getIsActif()).isEqualTo(UPDATED_IS_ACTIF);
     }
 
     @Test
@@ -1303,7 +1509,10 @@ class AssociationResourceIT {
             .dateCreation(UPDATED_DATE_CREATION)
             .fuseauHoraire(UPDATED_FUSEAU_HORAIRE)
             .langue(UPDATED_LANGUE)
-            .presentation(UPDATED_PRESENTATION);
+            .presentation(UPDATED_PRESENTATION)
+            .siegeSocial(UPDATED_SIEGE_SOCIAL)
+            .email(UPDATED_EMAIL)
+            .isActif(UPDATED_IS_ACTIF);
 
         restAssociationMockMvc
             .perform(
@@ -1328,6 +1537,9 @@ class AssociationResourceIT {
         assertThat(testAssociation.getFuseauHoraire()).isEqualTo(UPDATED_FUSEAU_HORAIRE);
         assertThat(testAssociation.getLangue()).isEqualTo(UPDATED_LANGUE);
         assertThat(testAssociation.getPresentation()).isEqualTo(UPDATED_PRESENTATION);
+        assertThat(testAssociation.getSiegeSocial()).isEqualTo(UPDATED_SIEGE_SOCIAL);
+        assertThat(testAssociation.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testAssociation.getIsActif()).isEqualTo(UPDATED_IS_ACTIF);
     }
 
     @Test

@@ -14,7 +14,15 @@
         <dd>
           <span>{{ contact.id }}</span>
         </dd>
-        <dt><span jhiTranslate="maTontineApp.contact.email" [ngbTooltip]="'maTontineApp.contact.help.email' | translate">Email</span></dt>
+        <dt>
+          <span jhiTranslate="maTontineApp.contact.isParDefaut" [ngbTooltip]="'maTontineApp.contact.help.isParDefaut' | translate"
+            >Is Par Defaut</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.isParDefaut }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.contact.email">Email</span></dt>
         <dd>
           <span>{{ contact.email }}</span>
         </dd>

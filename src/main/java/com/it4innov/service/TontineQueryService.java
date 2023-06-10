@@ -99,8 +99,8 @@ public class TontineQueryService extends QueryService<Tontine> {
             if (criteria.getNombreTour() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getNombreTour(), Tontine_.nombreTour));
             }
-            if (criteria.getNombreMaxPersonne() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getNombreMaxPersonne(), Tontine_.nombreMaxPersonne));
+            if (criteria.getNombrePersonne() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getNombrePersonne(), Tontine_.nombrePersonne));
             }
             if (criteria.getMargeBeneficiaire() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getMargeBeneficiaire(), Tontine_.margeBeneficiaire));
@@ -108,14 +108,24 @@ public class TontineQueryService extends QueryService<Tontine> {
             if (criteria.getMontantPart() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getMontantPart(), Tontine_.montantPart));
             }
-            if (criteria.getAmandeEchec() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getAmandeEchec(), Tontine_.amandeEchec));
+            if (criteria.getMontantCagnote() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getMontantCagnote(), Tontine_.montantCagnote));
             }
-            if (criteria.getDateDebut() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getDateDebut(), Tontine_.dateDebut));
+            if (criteria.getPenaliteRetardCotisation() != null) {
+                specification =
+                    specification.and(buildRangeSpecification(criteria.getPenaliteRetardCotisation(), Tontine_.penaliteRetardCotisation));
             }
-            if (criteria.getDateFin() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getDateFin(), Tontine_.dateFin));
+            if (criteria.getTypePenalite() != null) {
+                specification = specification.and(buildSpecification(criteria.getTypePenalite(), Tontine_.typePenalite));
+            }
+            if (criteria.getDateCreation() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDateCreation(), Tontine_.dateCreation));
+            }
+            if (criteria.getDatePremierTour() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDatePremierTour(), Tontine_.datePremierTour));
+            }
+            if (criteria.getDateDernierTour() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDateDernierTour(), Tontine_.dateDernierTour));
             }
             if (criteria.getStatutTontine() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatutTontine(), Tontine_.statutTontine));

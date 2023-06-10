@@ -50,6 +50,18 @@
     {
       "fieldName": "presentation",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "siegeSocial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActif",
+      "fieldType": "Boolean"
     }
   ],
   "fluentMethods": true,

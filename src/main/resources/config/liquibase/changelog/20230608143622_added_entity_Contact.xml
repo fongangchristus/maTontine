@@ -14,7 +14,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="email" type="varchar(255)" remarks="The firstname attribute.">
+            <column name="is_par_defaut" type="boolean" remarks="The firstname attribute.">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="telephone" type="varchar(255)">
@@ -47,6 +50,7 @@
                   tableName="contact"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
+            <column name="is_par_defaut" type="boolean"/>
             <column name="email" type="string"/>
             <column name="telephone" type="string"/>
             <column name="mobile" type="string"/>

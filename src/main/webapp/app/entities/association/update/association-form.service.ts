@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type AssociationFormGroupInput = IAssociation | PartialWithRequiredKeyOf<NewAssociation>;
 
-type AssociationFormDefaults = Pick<NewAssociation, 'id'>;
+type AssociationFormDefaults = Pick<NewAssociation, 'id' | 'isActif'>;
 
 type AssociationFormGroupContent = {
   id: FormControl<IAssociation['id'] | NewAssociation['id']>;
@@ -29,6 +29,9 @@ type AssociationFormGroupContent = {
   fuseauHoraire: FormControl<IAssociation['fuseauHoraire']>;
   langue: FormControl<IAssociation['langue']>;
   presentation: FormControl<IAssociation['presentation']>;
+  siegeSocial: FormControl<IAssociation['siegeSocial']>;
+  email: FormControl<IAssociation['email']>;
+  isActif: FormControl<IAssociation['isActif']>;
   monnaie: FormControl<IAssociation['monnaie']>;
 };
 
@@ -62,6 +65,9 @@ export class AssociationFormService {
       fuseauHoraire: new FormControl(associationRawValue.fuseauHoraire),
       langue: new FormControl(associationRawValue.langue),
       presentation: new FormControl(associationRawValue.presentation),
+      siegeSocial: new FormControl(associationRawValue.siegeSocial),
+      email: new FormControl(associationRawValue.email),
+      isActif: new FormControl(associationRawValue.isActif),
       monnaie: new FormControl(associationRawValue.monnaie),
     });
   }
@@ -83,6 +89,7 @@ export class AssociationFormService {
   private getFormDefaults(): AssociationFormDefaults {
     return {
       id: null,
+      isActif: false,
     };
   }
 }

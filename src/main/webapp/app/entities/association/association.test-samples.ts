@@ -10,34 +10,38 @@ export const sampleWithRequiredData: IAssociation = {
 };
 
 export const sampleWithPartialData: IAssociation = {
-  id: 19978,
-  codeAssociation: 'Lorraine',
-  denomination: 'port parse',
-  slogan: 'Borders red',
-  reglementPath: 'Provence-Alpes-Côte Granite Loan',
-  statutPath: 'Towels',
-  description: 'Gloves Rustic Chili',
-  fuseauHoraire: 'Champagne-Ardenne bricks-and-clicks heuristic',
-  presentation: 'du Bretagne didactic',
+  id: 66581,
+  codeAssociation: 'synergistic improvement',
+  denomination: 'Berkshire a c',
+  slogan: 'proactive Berkshire Loan',
+  reglementPath: 'Towels',
+  statutPath: 'Gloves Rustic Chili',
+  description: 'Champagne-Ardenne bricks-and-clicks heuristic',
+  fuseauHoraire: 'du Bretagne didactic',
+  presentation: 'Cross-platform',
+  isActif: false,
 };
 
 export const sampleWithFullData: IAssociation = {
-  id: 8976,
-  codeAssociation: 'Wooden',
-  denomination: 'Incredible microchip Bretagne',
-  slogan: 'invoice circuit',
-  logoPath: 'Granite Administrateur',
-  reglementPath: 'Inde',
-  statutPath: 'plum',
-  description: 'Money',
-  dateCreation: dayjs('2023-06-08'),
-  fuseauHoraire: 'Chair Iceland',
-  langue: Langue['ENGLISH'],
-  presentation: 'SAS Berkshire',
+  id: 75379,
+  codeAssociation: 'matrices',
+  denomination: 'incubate',
+  slogan: 'Borders Chicken b',
+  logoPath: 'Afghanistan Administrateur Rubber',
+  reglementPath: 'concept',
+  statutPath: 'mobile',
+  description: 'e-markets',
+  dateCreation: dayjs('2023-06-07'),
+  fuseauHoraire: 'Sports implement Poitou-Charentes',
+  langue: Langue['FRENCH'],
+  presentation: 'Provence directional',
+  siegeSocial: 'a THX',
+  email: 'Mauricette46@yahoo.fr',
+  isActif: true,
 };
 
 export const sampleWithNewData: NewAssociation = {
-  codeAssociation: 'directional Personal',
+  codeAssociation: 'Rosiers a',
   id: null,
 };
 

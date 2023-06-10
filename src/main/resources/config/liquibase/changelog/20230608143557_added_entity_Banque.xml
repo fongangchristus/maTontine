@@ -29,6 +29,12 @@
             <column name="date_cloture" type="${datetimeType}">
                 <constraints nullable="true" />
             </column>
+            <column name="penalite_retard_rnbrsmnt" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="taux_interet_pret" type="double">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="banque" columnName="date_ouverture" columnDataType="${datetimeType}"/>
@@ -57,6 +63,8 @@
             <column name="description" type="string"/>
             <column name="date_ouverture" type="date"/>
             <column name="date_cloture" type="date"/>
+            <column name="penalite_retard_rnbrsmnt" type="numeric"/>
+            <column name="taux_interet_pret" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

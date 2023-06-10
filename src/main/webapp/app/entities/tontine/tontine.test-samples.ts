@@ -1,5 +1,6 @@
 import dayjs from 'dayjs/esm';
 
+import { TypePenalite } from 'app/entities/enumerations/type-penalite.model';
 import { StatutTontine } from 'app/entities/enumerations/statut-tontine.model';
 
 import { ITontine, NewTontine } from './tontine.model';
@@ -10,32 +11,35 @@ export const sampleWithRequiredData: ITontine = {
 };
 
 export const sampleWithPartialData: ITontine = {
-  id: 47424,
-  codeAssociation: 'Shirt middleware',
-  nombreTour: 20278,
-  amandeEchec: 8229,
-  dateDebut: dayjs('2023-06-08'),
-  statutTontine: StatutTontine['CLOTUREE'],
-  description: 'a Plastic Riel',
+  id: 37694,
+  codeAssociation: 'middleware blue',
+  nombreTour: 89697,
+  montantCagnote: 78917,
+  penaliteRetardCotisation: 89421,
+  dateCreation: dayjs('2023-06-08'),
+  datePremierTour: dayjs('2023-06-07'),
 };
 
 export const sampleWithFullData: ITontine = {
-  id: 14488,
-  codeAssociation: 'Wooden',
-  libele: 'drive Balboa Haute-Normandie',
-  nombreTour: 81871,
-  nombreMaxPersonne: 57622,
-  margeBeneficiaire: 51023,
-  montantPart: 67282,
-  amandeEchec: 27664,
-  dateDebut: dayjs('2023-06-08'),
-  dateFin: dayjs('2023-06-07'),
-  statutTontine: StatutTontine['CLOTUREE'],
-  description: 'c Mille',
+  id: 12740,
+  codeAssociation: 'c',
+  libele: 'Wooden',
+  nombreTour: 15043,
+  nombrePersonne: 75075,
+  margeBeneficiaire: 80437,
+  montantPart: 71807,
+  montantCagnote: 56945,
+  penaliteRetardCotisation: 76412,
+  typePenalite: TypePenalite['POURCENTAGE'],
+  dateCreation: dayjs('2023-06-07'),
+  datePremierTour: dayjs('2023-06-08'),
+  dateDernierTour: dayjs('2023-06-08'),
+  statutTontine: StatutTontine['OUVERTE'],
+  description: 'generating Lari',
 };
 
 export const sampleWithNewData: NewTontine = {
-  codeAssociation: 'digital',
+  codeAssociation: "THX Pa'anga Baby",
   id: null,
 };
 

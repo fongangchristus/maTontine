@@ -20,6 +20,7 @@ describe('Contact Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
+            isParDefaut: expect.any(Object),
             email: expect.any(Object),
             telephone: expect.any(Object),
             mobile: expect.any(Object),
@@ -34,6 +35,7 @@ describe('Contact Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
+            isParDefaut: expect.any(Object),
             email: expect.any(Object),
             telephone: expect.any(Object),
             mobile: expect.any(Object),

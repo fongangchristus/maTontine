@@ -15,7 +15,7 @@ export const sampleWithPartialData: IAdhesion = {
 
 export const sampleWithFullData: IAdhesion = {
   id: 7444,
-  statutAdhesion: StatutAdhesion['ENCOURS'],
+  statutAdhesion: StatutAdhesion['ACTIVE'],
   matriculePersonne: 'deposit teal',
   dateDebutAdhesion: dayjs('2023-06-08T06:50'),
   dateFinAdhesion: dayjs('2023-06-08T14:19'),

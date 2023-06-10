@@ -15,6 +15,9 @@ export interface IAssociation {
   fuseauHoraire?: string | null;
   langue?: Langue | null;
   presentation?: string | null;
+  siegeSocial?: string | null;
+  email?: string | null;
+  isActif?: boolean | null;
   monnaie?: Pick<IMonnaie, 'id'> | null;
 }
 

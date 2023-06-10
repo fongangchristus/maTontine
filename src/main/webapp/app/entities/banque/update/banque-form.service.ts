@@ -37,6 +37,8 @@ type BanqueFormGroupContent = {
   description: FormControl<BanqueFormRawValue['description']>;
   dateOuverture: FormControl<BanqueFormRawValue['dateOuverture']>;
   dateCloture: FormControl<BanqueFormRawValue['dateCloture']>;
+  penaliteRetardRnbrsmnt: FormControl<BanqueFormRawValue['penaliteRetardRnbrsmnt']>;
+  tauxInteretPret: FormControl<BanqueFormRawValue['tauxInteretPret']>;
 };
 
 export type BanqueFormGroup = FormGroup<BanqueFormGroupContent>;
@@ -63,6 +65,8 @@ export class BanqueFormService {
       description: new FormControl(banqueRawValue.description),
       dateOuverture: new FormControl(banqueRawValue.dateOuverture),
       dateCloture: new FormControl(banqueRawValue.dateCloture),
+      penaliteRetardRnbrsmnt: new FormControl(banqueRawValue.penaliteRetardRnbrsmnt),
+      tauxInteretPret: new FormControl(banqueRawValue.tauxInteretPret),
     });
   }
 

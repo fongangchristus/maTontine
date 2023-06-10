@@ -14,10 +14,11 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type ContactFormGroupInput = IContact | PartialWithRequiredKeyOf<NewContact>;
 
-type ContactFormDefaults = Pick<NewContact, 'id'>;
+type ContactFormDefaults = Pick<NewContact, 'id' | 'isParDefaut'>;
 
 type ContactFormGroupContent = {
   id: FormControl<IContact['id'] | NewContact['id']>;
+  isParDefaut: FormControl<IContact['isParDefaut']>;
   email: FormControl<IContact['email']>;
   telephone: FormControl<IContact['telephone']>;
   mobile: FormControl<IContact['mobile']>;
@@ -41,6 +42,7 @@ export class ContactFormService {
           validators: [Validators.required],
         }
       ),
+      isParDefaut: new FormControl(contactRawValue.isParDefaut),
       email: new FormControl(contactRawValue.email),
       telephone: new FormControl(contactRawValue.telephone),
       mobile: new FormControl(contactRawValue.mobile),
@@ -65,6 +67,7 @@ export class ContactFormService {
   private getFormDefaults(): ContactFormDefaults {
     return {
       id: null,
+      isParDefaut: false,
     };
   }
 }

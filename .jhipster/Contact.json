@@ -6,9 +6,13 @@
   "entityTableName": "contact",
   "fields": [
     {
-      "fieldName": "email",
-      "fieldType": "String",
+      "fieldName": "isParDefaut",
+      "fieldType": "Boolean",
       "javadoc": "The firstname attribute."
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
     },
     {
       "fieldName": "telephone",

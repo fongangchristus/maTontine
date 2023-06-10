@@ -38,6 +38,12 @@ public class AssociationDTO implements Serializable {
 
     private String presentation;
 
+    private String siegeSocial;
+
+    private String email;
+
+    private Boolean isActif;
+
     private MonnaieDTO monnaie;
 
     public Long getId() {
@@ -136,6 +142,30 @@ public class AssociationDTO implements Serializable {
         this.presentation = presentation;
     }
 
+    public String getSiegeSocial() {
+        return siegeSocial;
+    }
+
+    public void setSiegeSocial(String siegeSocial) {
+        this.siegeSocial = siegeSocial;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getIsActif() {
+        return isActif;
+    }
+
+    public void setIsActif(Boolean isActif) {
+        this.isActif = isActif;
+    }
+
     public MonnaieDTO getMonnaie() {
         return monnaie;
     }
@@ -181,6 +211,9 @@ public class AssociationDTO implements Serializable {
             ", fuseauHoraire='" + getFuseauHoraire() + "'" +
             ", langue='" + getLangue() + "'" +
             ", presentation='" + getPresentation() + "'" +
+            ", siegeSocial='" + getSiegeSocial() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", isActif='" + getIsActif() + "'" +
             ", monnaie=" + getMonnaie() +
             "}";
     }

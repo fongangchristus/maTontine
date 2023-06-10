@@ -25,6 +25,8 @@ describe('Banque Form Service', () => {
             description: expect.any(Object),
             dateOuverture: expect.any(Object),
             dateCloture: expect.any(Object),
+            penaliteRetardRnbrsmnt: expect.any(Object),
+            tauxInteretPret: expect.any(Object),
           })
         );
       });
@@ -40,6 +42,8 @@ describe('Banque Form Service', () => {
             description: expect.any(Object),
             dateOuverture: expect.any(Object),
             dateCloture: expect.any(Object),
+            penaliteRetardRnbrsmnt: expect.any(Object),
+            tauxInteretPret: expect.any(Object),
           })
         );
       });

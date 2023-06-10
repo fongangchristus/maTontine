@@ -40,6 +40,12 @@ public class Banque implements Serializable {
     @Column(name = "date_cloture")
     private Instant dateCloture;
 
+    @Column(name = "penalite_retard_rnbrsmnt")
+    private Double penaliteRetardRnbrsmnt;
+
+    @Column(name = "taux_interet_pret")
+    private Double tauxInteretPret;
+
     @OneToMany(mappedBy = "banque")
     @JsonIgnoreProperties(value = { "cotisationBanques", "decaisementBanques", "banque" }, allowSetters = true)
     private Set<CompteBanque> compteBanques = new HashSet<>();
@@ -126,6 +132,32 @@ public class Banque implements Serializable {
 
     public void setDateCloture(Instant dateCloture) {
         this.dateCloture = dateCloture;
+    }
+
+    public Double getPenaliteRetardRnbrsmnt() {
+        return this.penaliteRetardRnbrsmnt;
+    }
+
+    public Banque penaliteRetardRnbrsmnt(Double penaliteRetardRnbrsmnt) {
+        this.setPenaliteRetardRnbrsmnt(penaliteRetardRnbrsmnt);
+        return this;
+    }
+
+    public void setPenaliteRetardRnbrsmnt(Double penaliteRetardRnbrsmnt) {
+        this.penaliteRetardRnbrsmnt = penaliteRetardRnbrsmnt;
+    }
+
+    public Double getTauxInteretPret() {
+        return this.tauxInteretPret;
+    }
+
+    public Banque tauxInteretPret(Double tauxInteretPret) {
+        this.setTauxInteretPret(tauxInteretPret);
+        return this;
+    }
+
+    public void setTauxInteretPret(Double tauxInteretPret) {
+        this.tauxInteretPret = tauxInteretPret;
     }
 
     public Set<CompteBanque> getCompteBanques() {
@@ -219,6 +251,8 @@ public class Banque implements Serializable {
             ", description='" + getDescription() + "'" +
             ", dateOuverture='" + getDateOuverture() + "'" +
             ", dateCloture='" + getDateCloture() + "'" +
+            ", penaliteRetardRnbrsmnt=" + getPenaliteRetardRnbrsmnt() +
+            ", tauxInteretPret=" + getTauxInteretPret() +
             "}";
     }
 }

@@ -20,7 +20,7 @@
       "fieldType": "Integer"
     },
     {
-      "fieldName": "nombreMaxPersonne",
+      "fieldName": "nombrePersonne",
       "fieldType": "Integer"
     },
     {
@@ -32,15 +32,28 @@
       "fieldType": "Double"
     },
     {
-      "fieldName": "amandeEchec",
+      "fieldName": "montantCagnote",
       "fieldType": "Double"
     },
     {
-      "fieldName": "dateDebut",
+      "fieldName": "penaliteRetardCotisation",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "typePenalite",
+      "fieldType": "TypePenalite",
+      "fieldValues": "FORFAIT,POURCENTAGE"
+    },
+    {
+      "fieldName": "dateCreation",
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "dateFin",
+      "fieldName": "datePremierTour",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateDernierTour",
       "fieldType": "LocalDate"
     },
     {

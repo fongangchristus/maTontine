@@ -36,26 +36,34 @@
     codeAssociation String required,
  	libele String,
     nombreTour Integer,
-    nombreMaxPersonne Integer,
+    nombrePersonne Integer,
     margeBeneficiaire Double,
     montantPart Double,
-    amandeEchec Double,
-    dateDebut LocalDate,
-    dateFin LocalDate,
+    montantCagnote Double,
+    penaliteRetardCotisation Double,
+    typePenalite TypePenalite,
+    dateCreation LocalDate,
+    datePremierTour LocalDate,
+    dateDernierTour LocalDate,
     statutTontine StatutTontine,
     description String,
  }
  
+ enum TypePenalite{
+ 	FORFAIT, POURCENTAGE
+ }
  enum StatutTontine{
  	CREE, OUVERTE, CLOTUREE
  }
- 
+ //Epargne-credit
   entity Banque{
   	codeAssociation String required,
  	libelle String,
     description String,
     dateOuverture Instant, 
     dateCloture Instant,
+    penaliteRetardRnbrsmnt Double
+    tauxInteretPret Double,
  }
  entity CompteBanque{
  	libelle String,
@@ -163,7 +171,9 @@ entity Association {
     fuseauHoraire String,
     langue Langue,
     presentation String,
-    
+    siegeSocial String,
+    email String,
+    isActif Boolean,
 }
 
 entity Monnaie{
@@ -240,7 +250,7 @@ entity Adhesion {
 } 
 
 enum StatutAdhesion{
-	ENCOURS, ANNULE, PAYE, EXPIRE
+	ACTIVE, DESACTIVE
 }
 
 enum ModePaiement{
@@ -277,6 +287,8 @@ entity Personne {
     matricule String,
 	nom String,
 	prenom String,
+    telephone String required,
+    email String,
 	dateNaissance LocalDate,
 	lieuNaissance Long,
 	dateInscription Instant,
@@ -316,6 +328,7 @@ entity Contact {
 	/**
 	* The firstname attribute.
 	*/
+    isParDefaut Boolean,
 	email String,
 	telephone String,
     mobile String,

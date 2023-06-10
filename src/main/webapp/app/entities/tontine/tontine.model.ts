@@ -1,4 +1,5 @@
 import dayjs from 'dayjs/esm';
+import { TypePenalite } from 'app/entities/enumerations/type-penalite.model';
 import { StatutTontine } from 'app/entities/enumerations/statut-tontine.model';
 
 export interface ITontine {
@@ -6,12 +7,15 @@ export interface ITontine {
   codeAssociation?: string | null;
   libele?: string | null;
   nombreTour?: number | null;
-  nombreMaxPersonne?: number | null;
+  nombrePersonne?: number | null;
   margeBeneficiaire?: number | null;
   montantPart?: number | null;
-  amandeEchec?: number | null;
-  dateDebut?: dayjs.Dayjs | null;
-  dateFin?: dayjs.Dayjs | null;
+  montantCagnote?: number | null;
+  penaliteRetardCotisation?: number | null;
+  typePenalite?: TypePenalite | null;
+  dateCreation?: dayjs.Dayjs | null;
+  datePremierTour?: dayjs.Dayjs | null;
+  dateDernierTour?: dayjs.Dayjs | null;
   statutTontine?: StatutTontine | null;
   description?: string | null;
 }

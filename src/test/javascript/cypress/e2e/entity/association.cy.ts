@@ -15,7 +15,7 @@ describe('Association e2e test', () => {
   const associationPageUrlPattern = new RegExp('/association(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const associationSample = { codeAssociation: 'Cambridgeshire Kids' };
+  const associationSample = { codeAssociation: 'structure 24/7' };
 
   let association;
 
@@ -181,6 +181,13 @@ describe('Association e2e test', () => {
       cy.get(`[data-cy="langue"]`).select('SPANISH');
 
       cy.get(`[data-cy="presentation"]`).type('Small maroon AI').should('have.value', 'Small maroon AI');
+
+      cy.get(`[data-cy="siegeSocial"]`).type('Cambridgeshire Kids').should('have.value', 'Cambridgeshire Kids');
+
+      cy.get(`[data-cy="email"]`).type('Avigalle99@yahoo.fr').should('have.value', 'Avigalle99@yahoo.fr');
+
+      cy.get(`[data-cy="isActif"]`).should('not.be.checked');
+      cy.get(`[data-cy="isActif"]`).click().should('be.checked');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

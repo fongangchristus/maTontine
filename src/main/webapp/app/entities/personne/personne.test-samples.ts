@@ -7,42 +7,47 @@ import { IPersonne, NewPersonne } from './personne.model';
 
 export const sampleWithRequiredData: IPersonne = {
   id: 7936,
+  telephone: '+33 208824978',
 };
 
 export const sampleWithPartialData: IPersonne = {
-  id: 72015,
-  idUser: 95506,
-  matricule: 'Corse scale',
-  nom: 'ivory',
-  lieuNaissance: 48285,
-  dateInscription: dayjs('2023-06-08T12:21'),
-  profession: 'Panoramas',
-  isAdmin: false,
-  isDonateur: false,
-  typePersonne: TypePersonne['ADHERENT'],
+  id: 18696,
+  nom: 'infrastructure turquoise Belize',
+  prenom: 'Cambridgeshire',
+  telephone: '0374146271',
+  dateNaissance: dayjs('2023-06-07'),
+  lieuNaissance: 13472,
+  dateInscription: dayjs('2023-06-07T16:43'),
+  profession: 'Clothing a',
+  sexe: Sexe['MASCULIN'],
+  dateIntegration: dayjs('2023-06-08T00:02'),
+  isDonateur: true,
 };
 
 export const sampleWithFullData: IPersonne = {
-  id: 49306,
-  idUser: 94404,
-  codeAssociation: 8955,
-  matricule: 'redundant',
-  nom: 'Account Handcrafted',
-  prenom: 'Algérie web Fantastic',
+  id: 91469,
+  idUser: 89325,
+  codeAssociation: 78216,
+  matricule: 'Berkshire parallelism Home',
+  nom: 'Languedoc-Roussillon',
+  prenom: 'Loan a Account',
+  telephone: '+33 384500394',
+  email: 'Astrie46@hotmail.fr',
   dateNaissance: dayjs('2023-06-07'),
-  lieuNaissance: 91469,
-  dateInscription: dayjs('2023-06-07T17:10'),
-  profession: 'connecting Incredible clear-thinking',
+  lieuNaissance: 21045,
+  dateInscription: dayjs('2023-06-07T16:41'),
+  profession: 'Generic',
   sexe: Sexe['FEMININ'],
-  photoPath: 'Fresh Account',
-  dateIntegration: dayjs('2023-06-08T06:41'),
-  isAdmin: false,
-  isDonateur: true,
+  photoPath: 'drive bandwidth',
+  dateIntegration: dayjs('2023-06-07T19:05'),
+  isAdmin: true,
+  isDonateur: false,
   isBenevole: true,
-  typePersonne: TypePersonne['ANCIEN_ADHERENT'],
+  typePersonne: TypePersonne['ADHERENT'],
 };
 
 export const sampleWithNewData: NewPersonne = {
+  telephone: '+33 676417585',
   id: null,
 };
 

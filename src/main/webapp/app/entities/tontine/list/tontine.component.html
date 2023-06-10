@@ -58,9 +58,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="nombreMaxPersonne">
+          <th scope="col" jhiSortBy="nombrePersonne">
             <div class="d-flex">
-              <span jhiTranslate="maTontineApp.tontine.nombreMaxPersonne">Nombre Max Personne</span>
+              <span jhiTranslate="maTontineApp.tontine.nombrePersonne">Nombre Personne</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -76,21 +76,39 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="amandeEchec">
+          <th scope="col" jhiSortBy="montantCagnote">
             <div class="d-flex">
-              <span jhiTranslate="maTontineApp.tontine.amandeEchec">Amande Echec</span>
+              <span jhiTranslate="maTontineApp.tontine.montantCagnote">Montant Cagnote</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dateDebut">
+          <th scope="col" jhiSortBy="penaliteRetardCotisation">
             <div class="d-flex">
-              <span jhiTranslate="maTontineApp.tontine.dateDebut">Date Debut</span>
+              <span jhiTranslate="maTontineApp.tontine.penaliteRetardCotisation">Penalite Retard Cotisation</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dateFin">
+          <th scope="col" jhiSortBy="typePenalite">
             <div class="d-flex">
-              <span jhiTranslate="maTontineApp.tontine.dateFin">Date Fin</span>
+              <span jhiTranslate="maTontineApp.tontine.typePenalite">Type Penalite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateCreation">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.dateCreation">Date Creation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="datePremierTour">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.datePremierTour">Date Premier Tour</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateDernierTour">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.tontine.dateDernierTour">Date Dernier Tour</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -117,12 +135,15 @@
           <td>{{ tontine.codeAssociation }}</td>
           <td>{{ tontine.libele }}</td>
           <td>{{ tontine.nombreTour }}</td>
-          <td>{{ tontine.nombreMaxPersonne }}</td>
+          <td>{{ tontine.nombrePersonne }}</td>
           <td>{{ tontine.margeBeneficiaire }}</td>
           <td>{{ tontine.montantPart }}</td>
-          <td>{{ tontine.amandeEchec }}</td>
-          <td>{{ tontine.dateDebut | formatMediumDate }}</td>
-          <td>{{ tontine.dateFin | formatMediumDate }}</td>
+          <td>{{ tontine.montantCagnote }}</td>
+          <td>{{ tontine.penaliteRetardCotisation }}</td>
+          <td jhiTranslate="{{ 'maTontineApp.TypePenalite.' + tontine.typePenalite }}">{{ tontine.typePenalite }}</td>
+          <td>{{ tontine.dateCreation | formatMediumDate }}</td>
+          <td>{{ tontine.datePremierTour | formatMediumDate }}</td>
+          <td>{{ tontine.dateDernierTour | formatMediumDate }}</td>
           <td jhiTranslate="{{ 'maTontineApp.StatutTontine.' + tontine.statutTontine }}">{{ tontine.statutTontine }}</td>
           <td>{{ tontine.description }}</td>
           <td class="text-end">

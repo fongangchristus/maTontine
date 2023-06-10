@@ -105,6 +105,13 @@ public class BanqueQueryService extends QueryService<Banque> {
             if (criteria.getDateCloture() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDateCloture(), Banque_.dateCloture));
             }
+            if (criteria.getPenaliteRetardRnbrsmnt() != null) {
+                specification =
+                    specification.and(buildRangeSpecification(criteria.getPenaliteRetardRnbrsmnt(), Banque_.penaliteRetardRnbrsmnt));
+            }
+            if (criteria.getTauxInteretPret() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getTauxInteretPret(), Banque_.tauxInteretPret));
+            }
             if (criteria.getCompteBanqueId() != null) {
                 specification =
                     specification.and(

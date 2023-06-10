@@ -33,6 +33,9 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class ContactResourceIT {
 
+    private static final Boolean DEFAULT_IS_PAR_DEFAUT = false;
+    private static final Boolean UPDATED_IS_PAR_DEFAUT = true;
+
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
@@ -69,7 +72,11 @@ class ContactResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Contact createEntity(EntityManager em) {
-        Contact contact = new Contact().email(DEFAULT_EMAIL).telephone(DEFAULT_TELEPHONE).mobile(DEFAULT_MOBILE);
+        Contact contact = new Contact()
+            .isParDefaut(DEFAULT_IS_PAR_DEFAUT)
+            .email(DEFAULT_EMAIL)
+            .telephone(DEFAULT_TELEPHONE)
+            .mobile(DEFAULT_MOBILE);
         return contact;
     }
 
@@ -80,7 +87,11 @@ class ContactResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Contact createUpdatedEntity(EntityManager em) {
-        Contact contact = new Contact().email(UPDATED_EMAIL).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
+        Contact contact = new Contact()
+            .isParDefaut(UPDATED_IS_PAR_DEFAUT)
+            .email(UPDATED_EMAIL)
+            .telephone(UPDATED_TELEPHONE)
+            .mobile(UPDATED_MOBILE);
         return contact;
     }
 
@@ -103,6 +114,7 @@ class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeCreate + 1);
         Contact testContact = contactList.get(contactList.size() - 1);
+        assertThat(testContact.getIsParDefaut()).isEqualTo(DEFAULT_IS_PAR_DEFAUT);
         assertThat(testContact.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testContact.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testContact.getMobile()).isEqualTo(DEFAULT_MOBILE);
@@ -139,6 +151,7 @@ class ContactResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contact.getId().intValue())))
+            .andExpect(jsonPath("$.[*].isParDefaut").value(hasItem(DEFAULT_IS_PAR_DEFAUT.booleanValue())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
             .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE)));
@@ -156,6 +169,7 @@ class ContactResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(contact.getId().intValue()))
+            .andExpect(jsonPath("$.isParDefaut").value(DEFAULT_IS_PAR_DEFAUT.booleanValue()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
             .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE));
@@ -177,6 +191,45 @@ class ContactResourceIT {
 
         defaultContactShouldBeFound("id.lessThanOrEqual=" + id);
         defaultContactShouldNotBeFound("id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllContactsByIsParDefautIsEqualToSomething() throws Exception {
+        // Initialize the database
+        contactRepository.saveAndFlush(contact);
+
+        // Get all the contactList where isParDefaut equals to DEFAULT_IS_PAR_DEFAUT
+        defaultContactShouldBeFound("isParDefaut.equals=" + DEFAULT_IS_PAR_DEFAUT);
+
+        // Get all the contactList where isParDefaut equals to UPDATED_IS_PAR_DEFAUT
+        defaultContactShouldNotBeFound("isParDefaut.equals=" + UPDATED_IS_PAR_DEFAUT);
+    }
+
+    @Test
+    @Transactional
+    void getAllContactsByIsParDefautIsInShouldWork() throws Exception {
+        // Initialize the database
+        contactRepository.saveAndFlush(contact);
+
+        // Get all the contactList where isParDefaut in DEFAULT_IS_PAR_DEFAUT or UPDATED_IS_PAR_DEFAUT
+        defaultContactShouldBeFound("isParDefaut.in=" + DEFAULT_IS_PAR_DEFAUT + "," + UPDATED_IS_PAR_DEFAUT);
+
+        // Get all the contactList where isParDefaut equals to UPDATED_IS_PAR_DEFAUT
+        defaultContactShouldNotBeFound("isParDefaut.in=" + UPDATED_IS_PAR_DEFAUT);
+    }
+
+    @Test
+    @Transactional
+    void getAllContactsByIsParDefautIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        contactRepository.saveAndFlush(contact);
+
+        // Get all the contactList where isParDefaut is not null
+        defaultContactShouldBeFound("isParDefaut.specified=true");
+
+        // Get all the contactList where isParDefaut is null
+        defaultContactShouldNotBeFound("isParDefaut.specified=false");
     }
 
     @Test
@@ -406,6 +459,7 @@ class ContactResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contact.getId().intValue())))
+            .andExpect(jsonPath("$.[*].isParDefaut").value(hasItem(DEFAULT_IS_PAR_DEFAUT.booleanValue())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
             .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE)));
@@ -456,7 +510,7 @@ class ContactResourceIT {
         Contact updatedContact = contactRepository.findById(contact.getId()).get();
         // Disconnect from session so that the updates on updatedContact are not directly saved in db
         em.detach(updatedContact);
-        updatedContact.email(UPDATED_EMAIL).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
+        updatedContact.isParDefaut(UPDATED_IS_PAR_DEFAUT).email(UPDATED_EMAIL).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
         ContactDTO contactDTO = contactMapper.toDto(updatedContact);
 
         restContactMockMvc
@@ -471,6 +525,7 @@ class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeUpdate);
         Contact testContact = contactList.get(contactList.size() - 1);
+        assertThat(testContact.getIsParDefaut()).isEqualTo(UPDATED_IS_PAR_DEFAUT);
         assertThat(testContact.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testContact.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testContact.getMobile()).isEqualTo(UPDATED_MOBILE);
@@ -553,7 +608,7 @@ class ContactResourceIT {
         Contact partialUpdatedContact = new Contact();
         partialUpdatedContact.setId(contact.getId());
 
-        partialUpdatedContact.email(UPDATED_EMAIL).mobile(UPDATED_MOBILE);
+        partialUpdatedContact.isParDefaut(UPDATED_IS_PAR_DEFAUT).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
 
         restContactMockMvc
             .perform(
@@ -567,8 +622,9 @@ class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeUpdate);
         Contact testContact = contactList.get(contactList.size() - 1);
-        assertThat(testContact.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testContact.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
+        assertThat(testContact.getIsParDefaut()).isEqualTo(UPDATED_IS_PAR_DEFAUT);
+        assertThat(testContact.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testContact.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testContact.getMobile()).isEqualTo(UPDATED_MOBILE);
     }
 
@@ -584,7 +640,7 @@ class ContactResourceIT {
         Contact partialUpdatedContact = new Contact();
         partialUpdatedContact.setId(contact.getId());
 
-        partialUpdatedContact.email(UPDATED_EMAIL).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
+        partialUpdatedContact.isParDefaut(UPDATED_IS_PAR_DEFAUT).email(UPDATED_EMAIL).telephone(UPDATED_TELEPHONE).mobile(UPDATED_MOBILE);
 
         restContactMockMvc
             .perform(
@@ -598,6 +654,7 @@ class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeUpdate);
         Contact testContact = contactList.get(contactList.size() - 1);
+        assertThat(testContact.getIsParDefaut()).isEqualTo(UPDATED_IS_PAR_DEFAUT);
         assertThat(testContact.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testContact.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testContact.getMobile()).isEqualTo(UPDATED_MOBILE);

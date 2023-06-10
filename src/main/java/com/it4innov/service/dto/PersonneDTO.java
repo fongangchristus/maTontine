@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.it4innov.domain.Personne} entity.
@@ -29,6 +30,11 @@ public class PersonneDTO implements Serializable {
     private String nom;
 
     private String prenom;
+
+    @NotNull
+    private String telephone;
+
+    private String email;
 
     private LocalDate dateNaissance;
 
@@ -100,6 +106,22 @@ public class PersonneDTO implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateNaissance() {
@@ -229,6 +251,8 @@ public class PersonneDTO implements Serializable {
             ", matricule='" + getMatricule() + "'" +
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
+            ", telephone='" + getTelephone() + "'" +
+            ", email='" + getEmail() + "'" +
             ", dateNaissance='" + getDateNaissance() + "'" +
             ", lieuNaissance=" + getLieuNaissance() +
             ", dateInscription='" + getDateInscription() + "'" +

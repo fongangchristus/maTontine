@@ -15,7 +15,7 @@ describe('Tontine e2e test', () => {
   const tontinePageUrlPattern = new RegExp('/tontine(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const tontineSample = { codeAssociation: 'Agent Borders COM' };
+  const tontineSample = { codeAssociation: 'solution-oriented Computers Plastic' };
 
   let tontine;
 
@@ -166,21 +166,27 @@ describe('Tontine e2e test', () => {
 
       cy.get(`[data-cy="nombreTour"]`).type('17188').should('have.value', '17188');
 
-      cy.get(`[data-cy="nombreMaxPersonne"]`).type('3148').should('have.value', '3148');
+      cy.get(`[data-cy="nombrePersonne"]`).type('3148').should('have.value', '3148');
 
       cy.get(`[data-cy="margeBeneficiaire"]`).type('39098').should('have.value', '39098');
 
       cy.get(`[data-cy="montantPart"]`).type('86558').should('have.value', '86558');
 
-      cy.get(`[data-cy="amandeEchec"]`).type('76316').should('have.value', '76316');
+      cy.get(`[data-cy="montantCagnote"]`).type('76316').should('have.value', '76316');
 
-      cy.get(`[data-cy="dateDebut"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
+      cy.get(`[data-cy="penaliteRetardCotisation"]`).type('39421').should('have.value', '39421');
 
-      cy.get(`[data-cy="dateFin"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
+      cy.get(`[data-cy="typePenalite"]`).select('FORFAIT');
 
-      cy.get(`[data-cy="statutTontine"]`).select('CREE');
+      cy.get(`[data-cy="dateCreation"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
 
-      cy.get(`[data-cy="description"]`).type('Handmade').should('have.value', 'Handmade');
+      cy.get(`[data-cy="datePremierTour"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
+
+      cy.get(`[data-cy="dateDernierTour"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
+
+      cy.get(`[data-cy="statutTontine"]`).select('CLOTUREE');
+
+      cy.get(`[data-cy="description"]`).type('matrix dot-com Assistant').should('have.value', 'matrix dot-com Assistant');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

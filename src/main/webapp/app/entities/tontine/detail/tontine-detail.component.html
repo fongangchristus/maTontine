@@ -30,9 +30,9 @@
         <dd>
           <span>{{ tontine.nombreTour }}</span>
         </dd>
-        <dt><span jhiTranslate="maTontineApp.tontine.nombreMaxPersonne">Nombre Max Personne</span></dt>
+        <dt><span jhiTranslate="maTontineApp.tontine.nombrePersonne">Nombre Personne</span></dt>
         <dd>
-          <span>{{ tontine.nombreMaxPersonne }}</span>
+          <span>{{ tontine.nombrePersonne }}</span>
         </dd>
         <dt><span jhiTranslate="maTontineApp.tontine.margeBeneficiaire">Marge Beneficiaire</span></dt>
         <dd>
@@ -42,17 +42,29 @@
         <dd>
           <span>{{ tontine.montantPart }}</span>
         </dd>
-        <dt><span jhiTranslate="maTontineApp.tontine.amandeEchec">Amande Echec</span></dt>
+        <dt><span jhiTranslate="maTontineApp.tontine.montantCagnote">Montant Cagnote</span></dt>
         <dd>
-          <span>{{ tontine.amandeEchec }}</span>
+          <span>{{ tontine.montantCagnote }}</span>
         </dd>
-        <dt><span jhiTranslate="maTontineApp.tontine.dateDebut">Date Debut</span></dt>
+        <dt><span jhiTranslate="maTontineApp.tontine.penaliteRetardCotisation">Penalite Retard Cotisation</span></dt>
         <dd>
-          <span>{{ tontine.dateDebut | formatMediumDate }}</span>
+          <span>{{ tontine.penaliteRetardCotisation }}</span>
         </dd>
-        <dt><span jhiTranslate="maTontineApp.tontine.dateFin">Date Fin</span></dt>
+        <dt><span jhiTranslate="maTontineApp.tontine.typePenalite">Type Penalite</span></dt>
         <dd>
-          <span>{{ tontine.dateFin | formatMediumDate }}</span>
+          <span jhiTranslate="{{ 'maTontineApp.TypePenalite.' + tontine.typePenalite }}">{{ tontine.typePenalite }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.dateCreation">Date Creation</span></dt>
+        <dd>
+          <span>{{ tontine.dateCreation | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.datePremierTour">Date Premier Tour</span></dt>
+        <dd>
+          <span>{{ tontine.datePremierTour | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.tontine.dateDernierTour">Date Dernier Tour</span></dt>
+        <dd>
+          <span>{{ tontine.dateDernierTour | formatMediumDate }}</span>
         </dd>
         <dt><span jhiTranslate="maTontineApp.tontine.statutTontine">Statut Tontine</span></dt>
         <dd>

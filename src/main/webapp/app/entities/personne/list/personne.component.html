@@ -70,6 +70,18 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="telephone">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.telephone">Telephone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.personne.email">Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="dateNaissance">
             <div class="d-flex">
               <span jhiTranslate="maTontineApp.personne.dateNaissance">Date Naissance</span>
@@ -155,6 +167,8 @@
           <td>{{ personne.matricule }}</td>
           <td>{{ personne.nom }}</td>
           <td>{{ personne.prenom }}</td>
+          <td>{{ personne.telephone }}</td>
+          <td>{{ personne.email }}</td>
           <td>{{ personne.dateNaissance | formatMediumDate }}</td>
           <td>{{ personne.lieuNaissance }}</td>
           <td>{{ personne.dateInscription | formatMediumDatetime }}</td>

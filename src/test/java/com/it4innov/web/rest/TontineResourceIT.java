@@ -10,6 +10,7 @@ import com.it4innov.domain.GestionnaireTontine;
 import com.it4innov.domain.SessionTontine;
 import com.it4innov.domain.Tontine;
 import com.it4innov.domain.enumeration.StatutTontine;
+import com.it4innov.domain.enumeration.TypePenalite;
 import com.it4innov.repository.TontineRepository;
 import com.it4innov.service.criteria.TontineCriteria;
 import com.it4innov.service.dto.TontineDTO;
@@ -47,9 +48,9 @@ class TontineResourceIT {
     private static final Integer UPDATED_NOMBRE_TOUR = 2;
     private static final Integer SMALLER_NOMBRE_TOUR = 1 - 1;
 
-    private static final Integer DEFAULT_NOMBRE_MAX_PERSONNE = 1;
-    private static final Integer UPDATED_NOMBRE_MAX_PERSONNE = 2;
-    private static final Integer SMALLER_NOMBRE_MAX_PERSONNE = 1 - 1;
+    private static final Integer DEFAULT_NOMBRE_PERSONNE = 1;
+    private static final Integer UPDATED_NOMBRE_PERSONNE = 2;
+    private static final Integer SMALLER_NOMBRE_PERSONNE = 1 - 1;
 
     private static final Double DEFAULT_MARGE_BENEFICIAIRE = 1D;
     private static final Double UPDATED_MARGE_BENEFICIAIRE = 2D;
@@ -59,17 +60,28 @@ class TontineResourceIT {
     private static final Double UPDATED_MONTANT_PART = 2D;
     private static final Double SMALLER_MONTANT_PART = 1D - 1D;
 
-    private static final Double DEFAULT_AMANDE_ECHEC = 1D;
-    private static final Double UPDATED_AMANDE_ECHEC = 2D;
-    private static final Double SMALLER_AMANDE_ECHEC = 1D - 1D;
+    private static final Double DEFAULT_MONTANT_CAGNOTE = 1D;
+    private static final Double UPDATED_MONTANT_CAGNOTE = 2D;
+    private static final Double SMALLER_MONTANT_CAGNOTE = 1D - 1D;
 
-    private static final LocalDate DEFAULT_DATE_DEBUT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_DEBUT = LocalDate.now(ZoneId.systemDefault());
-    private static final LocalDate SMALLER_DATE_DEBUT = LocalDate.ofEpochDay(-1L);
+    private static final Double DEFAULT_PENALITE_RETARD_COTISATION = 1D;
+    private static final Double UPDATED_PENALITE_RETARD_COTISATION = 2D;
+    private static final Double SMALLER_PENALITE_RETARD_COTISATION = 1D - 1D;
 
-    private static final LocalDate DEFAULT_DATE_FIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_FIN = LocalDate.now(ZoneId.systemDefault());
-    private static final LocalDate SMALLER_DATE_FIN = LocalDate.ofEpochDay(-1L);
+    private static final TypePenalite DEFAULT_TYPE_PENALITE = TypePenalite.FORFAIT;
+    private static final TypePenalite UPDATED_TYPE_PENALITE = TypePenalite.POURCENTAGE;
+
+    private static final LocalDate DEFAULT_DATE_CREATION = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE_CREATION = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate SMALLER_DATE_CREATION = LocalDate.ofEpochDay(-1L);
+
+    private static final LocalDate DEFAULT_DATE_PREMIER_TOUR = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE_PREMIER_TOUR = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate SMALLER_DATE_PREMIER_TOUR = LocalDate.ofEpochDay(-1L);
+
+    private static final LocalDate DEFAULT_DATE_DERNIER_TOUR = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE_DERNIER_TOUR = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate SMALLER_DATE_DERNIER_TOUR = LocalDate.ofEpochDay(-1L);
 
     private static final StatutTontine DEFAULT_STATUT_TONTINE = StatutTontine.CREE;
     private static final StatutTontine UPDATED_STATUT_TONTINE = StatutTontine.OUVERTE;
@@ -108,12 +120,15 @@ class TontineResourceIT {
             .codeAssociation(DEFAULT_CODE_ASSOCIATION)
             .libele(DEFAULT_LIBELE)
             .nombreTour(DEFAULT_NOMBRE_TOUR)
-            .nombreMaxPersonne(DEFAULT_NOMBRE_MAX_PERSONNE)
+            .nombrePersonne(DEFAULT_NOMBRE_PERSONNE)
             .margeBeneficiaire(DEFAULT_MARGE_BENEFICIAIRE)
             .montantPart(DEFAULT_MONTANT_PART)
-            .amandeEchec(DEFAULT_AMANDE_ECHEC)
-            .dateDebut(DEFAULT_DATE_DEBUT)
-            .dateFin(DEFAULT_DATE_FIN)
+            .montantCagnote(DEFAULT_MONTANT_CAGNOTE)
+            .penaliteRetardCotisation(DEFAULT_PENALITE_RETARD_COTISATION)
+            .typePenalite(DEFAULT_TYPE_PENALITE)
+            .dateCreation(DEFAULT_DATE_CREATION)
+            .datePremierTour(DEFAULT_DATE_PREMIER_TOUR)
+            .dateDernierTour(DEFAULT_DATE_DERNIER_TOUR)
             .statutTontine(DEFAULT_STATUT_TONTINE)
             .description(DEFAULT_DESCRIPTION);
         return tontine;
@@ -130,12 +145,15 @@ class TontineResourceIT {
             .codeAssociation(UPDATED_CODE_ASSOCIATION)
             .libele(UPDATED_LIBELE)
             .nombreTour(UPDATED_NOMBRE_TOUR)
-            .nombreMaxPersonne(UPDATED_NOMBRE_MAX_PERSONNE)
+            .nombrePersonne(UPDATED_NOMBRE_PERSONNE)
             .margeBeneficiaire(UPDATED_MARGE_BENEFICIAIRE)
             .montantPart(UPDATED_MONTANT_PART)
-            .amandeEchec(UPDATED_AMANDE_ECHEC)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN)
+            .montantCagnote(UPDATED_MONTANT_CAGNOTE)
+            .penaliteRetardCotisation(UPDATED_PENALITE_RETARD_COTISATION)
+            .typePenalite(UPDATED_TYPE_PENALITE)
+            .dateCreation(UPDATED_DATE_CREATION)
+            .datePremierTour(UPDATED_DATE_PREMIER_TOUR)
+            .dateDernierTour(UPDATED_DATE_DERNIER_TOUR)
             .statutTontine(UPDATED_STATUT_TONTINE)
             .description(UPDATED_DESCRIPTION);
         return tontine;
@@ -163,12 +181,15 @@ class TontineResourceIT {
         assertThat(testTontine.getCodeAssociation()).isEqualTo(DEFAULT_CODE_ASSOCIATION);
         assertThat(testTontine.getLibele()).isEqualTo(DEFAULT_LIBELE);
         assertThat(testTontine.getNombreTour()).isEqualTo(DEFAULT_NOMBRE_TOUR);
-        assertThat(testTontine.getNombreMaxPersonne()).isEqualTo(DEFAULT_NOMBRE_MAX_PERSONNE);
+        assertThat(testTontine.getNombrePersonne()).isEqualTo(DEFAULT_NOMBRE_PERSONNE);
         assertThat(testTontine.getMargeBeneficiaire()).isEqualTo(DEFAULT_MARGE_BENEFICIAIRE);
         assertThat(testTontine.getMontantPart()).isEqualTo(DEFAULT_MONTANT_PART);
-        assertThat(testTontine.getAmandeEchec()).isEqualTo(DEFAULT_AMANDE_ECHEC);
-        assertThat(testTontine.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
-        assertThat(testTontine.getDateFin()).isEqualTo(DEFAULT_DATE_FIN);
+        assertThat(testTontine.getMontantCagnote()).isEqualTo(DEFAULT_MONTANT_CAGNOTE);
+        assertThat(testTontine.getPenaliteRetardCotisation()).isEqualTo(DEFAULT_PENALITE_RETARD_COTISATION);
+        assertThat(testTontine.getTypePenalite()).isEqualTo(DEFAULT_TYPE_PENALITE);
+        assertThat(testTontine.getDateCreation()).isEqualTo(DEFAULT_DATE_CREATION);
+        assertThat(testTontine.getDatePremierTour()).isEqualTo(DEFAULT_DATE_PREMIER_TOUR);
+        assertThat(testTontine.getDateDernierTour()).isEqualTo(DEFAULT_DATE_DERNIER_TOUR);
         assertThat(testTontine.getStatutTontine()).isEqualTo(DEFAULT_STATUT_TONTINE);
         assertThat(testTontine.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
@@ -225,12 +246,15 @@ class TontineResourceIT {
             .andExpect(jsonPath("$.[*].codeAssociation").value(hasItem(DEFAULT_CODE_ASSOCIATION)))
             .andExpect(jsonPath("$.[*].libele").value(hasItem(DEFAULT_LIBELE)))
             .andExpect(jsonPath("$.[*].nombreTour").value(hasItem(DEFAULT_NOMBRE_TOUR)))
-            .andExpect(jsonPath("$.[*].nombreMaxPersonne").value(hasItem(DEFAULT_NOMBRE_MAX_PERSONNE)))
+            .andExpect(jsonPath("$.[*].nombrePersonne").value(hasItem(DEFAULT_NOMBRE_PERSONNE)))
             .andExpect(jsonPath("$.[*].margeBeneficiaire").value(hasItem(DEFAULT_MARGE_BENEFICIAIRE.doubleValue())))
             .andExpect(jsonPath("$.[*].montantPart").value(hasItem(DEFAULT_MONTANT_PART.doubleValue())))
-            .andExpect(jsonPath("$.[*].amandeEchec").value(hasItem(DEFAULT_AMANDE_ECHEC.doubleValue())))
-            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
-            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())))
+            .andExpect(jsonPath("$.[*].montantCagnote").value(hasItem(DEFAULT_MONTANT_CAGNOTE.doubleValue())))
+            .andExpect(jsonPath("$.[*].penaliteRetardCotisation").value(hasItem(DEFAULT_PENALITE_RETARD_COTISATION.doubleValue())))
+            .andExpect(jsonPath("$.[*].typePenalite").value(hasItem(DEFAULT_TYPE_PENALITE.toString())))
+            .andExpect(jsonPath("$.[*].dateCreation").value(hasItem(DEFAULT_DATE_CREATION.toString())))
+            .andExpect(jsonPath("$.[*].datePremierTour").value(hasItem(DEFAULT_DATE_PREMIER_TOUR.toString())))
+            .andExpect(jsonPath("$.[*].dateDernierTour").value(hasItem(DEFAULT_DATE_DERNIER_TOUR.toString())))
             .andExpect(jsonPath("$.[*].statutTontine").value(hasItem(DEFAULT_STATUT_TONTINE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
     }
@@ -250,12 +274,15 @@ class TontineResourceIT {
             .andExpect(jsonPath("$.codeAssociation").value(DEFAULT_CODE_ASSOCIATION))
             .andExpect(jsonPath("$.libele").value(DEFAULT_LIBELE))
             .andExpect(jsonPath("$.nombreTour").value(DEFAULT_NOMBRE_TOUR))
-            .andExpect(jsonPath("$.nombreMaxPersonne").value(DEFAULT_NOMBRE_MAX_PERSONNE))
+            .andExpect(jsonPath("$.nombrePersonne").value(DEFAULT_NOMBRE_PERSONNE))
             .andExpect(jsonPath("$.margeBeneficiaire").value(DEFAULT_MARGE_BENEFICIAIRE.doubleValue()))
             .andExpect(jsonPath("$.montantPart").value(DEFAULT_MONTANT_PART.doubleValue()))
-            .andExpect(jsonPath("$.amandeEchec").value(DEFAULT_AMANDE_ECHEC.doubleValue()))
-            .andExpect(jsonPath("$.dateDebut").value(DEFAULT_DATE_DEBUT.toString()))
-            .andExpect(jsonPath("$.dateFin").value(DEFAULT_DATE_FIN.toString()))
+            .andExpect(jsonPath("$.montantCagnote").value(DEFAULT_MONTANT_CAGNOTE.doubleValue()))
+            .andExpect(jsonPath("$.penaliteRetardCotisation").value(DEFAULT_PENALITE_RETARD_COTISATION.doubleValue()))
+            .andExpect(jsonPath("$.typePenalite").value(DEFAULT_TYPE_PENALITE.toString()))
+            .andExpect(jsonPath("$.dateCreation").value(DEFAULT_DATE_CREATION.toString()))
+            .andExpect(jsonPath("$.datePremierTour").value(DEFAULT_DATE_PREMIER_TOUR.toString()))
+            .andExpect(jsonPath("$.dateDernierTour").value(DEFAULT_DATE_DERNIER_TOUR.toString()))
             .andExpect(jsonPath("$.statutTontine").value(DEFAULT_STATUT_TONTINE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION));
     }
@@ -501,93 +528,93 @@ class TontineResourceIT {
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsEqualToSomething() throws Exception {
+    void getAllTontinesByNombrePersonneIsEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne equals to DEFAULT_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.equals=" + DEFAULT_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne equals to DEFAULT_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.equals=" + DEFAULT_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne equals to UPDATED_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.equals=" + UPDATED_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne equals to UPDATED_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.equals=" + UPDATED_NOMBRE_PERSONNE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsInShouldWork() throws Exception {
+    void getAllTontinesByNombrePersonneIsInShouldWork() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne in DEFAULT_NOMBRE_MAX_PERSONNE or UPDATED_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.in=" + DEFAULT_NOMBRE_MAX_PERSONNE + "," + UPDATED_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne in DEFAULT_NOMBRE_PERSONNE or UPDATED_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.in=" + DEFAULT_NOMBRE_PERSONNE + "," + UPDATED_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne equals to UPDATED_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.in=" + UPDATED_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne equals to UPDATED_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.in=" + UPDATED_NOMBRE_PERSONNE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsNullOrNotNull() throws Exception {
+    void getAllTontinesByNombrePersonneIsNullOrNotNull() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne is not null
-        defaultTontineShouldBeFound("nombreMaxPersonne.specified=true");
+        // Get all the tontineList where nombrePersonne is not null
+        defaultTontineShouldBeFound("nombrePersonne.specified=true");
 
-        // Get all the tontineList where nombreMaxPersonne is null
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.specified=false");
+        // Get all the tontineList where nombrePersonne is null
+        defaultTontineShouldNotBeFound("nombrePersonne.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsGreaterThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByNombrePersonneIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne is greater than or equal to DEFAULT_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.greaterThanOrEqual=" + DEFAULT_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is greater than or equal to DEFAULT_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.greaterThanOrEqual=" + DEFAULT_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne is greater than or equal to UPDATED_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.greaterThanOrEqual=" + UPDATED_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is greater than or equal to UPDATED_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.greaterThanOrEqual=" + UPDATED_NOMBRE_PERSONNE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsLessThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByNombrePersonneIsLessThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne is less than or equal to DEFAULT_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.lessThanOrEqual=" + DEFAULT_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is less than or equal to DEFAULT_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.lessThanOrEqual=" + DEFAULT_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne is less than or equal to SMALLER_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.lessThanOrEqual=" + SMALLER_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is less than or equal to SMALLER_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.lessThanOrEqual=" + SMALLER_NOMBRE_PERSONNE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsLessThanSomething() throws Exception {
+    void getAllTontinesByNombrePersonneIsLessThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne is less than DEFAULT_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.lessThan=" + DEFAULT_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is less than DEFAULT_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.lessThan=" + DEFAULT_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne is less than UPDATED_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.lessThan=" + UPDATED_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is less than UPDATED_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.lessThan=" + UPDATED_NOMBRE_PERSONNE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByNombreMaxPersonneIsGreaterThanSomething() throws Exception {
+    void getAllTontinesByNombrePersonneIsGreaterThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where nombreMaxPersonne is greater than DEFAULT_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldNotBeFound("nombreMaxPersonne.greaterThan=" + DEFAULT_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is greater than DEFAULT_NOMBRE_PERSONNE
+        defaultTontineShouldNotBeFound("nombrePersonne.greaterThan=" + DEFAULT_NOMBRE_PERSONNE);
 
-        // Get all the tontineList where nombreMaxPersonne is greater than SMALLER_NOMBRE_MAX_PERSONNE
-        defaultTontineShouldBeFound("nombreMaxPersonne.greaterThan=" + SMALLER_NOMBRE_MAX_PERSONNE);
+        // Get all the tontineList where nombrePersonne is greater than SMALLER_NOMBRE_PERSONNE
+        defaultTontineShouldBeFound("nombrePersonne.greaterThan=" + SMALLER_NOMBRE_PERSONNE);
     }
 
     @Test
@@ -774,275 +801,498 @@ class TontineResourceIT {
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsEqualToSomething() throws Exception {
+    void getAllTontinesByMontantCagnoteIsEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec equals to DEFAULT_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.equals=" + DEFAULT_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote equals to DEFAULT_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.equals=" + DEFAULT_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec equals to UPDATED_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.equals=" + UPDATED_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote equals to UPDATED_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.equals=" + UPDATED_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsInShouldWork() throws Exception {
+    void getAllTontinesByMontantCagnoteIsInShouldWork() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec in DEFAULT_AMANDE_ECHEC or UPDATED_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.in=" + DEFAULT_AMANDE_ECHEC + "," + UPDATED_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote in DEFAULT_MONTANT_CAGNOTE or UPDATED_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.in=" + DEFAULT_MONTANT_CAGNOTE + "," + UPDATED_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec equals to UPDATED_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.in=" + UPDATED_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote equals to UPDATED_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.in=" + UPDATED_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsNullOrNotNull() throws Exception {
+    void getAllTontinesByMontantCagnoteIsNullOrNotNull() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec is not null
-        defaultTontineShouldBeFound("amandeEchec.specified=true");
+        // Get all the tontineList where montantCagnote is not null
+        defaultTontineShouldBeFound("montantCagnote.specified=true");
 
-        // Get all the tontineList where amandeEchec is null
-        defaultTontineShouldNotBeFound("amandeEchec.specified=false");
+        // Get all the tontineList where montantCagnote is null
+        defaultTontineShouldNotBeFound("montantCagnote.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsGreaterThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByMontantCagnoteIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec is greater than or equal to DEFAULT_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.greaterThanOrEqual=" + DEFAULT_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is greater than or equal to DEFAULT_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.greaterThanOrEqual=" + DEFAULT_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec is greater than or equal to UPDATED_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.greaterThanOrEqual=" + UPDATED_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is greater than or equal to UPDATED_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.greaterThanOrEqual=" + UPDATED_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsLessThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByMontantCagnoteIsLessThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec is less than or equal to DEFAULT_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.lessThanOrEqual=" + DEFAULT_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is less than or equal to DEFAULT_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.lessThanOrEqual=" + DEFAULT_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec is less than or equal to SMALLER_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.lessThanOrEqual=" + SMALLER_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is less than or equal to SMALLER_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.lessThanOrEqual=" + SMALLER_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsLessThanSomething() throws Exception {
+    void getAllTontinesByMontantCagnoteIsLessThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec is less than DEFAULT_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.lessThan=" + DEFAULT_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is less than DEFAULT_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.lessThan=" + DEFAULT_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec is less than UPDATED_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.lessThan=" + UPDATED_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is less than UPDATED_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.lessThan=" + UPDATED_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByAmandeEchecIsGreaterThanSomething() throws Exception {
+    void getAllTontinesByMontantCagnoteIsGreaterThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where amandeEchec is greater than DEFAULT_AMANDE_ECHEC
-        defaultTontineShouldNotBeFound("amandeEchec.greaterThan=" + DEFAULT_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is greater than DEFAULT_MONTANT_CAGNOTE
+        defaultTontineShouldNotBeFound("montantCagnote.greaterThan=" + DEFAULT_MONTANT_CAGNOTE);
 
-        // Get all the tontineList where amandeEchec is greater than SMALLER_AMANDE_ECHEC
-        defaultTontineShouldBeFound("amandeEchec.greaterThan=" + SMALLER_AMANDE_ECHEC);
+        // Get all the tontineList where montantCagnote is greater than SMALLER_MONTANT_CAGNOTE
+        defaultTontineShouldBeFound("montantCagnote.greaterThan=" + SMALLER_MONTANT_CAGNOTE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsEqualToSomething() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut equals to DEFAULT_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.equals=" + DEFAULT_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation equals to DEFAULT_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound("penaliteRetardCotisation.equals=" + DEFAULT_PENALITE_RETARD_COTISATION);
 
-        // Get all the tontineList where dateDebut equals to UPDATED_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.equals=" + UPDATED_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation equals to UPDATED_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.equals=" + UPDATED_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsInShouldWork() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsInShouldWork() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut in DEFAULT_DATE_DEBUT or UPDATED_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.in=" + DEFAULT_DATE_DEBUT + "," + UPDATED_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation in DEFAULT_PENALITE_RETARD_COTISATION or UPDATED_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound(
+            "penaliteRetardCotisation.in=" + DEFAULT_PENALITE_RETARD_COTISATION + "," + UPDATED_PENALITE_RETARD_COTISATION
+        );
 
-        // Get all the tontineList where dateDebut equals to UPDATED_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.in=" + UPDATED_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation equals to UPDATED_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.in=" + UPDATED_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsNullOrNotNull() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsNullOrNotNull() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut is not null
-        defaultTontineShouldBeFound("dateDebut.specified=true");
+        // Get all the tontineList where penaliteRetardCotisation is not null
+        defaultTontineShouldBeFound("penaliteRetardCotisation.specified=true");
 
-        // Get all the tontineList where dateDebut is null
-        defaultTontineShouldNotBeFound("dateDebut.specified=false");
+        // Get all the tontineList where penaliteRetardCotisation is null
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsGreaterThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut is greater than or equal to DEFAULT_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.greaterThanOrEqual=" + DEFAULT_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is greater than or equal to DEFAULT_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound("penaliteRetardCotisation.greaterThanOrEqual=" + DEFAULT_PENALITE_RETARD_COTISATION);
 
-        // Get all the tontineList where dateDebut is greater than or equal to UPDATED_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.greaterThanOrEqual=" + UPDATED_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is greater than or equal to UPDATED_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.greaterThanOrEqual=" + UPDATED_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsLessThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsLessThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut is less than or equal to DEFAULT_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.lessThanOrEqual=" + DEFAULT_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is less than or equal to DEFAULT_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound("penaliteRetardCotisation.lessThanOrEqual=" + DEFAULT_PENALITE_RETARD_COTISATION);
 
-        // Get all the tontineList where dateDebut is less than or equal to SMALLER_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.lessThanOrEqual=" + SMALLER_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is less than or equal to SMALLER_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.lessThanOrEqual=" + SMALLER_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsLessThanSomething() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsLessThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut is less than DEFAULT_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.lessThan=" + DEFAULT_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is less than DEFAULT_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.lessThan=" + DEFAULT_PENALITE_RETARD_COTISATION);
 
-        // Get all the tontineList where dateDebut is less than UPDATED_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.lessThan=" + UPDATED_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is less than UPDATED_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound("penaliteRetardCotisation.lessThan=" + UPDATED_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateDebutIsGreaterThanSomething() throws Exception {
+    void getAllTontinesByPenaliteRetardCotisationIsGreaterThanSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateDebut is greater than DEFAULT_DATE_DEBUT
-        defaultTontineShouldNotBeFound("dateDebut.greaterThan=" + DEFAULT_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is greater than DEFAULT_PENALITE_RETARD_COTISATION
+        defaultTontineShouldNotBeFound("penaliteRetardCotisation.greaterThan=" + DEFAULT_PENALITE_RETARD_COTISATION);
 
-        // Get all the tontineList where dateDebut is greater than SMALLER_DATE_DEBUT
-        defaultTontineShouldBeFound("dateDebut.greaterThan=" + SMALLER_DATE_DEBUT);
+        // Get all the tontineList where penaliteRetardCotisation is greater than SMALLER_PENALITE_RETARD_COTISATION
+        defaultTontineShouldBeFound("penaliteRetardCotisation.greaterThan=" + SMALLER_PENALITE_RETARD_COTISATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsEqualToSomething() throws Exception {
+    void getAllTontinesByTypePenaliteIsEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin equals to DEFAULT_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.equals=" + DEFAULT_DATE_FIN);
+        // Get all the tontineList where typePenalite equals to DEFAULT_TYPE_PENALITE
+        defaultTontineShouldBeFound("typePenalite.equals=" + DEFAULT_TYPE_PENALITE);
 
-        // Get all the tontineList where dateFin equals to UPDATED_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.equals=" + UPDATED_DATE_FIN);
+        // Get all the tontineList where typePenalite equals to UPDATED_TYPE_PENALITE
+        defaultTontineShouldNotBeFound("typePenalite.equals=" + UPDATED_TYPE_PENALITE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsInShouldWork() throws Exception {
+    void getAllTontinesByTypePenaliteIsInShouldWork() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin in DEFAULT_DATE_FIN or UPDATED_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.in=" + DEFAULT_DATE_FIN + "," + UPDATED_DATE_FIN);
+        // Get all the tontineList where typePenalite in DEFAULT_TYPE_PENALITE or UPDATED_TYPE_PENALITE
+        defaultTontineShouldBeFound("typePenalite.in=" + DEFAULT_TYPE_PENALITE + "," + UPDATED_TYPE_PENALITE);
 
-        // Get all the tontineList where dateFin equals to UPDATED_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.in=" + UPDATED_DATE_FIN);
+        // Get all the tontineList where typePenalite equals to UPDATED_TYPE_PENALITE
+        defaultTontineShouldNotBeFound("typePenalite.in=" + UPDATED_TYPE_PENALITE);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsNullOrNotNull() throws Exception {
+    void getAllTontinesByTypePenaliteIsNullOrNotNull() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin is not null
-        defaultTontineShouldBeFound("dateFin.specified=true");
+        // Get all the tontineList where typePenalite is not null
+        defaultTontineShouldBeFound("typePenalite.specified=true");
 
-        // Get all the tontineList where dateFin is null
-        defaultTontineShouldNotBeFound("dateFin.specified=false");
+        // Get all the tontineList where typePenalite is null
+        defaultTontineShouldNotBeFound("typePenalite.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsGreaterThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByDateCreationIsEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin is greater than or equal to DEFAULT_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.greaterThanOrEqual=" + DEFAULT_DATE_FIN);
+        // Get all the tontineList where dateCreation equals to DEFAULT_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.equals=" + DEFAULT_DATE_CREATION);
 
-        // Get all the tontineList where dateFin is greater than or equal to UPDATED_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.greaterThanOrEqual=" + UPDATED_DATE_FIN);
+        // Get all the tontineList where dateCreation equals to UPDATED_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.equals=" + UPDATED_DATE_CREATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsLessThanOrEqualToSomething() throws Exception {
+    void getAllTontinesByDateCreationIsInShouldWork() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin is less than or equal to DEFAULT_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.lessThanOrEqual=" + DEFAULT_DATE_FIN);
+        // Get all the tontineList where dateCreation in DEFAULT_DATE_CREATION or UPDATED_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.in=" + DEFAULT_DATE_CREATION + "," + UPDATED_DATE_CREATION);
 
-        // Get all the tontineList where dateFin is less than or equal to SMALLER_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.lessThanOrEqual=" + SMALLER_DATE_FIN);
+        // Get all the tontineList where dateCreation equals to UPDATED_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.in=" + UPDATED_DATE_CREATION);
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsLessThanSomething() throws Exception {
+    void getAllTontinesByDateCreationIsNullOrNotNull() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin is less than DEFAULT_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.lessThan=" + DEFAULT_DATE_FIN);
+        // Get all the tontineList where dateCreation is not null
+        defaultTontineShouldBeFound("dateCreation.specified=true");
 
-        // Get all the tontineList where dateFin is less than UPDATED_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.lessThan=" + UPDATED_DATE_FIN);
+        // Get all the tontineList where dateCreation is null
+        defaultTontineShouldNotBeFound("dateCreation.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllTontinesByDateFinIsGreaterThanSomething() throws Exception {
+    void getAllTontinesByDateCreationIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         tontineRepository.saveAndFlush(tontine);
 
-        // Get all the tontineList where dateFin is greater than DEFAULT_DATE_FIN
-        defaultTontineShouldNotBeFound("dateFin.greaterThan=" + DEFAULT_DATE_FIN);
+        // Get all the tontineList where dateCreation is greater than or equal to DEFAULT_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.greaterThanOrEqual=" + DEFAULT_DATE_CREATION);
 
-        // Get all the tontineList where dateFin is greater than SMALLER_DATE_FIN
-        defaultTontineShouldBeFound("dateFin.greaterThan=" + SMALLER_DATE_FIN);
+        // Get all the tontineList where dateCreation is greater than or equal to UPDATED_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.greaterThanOrEqual=" + UPDATED_DATE_CREATION);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateCreationIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateCreation is less than or equal to DEFAULT_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.lessThanOrEqual=" + DEFAULT_DATE_CREATION);
+
+        // Get all the tontineList where dateCreation is less than or equal to SMALLER_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.lessThanOrEqual=" + SMALLER_DATE_CREATION);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateCreationIsLessThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateCreation is less than DEFAULT_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.lessThan=" + DEFAULT_DATE_CREATION);
+
+        // Get all the tontineList where dateCreation is less than UPDATED_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.lessThan=" + UPDATED_DATE_CREATION);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateCreationIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateCreation is greater than DEFAULT_DATE_CREATION
+        defaultTontineShouldNotBeFound("dateCreation.greaterThan=" + DEFAULT_DATE_CREATION);
+
+        // Get all the tontineList where dateCreation is greater than SMALLER_DATE_CREATION
+        defaultTontineShouldBeFound("dateCreation.greaterThan=" + SMALLER_DATE_CREATION);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour equals to DEFAULT_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.equals=" + DEFAULT_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour equals to UPDATED_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.equals=" + UPDATED_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsInShouldWork() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour in DEFAULT_DATE_PREMIER_TOUR or UPDATED_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.in=" + DEFAULT_DATE_PREMIER_TOUR + "," + UPDATED_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour equals to UPDATED_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.in=" + UPDATED_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour is not null
+        defaultTontineShouldBeFound("datePremierTour.specified=true");
+
+        // Get all the tontineList where datePremierTour is null
+        defaultTontineShouldNotBeFound("datePremierTour.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour is greater than or equal to DEFAULT_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.greaterThanOrEqual=" + DEFAULT_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour is greater than or equal to UPDATED_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.greaterThanOrEqual=" + UPDATED_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour is less than or equal to DEFAULT_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.lessThanOrEqual=" + DEFAULT_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour is less than or equal to SMALLER_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.lessThanOrEqual=" + SMALLER_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsLessThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour is less than DEFAULT_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.lessThan=" + DEFAULT_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour is less than UPDATED_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.lessThan=" + UPDATED_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDatePremierTourIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where datePremierTour is greater than DEFAULT_DATE_PREMIER_TOUR
+        defaultTontineShouldNotBeFound("datePremierTour.greaterThan=" + DEFAULT_DATE_PREMIER_TOUR);
+
+        // Get all the tontineList where datePremierTour is greater than SMALLER_DATE_PREMIER_TOUR
+        defaultTontineShouldBeFound("datePremierTour.greaterThan=" + SMALLER_DATE_PREMIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour equals to DEFAULT_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.equals=" + DEFAULT_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour equals to UPDATED_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.equals=" + UPDATED_DATE_DERNIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsInShouldWork() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour in DEFAULT_DATE_DERNIER_TOUR or UPDATED_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.in=" + DEFAULT_DATE_DERNIER_TOUR + "," + UPDATED_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour equals to UPDATED_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.in=" + UPDATED_DATE_DERNIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour is not null
+        defaultTontineShouldBeFound("dateDernierTour.specified=true");
+
+        // Get all the tontineList where dateDernierTour is null
+        defaultTontineShouldNotBeFound("dateDernierTour.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour is greater than or equal to DEFAULT_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.greaterThanOrEqual=" + DEFAULT_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour is greater than or equal to UPDATED_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.greaterThanOrEqual=" + UPDATED_DATE_DERNIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour is less than or equal to DEFAULT_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.lessThanOrEqual=" + DEFAULT_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour is less than or equal to SMALLER_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.lessThanOrEqual=" + SMALLER_DATE_DERNIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsLessThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour is less than DEFAULT_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.lessThan=" + DEFAULT_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour is less than UPDATED_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.lessThan=" + UPDATED_DATE_DERNIER_TOUR);
+    }
+
+    @Test
+    @Transactional
+    void getAllTontinesByDateDernierTourIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        tontineRepository.saveAndFlush(tontine);
+
+        // Get all the tontineList where dateDernierTour is greater than DEFAULT_DATE_DERNIER_TOUR
+        defaultTontineShouldNotBeFound("dateDernierTour.greaterThan=" + DEFAULT_DATE_DERNIER_TOUR);
+
+        // Get all the tontineList where dateDernierTour is greater than SMALLER_DATE_DERNIER_TOUR
+        defaultTontineShouldBeFound("dateDernierTour.greaterThan=" + SMALLER_DATE_DERNIER_TOUR);
     }
 
     @Test
@@ -1207,12 +1457,15 @@ class TontineResourceIT {
             .andExpect(jsonPath("$.[*].codeAssociation").value(hasItem(DEFAULT_CODE_ASSOCIATION)))
             .andExpect(jsonPath("$.[*].libele").value(hasItem(DEFAULT_LIBELE)))
             .andExpect(jsonPath("$.[*].nombreTour").value(hasItem(DEFAULT_NOMBRE_TOUR)))
-            .andExpect(jsonPath("$.[*].nombreMaxPersonne").value(hasItem(DEFAULT_NOMBRE_MAX_PERSONNE)))
+            .andExpect(jsonPath("$.[*].nombrePersonne").value(hasItem(DEFAULT_NOMBRE_PERSONNE)))
             .andExpect(jsonPath("$.[*].margeBeneficiaire").value(hasItem(DEFAULT_MARGE_BENEFICIAIRE.doubleValue())))
             .andExpect(jsonPath("$.[*].montantPart").value(hasItem(DEFAULT_MONTANT_PART.doubleValue())))
-            .andExpect(jsonPath("$.[*].amandeEchec").value(hasItem(DEFAULT_AMANDE_ECHEC.doubleValue())))
-            .andExpect(jsonPath("$.[*].dateDebut").value(hasItem(DEFAULT_DATE_DEBUT.toString())))
-            .andExpect(jsonPath("$.[*].dateFin").value(hasItem(DEFAULT_DATE_FIN.toString())))
+            .andExpect(jsonPath("$.[*].montantCagnote").value(hasItem(DEFAULT_MONTANT_CAGNOTE.doubleValue())))
+            .andExpect(jsonPath("$.[*].penaliteRetardCotisation").value(hasItem(DEFAULT_PENALITE_RETARD_COTISATION.doubleValue())))
+            .andExpect(jsonPath("$.[*].typePenalite").value(hasItem(DEFAULT_TYPE_PENALITE.toString())))
+            .andExpect(jsonPath("$.[*].dateCreation").value(hasItem(DEFAULT_DATE_CREATION.toString())))
+            .andExpect(jsonPath("$.[*].datePremierTour").value(hasItem(DEFAULT_DATE_PREMIER_TOUR.toString())))
+            .andExpect(jsonPath("$.[*].dateDernierTour").value(hasItem(DEFAULT_DATE_DERNIER_TOUR.toString())))
             .andExpect(jsonPath("$.[*].statutTontine").value(hasItem(DEFAULT_STATUT_TONTINE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
 
@@ -1266,12 +1519,15 @@ class TontineResourceIT {
             .codeAssociation(UPDATED_CODE_ASSOCIATION)
             .libele(UPDATED_LIBELE)
             .nombreTour(UPDATED_NOMBRE_TOUR)
-            .nombreMaxPersonne(UPDATED_NOMBRE_MAX_PERSONNE)
+            .nombrePersonne(UPDATED_NOMBRE_PERSONNE)
             .margeBeneficiaire(UPDATED_MARGE_BENEFICIAIRE)
             .montantPart(UPDATED_MONTANT_PART)
-            .amandeEchec(UPDATED_AMANDE_ECHEC)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN)
+            .montantCagnote(UPDATED_MONTANT_CAGNOTE)
+            .penaliteRetardCotisation(UPDATED_PENALITE_RETARD_COTISATION)
+            .typePenalite(UPDATED_TYPE_PENALITE)
+            .dateCreation(UPDATED_DATE_CREATION)
+            .datePremierTour(UPDATED_DATE_PREMIER_TOUR)
+            .dateDernierTour(UPDATED_DATE_DERNIER_TOUR)
             .statutTontine(UPDATED_STATUT_TONTINE)
             .description(UPDATED_DESCRIPTION);
         TontineDTO tontineDTO = tontineMapper.toDto(updatedTontine);
@@ -1291,12 +1547,15 @@ class TontineResourceIT {
         assertThat(testTontine.getCodeAssociation()).isEqualTo(UPDATED_CODE_ASSOCIATION);
         assertThat(testTontine.getLibele()).isEqualTo(UPDATED_LIBELE);
         assertThat(testTontine.getNombreTour()).isEqualTo(UPDATED_NOMBRE_TOUR);
-        assertThat(testTontine.getNombreMaxPersonne()).isEqualTo(UPDATED_NOMBRE_MAX_PERSONNE);
+        assertThat(testTontine.getNombrePersonne()).isEqualTo(UPDATED_NOMBRE_PERSONNE);
         assertThat(testTontine.getMargeBeneficiaire()).isEqualTo(UPDATED_MARGE_BENEFICIAIRE);
         assertThat(testTontine.getMontantPart()).isEqualTo(UPDATED_MONTANT_PART);
-        assertThat(testTontine.getAmandeEchec()).isEqualTo(UPDATED_AMANDE_ECHEC);
-        assertThat(testTontine.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
-        assertThat(testTontine.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
+        assertThat(testTontine.getMontantCagnote()).isEqualTo(UPDATED_MONTANT_CAGNOTE);
+        assertThat(testTontine.getPenaliteRetardCotisation()).isEqualTo(UPDATED_PENALITE_RETARD_COTISATION);
+        assertThat(testTontine.getTypePenalite()).isEqualTo(UPDATED_TYPE_PENALITE);
+        assertThat(testTontine.getDateCreation()).isEqualTo(UPDATED_DATE_CREATION);
+        assertThat(testTontine.getDatePremierTour()).isEqualTo(UPDATED_DATE_PREMIER_TOUR);
+        assertThat(testTontine.getDateDernierTour()).isEqualTo(UPDATED_DATE_DERNIER_TOUR);
         assertThat(testTontine.getStatutTontine()).isEqualTo(UPDATED_STATUT_TONTINE);
         assertThat(testTontine.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
@@ -1381,8 +1640,9 @@ class TontineResourceIT {
         partialUpdatedTontine
             .codeAssociation(UPDATED_CODE_ASSOCIATION)
             .libele(UPDATED_LIBELE)
-            .amandeEchec(UPDATED_AMANDE_ECHEC)
-            .dateFin(UPDATED_DATE_FIN);
+            .montantCagnote(UPDATED_MONTANT_CAGNOTE)
+            .typePenalite(UPDATED_TYPE_PENALITE)
+            .dateDernierTour(UPDATED_DATE_DERNIER_TOUR);
 
         restTontineMockMvc
             .perform(
@@ -1399,12 +1659,15 @@ class TontineResourceIT {
         assertThat(testTontine.getCodeAssociation()).isEqualTo(UPDATED_CODE_ASSOCIATION);
         assertThat(testTontine.getLibele()).isEqualTo(UPDATED_LIBELE);
         assertThat(testTontine.getNombreTour()).isEqualTo(DEFAULT_NOMBRE_TOUR);
-        assertThat(testTontine.getNombreMaxPersonne()).isEqualTo(DEFAULT_NOMBRE_MAX_PERSONNE);
+        assertThat(testTontine.getNombrePersonne()).isEqualTo(DEFAULT_NOMBRE_PERSONNE);
         assertThat(testTontine.getMargeBeneficiaire()).isEqualTo(DEFAULT_MARGE_BENEFICIAIRE);
         assertThat(testTontine.getMontantPart()).isEqualTo(DEFAULT_MONTANT_PART);
-        assertThat(testTontine.getAmandeEchec()).isEqualTo(UPDATED_AMANDE_ECHEC);
-        assertThat(testTontine.getDateDebut()).isEqualTo(DEFAULT_DATE_DEBUT);
-        assertThat(testTontine.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
+        assertThat(testTontine.getMontantCagnote()).isEqualTo(UPDATED_MONTANT_CAGNOTE);
+        assertThat(testTontine.getPenaliteRetardCotisation()).isEqualTo(DEFAULT_PENALITE_RETARD_COTISATION);
+        assertThat(testTontine.getTypePenalite()).isEqualTo(UPDATED_TYPE_PENALITE);
+        assertThat(testTontine.getDateCreation()).isEqualTo(DEFAULT_DATE_CREATION);
+        assertThat(testTontine.getDatePremierTour()).isEqualTo(DEFAULT_DATE_PREMIER_TOUR);
+        assertThat(testTontine.getDateDernierTour()).isEqualTo(UPDATED_DATE_DERNIER_TOUR);
         assertThat(testTontine.getStatutTontine()).isEqualTo(DEFAULT_STATUT_TONTINE);
         assertThat(testTontine.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
@@ -1425,12 +1688,15 @@ class TontineResourceIT {
             .codeAssociation(UPDATED_CODE_ASSOCIATION)
             .libele(UPDATED_LIBELE)
             .nombreTour(UPDATED_NOMBRE_TOUR)
-            .nombreMaxPersonne(UPDATED_NOMBRE_MAX_PERSONNE)
+            .nombrePersonne(UPDATED_NOMBRE_PERSONNE)
             .margeBeneficiaire(UPDATED_MARGE_BENEFICIAIRE)
             .montantPart(UPDATED_MONTANT_PART)
-            .amandeEchec(UPDATED_AMANDE_ECHEC)
-            .dateDebut(UPDATED_DATE_DEBUT)
-            .dateFin(UPDATED_DATE_FIN)
+            .montantCagnote(UPDATED_MONTANT_CAGNOTE)
+            .penaliteRetardCotisation(UPDATED_PENALITE_RETARD_COTISATION)
+            .typePenalite(UPDATED_TYPE_PENALITE)
+            .dateCreation(UPDATED_DATE_CREATION)
+            .datePremierTour(UPDATED_DATE_PREMIER_TOUR)
+            .dateDernierTour(UPDATED_DATE_DERNIER_TOUR)
             .statutTontine(UPDATED_STATUT_TONTINE)
             .description(UPDATED_DESCRIPTION);
 
@@ -1449,12 +1715,15 @@ class TontineResourceIT {
         assertThat(testTontine.getCodeAssociation()).isEqualTo(UPDATED_CODE_ASSOCIATION);
         assertThat(testTontine.getLibele()).isEqualTo(UPDATED_LIBELE);
         assertThat(testTontine.getNombreTour()).isEqualTo(UPDATED_NOMBRE_TOUR);
-        assertThat(testTontine.getNombreMaxPersonne()).isEqualTo(UPDATED_NOMBRE_MAX_PERSONNE);
+        assertThat(testTontine.getNombrePersonne()).isEqualTo(UPDATED_NOMBRE_PERSONNE);
         assertThat(testTontine.getMargeBeneficiaire()).isEqualTo(UPDATED_MARGE_BENEFICIAIRE);
         assertThat(testTontine.getMontantPart()).isEqualTo(UPDATED_MONTANT_PART);
-        assertThat(testTontine.getAmandeEchec()).isEqualTo(UPDATED_AMANDE_ECHEC);
-        assertThat(testTontine.getDateDebut()).isEqualTo(UPDATED_DATE_DEBUT);
-        assertThat(testTontine.getDateFin()).isEqualTo(UPDATED_DATE_FIN);
+        assertThat(testTontine.getMontantCagnote()).isEqualTo(UPDATED_MONTANT_CAGNOTE);
+        assertThat(testTontine.getPenaliteRetardCotisation()).isEqualTo(UPDATED_PENALITE_RETARD_COTISATION);
+        assertThat(testTontine.getTypePenalite()).isEqualTo(UPDATED_TYPE_PENALITE);
+        assertThat(testTontine.getDateCreation()).isEqualTo(UPDATED_DATE_CREATION);
+        assertThat(testTontine.getDatePremierTour()).isEqualTo(UPDATED_DATE_PREMIER_TOUR);
+        assertThat(testTontine.getDateDernierTour()).isEqualTo(UPDATED_DATE_DERNIER_TOUR);
         assertThat(testTontine.getStatutTontine()).isEqualTo(UPDATED_STATUT_TONTINE);
         assertThat(testTontine.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }

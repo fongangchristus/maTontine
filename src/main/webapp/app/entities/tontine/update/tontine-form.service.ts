@@ -21,12 +21,15 @@ type TontineFormGroupContent = {
   codeAssociation: FormControl<ITontine['codeAssociation']>;
   libele: FormControl<ITontine['libele']>;
   nombreTour: FormControl<ITontine['nombreTour']>;
-  nombreMaxPersonne: FormControl<ITontine['nombreMaxPersonne']>;
+  nombrePersonne: FormControl<ITontine['nombrePersonne']>;
   margeBeneficiaire: FormControl<ITontine['margeBeneficiaire']>;
   montantPart: FormControl<ITontine['montantPart']>;
-  amandeEchec: FormControl<ITontine['amandeEchec']>;
-  dateDebut: FormControl<ITontine['dateDebut']>;
-  dateFin: FormControl<ITontine['dateFin']>;
+  montantCagnote: FormControl<ITontine['montantCagnote']>;
+  penaliteRetardCotisation: FormControl<ITontine['penaliteRetardCotisation']>;
+  typePenalite: FormControl<ITontine['typePenalite']>;
+  dateCreation: FormControl<ITontine['dateCreation']>;
+  datePremierTour: FormControl<ITontine['datePremierTour']>;
+  dateDernierTour: FormControl<ITontine['dateDernierTour']>;
   statutTontine: FormControl<ITontine['statutTontine']>;
   description: FormControl<ITontine['description']>;
 };
@@ -53,12 +56,15 @@ export class TontineFormService {
       }),
       libele: new FormControl(tontineRawValue.libele),
       nombreTour: new FormControl(tontineRawValue.nombreTour),
-      nombreMaxPersonne: new FormControl(tontineRawValue.nombreMaxPersonne),
+      nombrePersonne: new FormControl(tontineRawValue.nombrePersonne),
       margeBeneficiaire: new FormControl(tontineRawValue.margeBeneficiaire),
       montantPart: new FormControl(tontineRawValue.montantPart),
-      amandeEchec: new FormControl(tontineRawValue.amandeEchec),
-      dateDebut: new FormControl(tontineRawValue.dateDebut),
-      dateFin: new FormControl(tontineRawValue.dateFin),
+      montantCagnote: new FormControl(tontineRawValue.montantCagnote),
+      penaliteRetardCotisation: new FormControl(tontineRawValue.penaliteRetardCotisation),
+      typePenalite: new FormControl(tontineRawValue.typePenalite),
+      dateCreation: new FormControl(tontineRawValue.dateCreation),
+      datePremierTour: new FormControl(tontineRawValue.datePremierTour),
+      dateDernierTour: new FormControl(tontineRawValue.dateDernierTour),
       statutTontine: new FormControl(tontineRawValue.statutTontine),
       description: new FormControl(tontineRawValue.description),
     });

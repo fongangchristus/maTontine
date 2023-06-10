@@ -1,11 +1,11 @@
-id;id_user;code_association;matricule;nom;prenom;date_naissance;lieu_naissance;date_inscription;profession;sexe;photo_path;date_integration;is_admin;is_donateur;is_benevole;type_personne
-1;36616;76127;Auvergne Platinum;Money Saint-Denis;Industrial Toys front-end;2023-06-08;16129;2023-06-07T20:41:57;extensible;MASCULIN;Steel didactic b;2023-06-07T23:51:01;false;true;true;ADHERENT
-2;52429;24374;a;Berkshire;reintermediate partnerships 24/7;2023-06-07;21469;2023-06-07T15:06:55;whiteboard Soap;FEMININ;THX;2023-06-08T04:04:29;true;false;false;NON_ADHERENT
-3;95104;34122;Incredible Tools;Exclusive;Maldives Designer local;2023-06-07;90271;2023-06-08T03:32:26;digital orchid;FEMININ;a a;2023-06-07T17:13:52;true;true;true;ANCIEN_ADHERENT
-4;81958;1124;object-oriented Frozen;Pizza Towels withdrawal;Analyste;2023-06-08;33195;2023-06-07T23:31:44;Berkshire;FEMININ;turquoise Ball Tools;2023-06-07T14:39:09;false;true;false;NON_ADHERENT
-5;22844;18274;Soft;Salad;Cotton Manager b;2023-06-07;18398;2023-06-08T08:42:58;global virtual;MASCULIN;Movies users Awesome;2023-06-07T16:52:23;true;true;true;ANCIEN_ADHERENT
-6;63965;9171;c impactful;deliver Mandatory;PNG;2023-06-08;66477;2023-06-08T11:53:22;Outdoors Plastic Rupee;FEMININ;Tenge Cross-platform;2023-06-08T05:43:34;false;false;false;NON_ADHERENT
-7;92772;17938;Baby sensor;Visionary generate;Plastic;2023-06-07;32526;2023-06-07T22:06:55;mobile du;MASCULIN;Frozen;2023-06-07T21:26:01;true;true;false;NON_ADHERENT
-8;37484;99376;e-business next;Beauty optical;Money primary;2023-06-08;98125;2023-06-08T00:49:45;reinvent Wooden;MASCULIN;navigating Sharable Metal;2023-06-08T07:42:57;true;false;true;NON_ADHERENT
-9;31785;91280;defect Keyboard redundant;c solid;online monitor;2023-06-07;16784;2023-06-07T22:15:21;Garden Avon;FEMININ;Market eyeballs;2023-06-07T16:56:10;false;false;true;ADHERENT
-10;60024;12285;Plastic;copying redundant;bluetooth;2023-06-08;27221;2023-06-07T14:53:34;Car;MASCULIN;a Horizontal deploy;2023-06-08T04:06:20;true;false;true;NON_ADHERENT
+id;id_user;code_association;matricule;nom;prenom;telephone;email;date_naissance;lieu_naissance;date_inscription;profession;sexe;photo_path;date_integration;is_admin;is_donateur;is_benevole;type_personne
+1;36616;76127;Auvergne Platinum;Money Saint-Denis;Industrial Toys front-end;0217036946;Acacie27@gmail.com;2023-06-08;96192;2023-06-08T03:16:20;Account;FEMININ;Dominique;2023-06-07T15:56:56;false;true;false;NON_ADHERENT
+2;46194;85678;reintermediate partnerships 24/7;silver whiteboard;Bourgogne;0586349403;Madeleine30@hotmail.fr;2023-06-07;2111;2023-06-08T05:00:27;Computers repurpose;FEMININ;Designer local reboot;2023-06-08T01:29:05;true;false;true;ADHERENT
+3;61537;22767;Vaneau Outdoors invoice;1080p Grocery pixel;support e-tailers up;+33 756632195;Arthaud.Robin@gmail.com;2023-06-08;46695;2023-06-08T14:08:40;a Basse-Normandie back;MASCULIN;Soap Dauphine Steel;2023-06-07T20:50:10;true;false;false;ADHERENT
+4;69770;77133;c reinvent Frozen;Technicien Operative;Self-enabling;+33 207005479;Andol_Morin97@gmail.com;2023-06-07;97353;2023-06-07T23:15:12;e-business;FEMININ;open-source deliver;2023-06-08T09:06:28;false;true;false;ANCIEN_ADHERENT
+5;76036;34614;deposit;b;wireless;+33 473648211;Abondance65@yahoo.fr;2023-06-07;17938;2023-06-07T23:26:06;payment;MASCULIN;deposit Cheese;2023-06-08T11:32:03;false;false;false;ADHERENT
+6;67942;32526;engineer Shoes Berkshire;b;Kwanza recontextualize;0511270505;Innocent45@yahoo.fr;2023-06-08;29617;2023-06-08T14:17:53;Wooden dynamic Wooden;FEMININ;bus;2023-06-08T13:19:02;false;true;false;ADHERENT
+7;88771;67001;Centre Gloves SQL;Keyboard redundant Account;solid drive;0277591650;Tanguy67@yahoo.fr;2023-06-07;45515;2023-06-07T23:58:04;withdrawal;MASCULIN;Montmorency plum Pants;2023-06-08T05:46:32;false;true;false;NON_ADHERENT
+8;78676;41501;Soft;Ball Intelligent;cyan fuchsia;0693424529;Isabelle_Lambert19@yahoo.fr;2023-06-08;13747;2023-06-07T16:04:06;scale Plastic;MASCULIN;b Avon;2023-06-07T21:12:43;false;false;false;ADHERENT
+9;33283;39464;bluetooth deposit B2B;Seamless;bypassing;+33 259786299;Abigal82@yahoo.fr;2023-06-07;46868;2023-06-07T17:59:21;a bypass;FEMININ;Steel circuit;2023-06-07T20:06:24;true;true;true;NON_ADHERENT
+10;33628;64343;function;Bhoutan Home;Cambridgeshire Computer;+33 600060912;Marc_Vincent26@gmail.com;2023-06-08;58637;2023-06-08T07:10:03;capacitor Movies;FEMININ;emulation a;2023-06-08T13:46:12;false;false;false;ADHERENT

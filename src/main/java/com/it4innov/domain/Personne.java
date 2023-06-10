@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * A Personne.
@@ -43,6 +44,13 @@ public class Personne implements Serializable {
 
     @Column(name = "prenom")
     private String prenom;
+
+    @NotNull
+    @Column(name = "telephone", nullable = false)
+    private String telephone;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
@@ -181,6 +189,32 @@ public class Personne implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getTelephone() {
+        return this.telephone;
+    }
+
+    public Personne telephone(String telephone) {
+        this.setTelephone(telephone);
+        return this;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Personne email(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateNaissance() {
@@ -523,6 +557,8 @@ public class Personne implements Serializable {
             ", matricule='" + getMatricule() + "'" +
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
+            ", telephone='" + getTelephone() + "'" +
+            ", email='" + getEmail() + "'" +
             ", dateNaissance='" + getDateNaissance() + "'" +
             ", lieuNaissance=" + getLieuNaissance() +
             ", dateInscription='" + getDateInscription() + "'" +

@@ -29,6 +29,9 @@
       "fuseauHoraire": "Fuseau Horaire",
       "langue": "Langue",
       "presentation": "Presentation",
+      "siegeSocial": "Siege Social",
+      "email": "Email",
+      "isActif": "Is Actif",
       "exercise": "Exercise",
       "documentAssociation": "Document Association",
       "monnaie": "Monnaie"

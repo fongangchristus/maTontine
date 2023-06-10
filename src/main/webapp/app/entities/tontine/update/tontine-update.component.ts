@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { TontineFormService, TontineFormGroup } from './tontine-form.service';
 import { ITontine } from '../tontine.model';
 import { TontineService } from '../service/tontine.service';
+import { TypePenalite } from 'app/entities/enumerations/type-penalite.model';
 import { StatutTontine } from 'app/entities/enumerations/statut-tontine.model';
 
 @Component({
@@ -16,6 +17,7 @@ import { StatutTontine } from 'app/entities/enumerations/statut-tontine.model';
 export class TontineUpdateComponent implements OnInit {
   isSaving = false;
   tontine: ITontine | null = null;
+  typePenaliteValues = Object.keys(TypePenalite);
   statutTontineValues = Object.keys(StatutTontine);
 
   editForm: TontineFormGroup = this.tontineFormService.createTontineFormGroup();

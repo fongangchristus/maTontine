@@ -40,6 +40,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="isParDefaut">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.contact.isParDefaut">Is Par Defaut</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="email">
             <div class="d-flex">
               <span jhiTranslate="maTontineApp.contact.email">Email</span>
@@ -72,6 +78,7 @@
           <td>
             <a [routerLink]="['/contact', contact.id, 'view']">{{ contact.id }}</a>
           </td>
+          <td>{{ contact.isParDefaut }}</td>
           <td>{{ contact.email }}</td>
           <td>{{ contact.telephone }}</td>
           <td>{{ contact.mobile }}</td>

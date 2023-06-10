@@ -5,15 +5,16 @@ export const sampleWithRequiredData: IContact = {
 };
 
 export const sampleWithPartialData: IContact = {
-  id: 20106,
-  telephone: '0407988958',
+  id: 25447,
+  email: 'Guillaume_Cousin96@gmail.com',
 };
 
 export const sampleWithFullData: IContact = {
-  id: 3657,
-  email: 'Anne_Lopez@hotmail.fr',
-  telephone: '+33 324673290',
-  mobile: 'Granite productize',
+  id: 52265,
+  isParDefaut: true,
+  email: 'Mence35@gmail.com',
+  telephone: '+33 362467329',
+  mobile: 'Burundi',
 };
 
 export const sampleWithNewData: NewContact = {

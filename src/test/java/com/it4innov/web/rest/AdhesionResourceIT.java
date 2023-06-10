@@ -37,8 +37,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class AdhesionResourceIT {
 
-    private static final StatutAdhesion DEFAULT_STATUT_ADHESION = StatutAdhesion.ENCOURS;
-    private static final StatutAdhesion UPDATED_STATUT_ADHESION = StatutAdhesion.ANNULE;
+    private static final StatutAdhesion DEFAULT_STATUT_ADHESION = StatutAdhesion.ACTIVE;
+    private static final StatutAdhesion UPDATED_STATUT_ADHESION = StatutAdhesion.DESACTIVE;
 
     private static final String DEFAULT_MATRICULE_PERSONNE = "AAAAAAAAAA";
     private static final String UPDATED_MATRICULE_PERSONNE = "BBBBBBBBBB";

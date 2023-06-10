@@ -63,16 +63,14 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="maTontineApp.tontine.nombreMaxPersonne" for="field_nombreMaxPersonne"
-            >Nombre Max Personne</label
-          >
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.nombrePersonne" for="field_nombrePersonne">Nombre Personne</label>
           <input
             type="number"
             class="form-control"
-            name="nombreMaxPersonne"
-            id="field_nombreMaxPersonne"
-            data-cy="nombreMaxPersonne"
-            formControlName="nombreMaxPersonne"
+            name="nombrePersonne"
+            id="field_nombrePersonne"
+            data-cy="nombrePersonne"
+            formControlName="nombrePersonne"
           />
         </div>
 
@@ -103,48 +101,99 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="maTontineApp.tontine.amandeEchec" for="field_amandeEchec">Amande Echec</label>
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.montantCagnote" for="field_montantCagnote">Montant Cagnote</label>
           <input
             type="number"
             class="form-control"
-            name="amandeEchec"
-            id="field_amandeEchec"
-            data-cy="amandeEchec"
-            formControlName="amandeEchec"
+            name="montantCagnote"
+            id="field_montantCagnote"
+            data-cy="montantCagnote"
+            formControlName="montantCagnote"
           />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateDebut" for="field_dateDebut">Date Debut</label>
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.penaliteRetardCotisation" for="field_penaliteRetardCotisation"
+            >Penalite Retard Cotisation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="penaliteRetardCotisation"
+            id="field_penaliteRetardCotisation"
+            data-cy="penaliteRetardCotisation"
+            formControlName="penaliteRetardCotisation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.typePenalite" for="field_typePenalite">Type Penalite</label>
+          <select class="form-control" name="typePenalite" formControlName="typePenalite" id="field_typePenalite" data-cy="typePenalite">
+            <option [ngValue]="null">{{ 'maTontineApp.TypePenalite.null' | translate }}</option>
+            <option *ngFor="let typePenalite of typePenaliteValues" [value]="typePenalite">
+              {{ 'maTontineApp.TypePenalite.' + typePenalite | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateCreation" for="field_dateCreation">Date Creation</label>
           <div class="input-group">
             <input
-              id="field_dateDebut"
-              data-cy="dateDebut"
+              id="field_dateCreation"
+              data-cy="dateCreation"
               type="text"
               class="form-control"
-              name="dateDebut"
+              name="dateCreation"
               ngbDatepicker
-              #dateDebutDp="ngbDatepicker"
-              formControlName="dateDebut"
+              #dateCreationDp="ngbDatepicker"
+              formControlName="dateCreation"
             />
-            <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary" (click)="dateCreationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
           </div>
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateFin" for="field_dateFin">Date Fin</label>
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.datePremierTour" for="field_datePremierTour"
+            >Date Premier Tour</label
+          >
           <div class="input-group">
             <input
-              id="field_dateFin"
-              data-cy="dateFin"
+              id="field_datePremierTour"
+              data-cy="datePremierTour"
               type="text"
               class="form-control"
-              name="dateFin"
+              name="datePremierTour"
               ngbDatepicker
-              #dateFinDp="ngbDatepicker"
-              formControlName="dateFin"
+              #datePremierTourDp="ngbDatepicker"
+              formControlName="datePremierTour"
             />
-            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary" (click)="datePremierTourDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.tontine.dateDernierTour" for="field_dateDernierTour"
+            >Date Dernier Tour</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateDernierTour"
+              data-cy="dateDernierTour"
+              type="text"
+              class="form-control"
+              name="dateDernierTour"
+              ngbDatepicker
+              #dateDernierTourDp="ngbDatepicker"
+              formControlName="dateDernierTour"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDernierTourDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
           </div>
         </div>
 

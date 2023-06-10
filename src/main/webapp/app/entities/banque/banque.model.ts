@@ -7,6 +7,8 @@ export interface IBanque {
   description?: string | null;
   dateOuverture?: dayjs.Dayjs | null;
   dateCloture?: dayjs.Dayjs | null;
+  penaliteRetardRnbrsmnt?: number | null;
+  tauxInteretPret?: number | null;
 }
 
 export type NewBanque = Omit<IBanque, 'id'> & { id: null };

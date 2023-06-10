@@ -8,23 +8,26 @@ export const sampleWithRequiredData: IBanque = {
 };
 
 export const sampleWithPartialData: IBanque = {
-  id: 78703,
-  codeAssociation: 'Île-de-France Developpeur',
-  dateOuverture: dayjs('2023-06-07T16:52'),
-  dateCloture: dayjs('2023-06-07T17:10'),
+  id: 56991,
+  codeAssociation: 'Nam azure',
+  dateOuverture: dayjs('2023-06-07T17:37'),
+  dateCloture: dayjs('2023-06-08T00:25'),
+  penaliteRetardRnbrsmnt: 6055,
 };
 
 export const sampleWithFullData: IBanque = {
-  id: 87398,
-  codeAssociation: 'Chair portals',
-  libelle: 'capacitor parse bandwidth',
-  description: 'des monitoring',
-  dateOuverture: dayjs('2023-06-07T14:59'),
-  dateCloture: dayjs('2023-06-08T10:20'),
+  id: 22726,
+  codeAssociation: 'Automotive monetize capacitor',
+  libelle: 'Technicien Afghani des',
+  description: 'payment',
+  dateOuverture: dayjs('2023-06-08T10:20'),
+  dateCloture: dayjs('2023-06-07T23:35'),
+  penaliteRetardRnbrsmnt: 36915,
+  tauxInteretPret: 68492,
 };
 
 export const sampleWithNewData: NewBanque = {
-  codeAssociation: 'cross-platform intuitive',
+  codeAssociation: 'intuitive Intelligent Buckinghamshire',
   id: null,
 };
 

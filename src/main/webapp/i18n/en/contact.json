@@ -18,12 +18,13 @@
         "title": "Contact"
       },
       "id": "ID",
+      "isParDefaut": "Is Par Defaut",
       "email": "Email",
       "telephone": "Telephone",
       "mobile": "Mobile",
       "adherent": "Adherent",
       "help": {
-        "email": "The firstname attribute."
+        "isParDefaut": "The firstname attribute."
       }
     }
   }

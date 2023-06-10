@@ -23,6 +23,8 @@
       "matricule": "Matricule",
       "nom": "Nom",
       "prenom": "Prenom",
+      "telephone": "Telephone",
+      "email": "Email",
       "dateNaissance": "Date Naissance",
       "lieuNaissance": "Lieu Naissance",
       "dateInscription": "Date Inscription",

@@ -160,7 +160,7 @@ describe('Adhesion e2e test', () => {
     });
 
     it('should create an instance of Adhesion', () => {
-      cy.get(`[data-cy="statutAdhesion"]`).select('PAYE');
+      cy.get(`[data-cy="statutAdhesion"]`).select('DESACTIVE');
 
       cy.get(`[data-cy="matriculePersonne"]`).type('Architecte a Sports').should('have.value', 'Architecte a Sports');
 

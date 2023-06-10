@@ -61,6 +61,12 @@ class PersonneResourceIT {
     private static final String DEFAULT_PRENOM = "AAAAAAAAAA";
     private static final String UPDATED_PRENOM = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_DATE_NAISSANCE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_NAISSANCE = LocalDate.now(ZoneId.systemDefault());
     private static final LocalDate SMALLER_DATE_NAISSANCE = LocalDate.ofEpochDay(-1L);
@@ -129,6 +135,8 @@ class PersonneResourceIT {
             .matricule(DEFAULT_MATRICULE)
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
+            .telephone(DEFAULT_TELEPHONE)
+            .email(DEFAULT_EMAIL)
             .dateNaissance(DEFAULT_DATE_NAISSANCE)
             .lieuNaissance(DEFAULT_LIEU_NAISSANCE)
             .dateInscription(DEFAULT_DATE_INSCRIPTION)
@@ -156,6 +164,8 @@ class PersonneResourceIT {
             .matricule(UPDATED_MATRICULE)
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
+            .telephone(UPDATED_TELEPHONE)
+            .email(UPDATED_EMAIL)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .dateInscription(UPDATED_DATE_INSCRIPTION)
@@ -194,6 +204,8 @@ class PersonneResourceIT {
         assertThat(testPersonne.getMatricule()).isEqualTo(DEFAULT_MATRICULE);
         assertThat(testPersonne.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testPersonne.getPrenom()).isEqualTo(DEFAULT_PRENOM);
+        assertThat(testPersonne.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
+        assertThat(testPersonne.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPersonne.getDateNaissance()).isEqualTo(DEFAULT_DATE_NAISSANCE);
         assertThat(testPersonne.getLieuNaissance()).isEqualTo(DEFAULT_LIEU_NAISSANCE);
         assertThat(testPersonne.getDateInscription()).isEqualTo(DEFAULT_DATE_INSCRIPTION);
@@ -228,6 +240,24 @@ class PersonneResourceIT {
 
     @Test
     @Transactional
+    void checkTelephoneIsRequired() throws Exception {
+        int databaseSizeBeforeTest = personneRepository.findAll().size();
+        // set the field null
+        personne.setTelephone(null);
+
+        // Create the Personne, which fails.
+        PersonneDTO personneDTO = personneMapper.toDto(personne);
+
+        restPersonneMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(personneDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Personne> personneList = personneRepository.findAll();
+        assertThat(personneList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPersonnes() throws Exception {
         // Initialize the database
         personneRepository.saveAndFlush(personne);
@@ -243,6 +273,8 @@ class PersonneResourceIT {
             .andExpect(jsonPath("$.[*].matricule").value(hasItem(DEFAULT_MATRICULE)))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
             .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE.intValue())))
             .andExpect(jsonPath("$.[*].dateInscription").value(hasItem(DEFAULT_DATE_INSCRIPTION.toString())))
@@ -273,6 +305,8 @@ class PersonneResourceIT {
             .andExpect(jsonPath("$.matricule").value(DEFAULT_MATRICULE))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
+            .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
             .andExpect(jsonPath("$.lieuNaissance").value(DEFAULT_LIEU_NAISSANCE.intValue()))
             .andExpect(jsonPath("$.dateInscription").value(DEFAULT_DATE_INSCRIPTION.toString()))
@@ -679,6 +713,136 @@ class PersonneResourceIT {
 
         // Get all the personneList where prenom does not contain UPDATED_PRENOM
         defaultPersonneShouldBeFound("prenom.doesNotContain=" + UPDATED_PRENOM);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByTelephoneIsEqualToSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where telephone equals to DEFAULT_TELEPHONE
+        defaultPersonneShouldBeFound("telephone.equals=" + DEFAULT_TELEPHONE);
+
+        // Get all the personneList where telephone equals to UPDATED_TELEPHONE
+        defaultPersonneShouldNotBeFound("telephone.equals=" + UPDATED_TELEPHONE);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByTelephoneIsInShouldWork() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where telephone in DEFAULT_TELEPHONE or UPDATED_TELEPHONE
+        defaultPersonneShouldBeFound("telephone.in=" + DEFAULT_TELEPHONE + "," + UPDATED_TELEPHONE);
+
+        // Get all the personneList where telephone equals to UPDATED_TELEPHONE
+        defaultPersonneShouldNotBeFound("telephone.in=" + UPDATED_TELEPHONE);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByTelephoneIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where telephone is not null
+        defaultPersonneShouldBeFound("telephone.specified=true");
+
+        // Get all the personneList where telephone is null
+        defaultPersonneShouldNotBeFound("telephone.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByTelephoneContainsSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where telephone contains DEFAULT_TELEPHONE
+        defaultPersonneShouldBeFound("telephone.contains=" + DEFAULT_TELEPHONE);
+
+        // Get all the personneList where telephone contains UPDATED_TELEPHONE
+        defaultPersonneShouldNotBeFound("telephone.contains=" + UPDATED_TELEPHONE);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByTelephoneNotContainsSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where telephone does not contain DEFAULT_TELEPHONE
+        defaultPersonneShouldNotBeFound("telephone.doesNotContain=" + DEFAULT_TELEPHONE);
+
+        // Get all the personneList where telephone does not contain UPDATED_TELEPHONE
+        defaultPersonneShouldBeFound("telephone.doesNotContain=" + UPDATED_TELEPHONE);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByEmailIsEqualToSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where email equals to DEFAULT_EMAIL
+        defaultPersonneShouldBeFound("email.equals=" + DEFAULT_EMAIL);
+
+        // Get all the personneList where email equals to UPDATED_EMAIL
+        defaultPersonneShouldNotBeFound("email.equals=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByEmailIsInShouldWork() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where email in DEFAULT_EMAIL or UPDATED_EMAIL
+        defaultPersonneShouldBeFound("email.in=" + DEFAULT_EMAIL + "," + UPDATED_EMAIL);
+
+        // Get all the personneList where email equals to UPDATED_EMAIL
+        defaultPersonneShouldNotBeFound("email.in=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByEmailIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where email is not null
+        defaultPersonneShouldBeFound("email.specified=true");
+
+        // Get all the personneList where email is null
+        defaultPersonneShouldNotBeFound("email.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByEmailContainsSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where email contains DEFAULT_EMAIL
+        defaultPersonneShouldBeFound("email.contains=" + DEFAULT_EMAIL);
+
+        // Get all the personneList where email contains UPDATED_EMAIL
+        defaultPersonneShouldNotBeFound("email.contains=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    void getAllPersonnesByEmailNotContainsSomething() throws Exception {
+        // Initialize the database
+        personneRepository.saveAndFlush(personne);
+
+        // Get all the personneList where email does not contain DEFAULT_EMAIL
+        defaultPersonneShouldNotBeFound("email.doesNotContain=" + DEFAULT_EMAIL);
+
+        // Get all the personneList where email does not contain UPDATED_EMAIL
+        defaultPersonneShouldBeFound("email.doesNotContain=" + UPDATED_EMAIL);
     }
 
     @Test
@@ -1418,6 +1582,8 @@ class PersonneResourceIT {
             .andExpect(jsonPath("$.[*].matricule").value(hasItem(DEFAULT_MATRICULE)))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
+            .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
             .andExpect(jsonPath("$.[*].lieuNaissance").value(hasItem(DEFAULT_LIEU_NAISSANCE.intValue())))
             .andExpect(jsonPath("$.[*].dateInscription").value(hasItem(DEFAULT_DATE_INSCRIPTION.toString())))
@@ -1482,6 +1648,8 @@ class PersonneResourceIT {
             .matricule(UPDATED_MATRICULE)
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
+            .telephone(UPDATED_TELEPHONE)
+            .email(UPDATED_EMAIL)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .dateInscription(UPDATED_DATE_INSCRIPTION)
@@ -1512,6 +1680,8 @@ class PersonneResourceIT {
         assertThat(testPersonne.getMatricule()).isEqualTo(UPDATED_MATRICULE);
         assertThat(testPersonne.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testPersonne.getPrenom()).isEqualTo(UPDATED_PRENOM);
+        assertThat(testPersonne.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
+        assertThat(testPersonne.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPersonne.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
         assertThat(testPersonne.getLieuNaissance()).isEqualTo(UPDATED_LIEU_NAISSANCE);
         assertThat(testPersonne.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);
@@ -1605,11 +1775,11 @@ class PersonneResourceIT {
         partialUpdatedPersonne
             .idUser(UPDATED_ID_USER)
             .prenom(UPDATED_PRENOM)
-            .dateInscription(UPDATED_DATE_INSCRIPTION)
+            .dateNaissance(UPDATED_DATE_NAISSANCE)
+            .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .profession(UPDATED_PROFESSION)
-            .photoPath(UPDATED_PHOTO_PATH)
-            .dateIntegration(UPDATED_DATE_INTEGRATION)
-            .isDonateur(UPDATED_IS_DONATEUR);
+            .sexe(UPDATED_SEXE)
+            .dateIntegration(UPDATED_DATE_INTEGRATION);
 
         restPersonneMockMvc
             .perform(
@@ -1628,15 +1798,17 @@ class PersonneResourceIT {
         assertThat(testPersonne.getMatricule()).isEqualTo(DEFAULT_MATRICULE);
         assertThat(testPersonne.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testPersonne.getPrenom()).isEqualTo(UPDATED_PRENOM);
-        assertThat(testPersonne.getDateNaissance()).isEqualTo(DEFAULT_DATE_NAISSANCE);
-        assertThat(testPersonne.getLieuNaissance()).isEqualTo(DEFAULT_LIEU_NAISSANCE);
-        assertThat(testPersonne.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);
+        assertThat(testPersonne.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
+        assertThat(testPersonne.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testPersonne.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
+        assertThat(testPersonne.getLieuNaissance()).isEqualTo(UPDATED_LIEU_NAISSANCE);
+        assertThat(testPersonne.getDateInscription()).isEqualTo(DEFAULT_DATE_INSCRIPTION);
         assertThat(testPersonne.getProfession()).isEqualTo(UPDATED_PROFESSION);
-        assertThat(testPersonne.getSexe()).isEqualTo(DEFAULT_SEXE);
-        assertThat(testPersonne.getPhotoPath()).isEqualTo(UPDATED_PHOTO_PATH);
+        assertThat(testPersonne.getSexe()).isEqualTo(UPDATED_SEXE);
+        assertThat(testPersonne.getPhotoPath()).isEqualTo(DEFAULT_PHOTO_PATH);
         assertThat(testPersonne.getDateIntegration()).isEqualTo(UPDATED_DATE_INTEGRATION);
         assertThat(testPersonne.getIsAdmin()).isEqualTo(DEFAULT_IS_ADMIN);
-        assertThat(testPersonne.getIsDonateur()).isEqualTo(UPDATED_IS_DONATEUR);
+        assertThat(testPersonne.getIsDonateur()).isEqualTo(DEFAULT_IS_DONATEUR);
         assertThat(testPersonne.getIsBenevole()).isEqualTo(DEFAULT_IS_BENEVOLE);
         assertThat(testPersonne.getTypePersonne()).isEqualTo(DEFAULT_TYPE_PERSONNE);
     }
@@ -1659,6 +1831,8 @@ class PersonneResourceIT {
             .matricule(UPDATED_MATRICULE)
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
+            .telephone(UPDATED_TELEPHONE)
+            .email(UPDATED_EMAIL)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .lieuNaissance(UPDATED_LIEU_NAISSANCE)
             .dateInscription(UPDATED_DATE_INSCRIPTION)
@@ -1688,6 +1862,8 @@ class PersonneResourceIT {
         assertThat(testPersonne.getMatricule()).isEqualTo(UPDATED_MATRICULE);
         assertThat(testPersonne.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testPersonne.getPrenom()).isEqualTo(UPDATED_PRENOM);
+        assertThat(testPersonne.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
+        assertThat(testPersonne.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPersonne.getDateNaissance()).isEqualTo(UPDATED_DATE_NAISSANCE);
         assertThat(testPersonne.getLieuNaissance()).isEqualTo(UPDATED_LIEU_NAISSANCE);
         assertThat(testPersonne.getDateInscription()).isEqualTo(UPDATED_DATE_INSCRIPTION);

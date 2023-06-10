@@ -15,7 +15,7 @@ describe('Personne e2e test', () => {
   const personnePageUrlPattern = new RegExp('/personne(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const personneSample = {};
+  const personneSample = { telephone: '0539106121' };
 
   let personne;
 
@@ -170,19 +170,23 @@ describe('Personne e2e test', () => {
 
       cy.get(`[data-cy="prenom"]`).type('Denar').should('have.value', 'Denar');
 
+      cy.get(`[data-cy="telephone"]`).type('0753119292').should('have.value', '0753119292');
+
+      cy.get(`[data-cy="email"]`).type('Robert.Dasilva@gmail.com').should('have.value', 'Robert.Dasilva@gmail.com');
+
       cy.get(`[data-cy="dateNaissance"]`).type('2023-06-08').blur().should('have.value', '2023-06-08');
 
-      cy.get(`[data-cy="lieuNaissance"]`).type('59799').should('have.value', '59799');
+      cy.get(`[data-cy="lieuNaissance"]`).type('18645').should('have.value', '18645');
 
-      cy.get(`[data-cy="dateInscription"]`).type('2023-06-08T06:32').blur().should('have.value', '2023-06-08T06:32');
+      cy.get(`[data-cy="dateInscription"]`).type('2023-06-08T08:35').blur().should('have.value', '2023-06-08T08:35');
 
-      cy.get(`[data-cy="profession"]`).type('Salad').should('have.value', 'Salad');
+      cy.get(`[data-cy="profession"]`).type('Credit').should('have.value', 'Credit');
 
-      cy.get(`[data-cy="sexe"]`).select('FEMININ');
+      cy.get(`[data-cy="sexe"]`).select('MASCULIN');
 
-      cy.get(`[data-cy="photoPath"]`).type('Frozen').should('have.value', 'Frozen');
+      cy.get(`[data-cy="photoPath"]`).type('dynamic').should('have.value', 'dynamic');
 
-      cy.get(`[data-cy="dateIntegration"]`).type('2023-06-08T00:28').blur().should('have.value', '2023-06-08T00:28');
+      cy.get(`[data-cy="dateIntegration"]`).type('2023-06-08T04:44').blur().should('have.value', '2023-06-08T04:44');
 
       cy.get(`[data-cy="isAdmin"]`).should('not.be.checked');
       cy.get(`[data-cy="isAdmin"]`).click().should('be.checked');
@@ -193,7 +197,7 @@ describe('Personne e2e test', () => {
       cy.get(`[data-cy="isBenevole"]`).should('not.be.checked');
       cy.get(`[data-cy="isBenevole"]`).click().should('be.checked');
 
-      cy.get(`[data-cy="typePersonne"]`).select('ADHERENT');
+      cy.get(`[data-cy="typePersonne"]`).select('NON_ADHERENT');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

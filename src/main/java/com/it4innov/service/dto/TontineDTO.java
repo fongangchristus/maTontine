@@ -1,6 +1,7 @@
 package com.it4innov.service.dto;
 
 import com.it4innov.domain.enumeration.StatutTontine;
+import com.it4innov.domain.enumeration.TypePenalite;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,17 +27,23 @@ public class TontineDTO implements Serializable {
 
     private Integer nombreTour;
 
-    private Integer nombreMaxPersonne;
+    private Integer nombrePersonne;
 
     private Double margeBeneficiaire;
 
     private Double montantPart;
 
-    private Double amandeEchec;
+    private Double montantCagnote;
 
-    private LocalDate dateDebut;
+    private Double penaliteRetardCotisation;
 
-    private LocalDate dateFin;
+    private TypePenalite typePenalite;
+
+    private LocalDate dateCreation;
+
+    private LocalDate datePremierTour;
+
+    private LocalDate dateDernierTour;
 
     private StatutTontine statutTontine;
 
@@ -74,12 +81,12 @@ public class TontineDTO implements Serializable {
         this.nombreTour = nombreTour;
     }
 
-    public Integer getNombreMaxPersonne() {
-        return nombreMaxPersonne;
+    public Integer getNombrePersonne() {
+        return nombrePersonne;
     }
 
-    public void setNombreMaxPersonne(Integer nombreMaxPersonne) {
-        this.nombreMaxPersonne = nombreMaxPersonne;
+    public void setNombrePersonne(Integer nombrePersonne) {
+        this.nombrePersonne = nombrePersonne;
     }
 
     public Double getMargeBeneficiaire() {
@@ -98,28 +105,52 @@ public class TontineDTO implements Serializable {
         this.montantPart = montantPart;
     }
 
-    public Double getAmandeEchec() {
-        return amandeEchec;
+    public Double getMontantCagnote() {
+        return montantCagnote;
     }
 
-    public void setAmandeEchec(Double amandeEchec) {
-        this.amandeEchec = amandeEchec;
+    public void setMontantCagnote(Double montantCagnote) {
+        this.montantCagnote = montantCagnote;
     }
 
-    public LocalDate getDateDebut() {
-        return dateDebut;
+    public Double getPenaliteRetardCotisation() {
+        return penaliteRetardCotisation;
     }
 
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setPenaliteRetardCotisation(Double penaliteRetardCotisation) {
+        this.penaliteRetardCotisation = penaliteRetardCotisation;
     }
 
-    public LocalDate getDateFin() {
-        return dateFin;
+    public TypePenalite getTypePenalite() {
+        return typePenalite;
     }
 
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
+    public void setTypePenalite(TypePenalite typePenalite) {
+        this.typePenalite = typePenalite;
+    }
+
+    public LocalDate getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDate dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public LocalDate getDatePremierTour() {
+        return datePremierTour;
+    }
+
+    public void setDatePremierTour(LocalDate datePremierTour) {
+        this.datePremierTour = datePremierTour;
+    }
+
+    public LocalDate getDateDernierTour() {
+        return dateDernierTour;
+    }
+
+    public void setDateDernierTour(LocalDate dateDernierTour) {
+        this.dateDernierTour = dateDernierTour;
     }
 
     public StatutTontine getStatutTontine() {
@@ -167,12 +198,15 @@ public class TontineDTO implements Serializable {
             ", codeAssociation='" + getCodeAssociation() + "'" +
             ", libele='" + getLibele() + "'" +
             ", nombreTour=" + getNombreTour() +
-            ", nombreMaxPersonne=" + getNombreMaxPersonne() +
+            ", nombrePersonne=" + getNombrePersonne() +
             ", margeBeneficiaire=" + getMargeBeneficiaire() +
             ", montantPart=" + getMontantPart() +
-            ", amandeEchec=" + getAmandeEchec() +
-            ", dateDebut='" + getDateDebut() + "'" +
-            ", dateFin='" + getDateFin() + "'" +
+            ", montantCagnote=" + getMontantCagnote() +
+            ", penaliteRetardCotisation=" + getPenaliteRetardCotisation() +
+            ", typePenalite='" + getTypePenalite() + "'" +
+            ", dateCreation='" + getDateCreation() + "'" +
+            ", datePremierTour='" + getDatePremierTour() + "'" +
+            ", dateDernierTour='" + getDateDernierTour() + "'" +
             ", statutTontine='" + getStatutTontine() + "'" +
             ", description='" + getDescription() + "'" +
             "}";

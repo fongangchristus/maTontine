@@ -37,6 +37,8 @@ type PersonneFormGroupContent = {
   matricule: FormControl<PersonneFormRawValue['matricule']>;
   nom: FormControl<PersonneFormRawValue['nom']>;
   prenom: FormControl<PersonneFormRawValue['prenom']>;
+  telephone: FormControl<PersonneFormRawValue['telephone']>;
+  email: FormControl<PersonneFormRawValue['email']>;
   dateNaissance: FormControl<PersonneFormRawValue['dateNaissance']>;
   lieuNaissance: FormControl<PersonneFormRawValue['lieuNaissance']>;
   dateInscription: FormControl<PersonneFormRawValue['dateInscription']>;
@@ -73,6 +75,10 @@ export class PersonneFormService {
       matricule: new FormControl(personneRawValue.matricule),
       nom: new FormControl(personneRawValue.nom),
       prenom: new FormControl(personneRawValue.prenom),
+      telephone: new FormControl(personneRawValue.telephone, {
+        validators: [Validators.required],
+      }),
+      email: new FormControl(personneRawValue.email),
       dateNaissance: new FormControl(personneRawValue.dateNaissance),
       lieuNaissance: new FormControl(personneRawValue.lieuNaissance),
       dateInscription: new FormControl(personneRawValue.dateInscription),

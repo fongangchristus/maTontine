@@ -23,6 +23,8 @@ public class ContactCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
+    private BooleanFilter isParDefaut;
+
     private StringFilter email;
 
     private StringFilter telephone;
@@ -37,6 +39,7 @@ public class ContactCriteria implements Serializable, Criteria {
 
     public ContactCriteria(ContactCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
+        this.isParDefaut = other.isParDefaut == null ? null : other.isParDefaut.copy();
         this.email = other.email == null ? null : other.email.copy();
         this.telephone = other.telephone == null ? null : other.telephone.copy();
         this.mobile = other.mobile == null ? null : other.mobile.copy();
@@ -62,6 +65,21 @@ public class ContactCriteria implements Serializable, Criteria {
 
     public void setId(LongFilter id) {
         this.id = id;
+    }
+
+    public BooleanFilter getIsParDefaut() {
+        return isParDefaut;
+    }
+
+    public BooleanFilter isParDefaut() {
+        if (isParDefaut == null) {
+            isParDefaut = new BooleanFilter();
+        }
+        return isParDefaut;
+    }
+
+    public void setIsParDefaut(BooleanFilter isParDefaut) {
+        this.isParDefaut = isParDefaut;
     }
 
     public StringFilter getEmail() {
@@ -143,6 +161,7 @@ public class ContactCriteria implements Serializable, Criteria {
         final ContactCriteria that = (ContactCriteria) o;
         return (
             Objects.equals(id, that.id) &&
+            Objects.equals(isParDefaut, that.isParDefaut) &&
             Objects.equals(email, that.email) &&
             Objects.equals(telephone, that.telephone) &&
             Objects.equals(mobile, that.mobile) &&
@@ -153,7 +172,7 @@ public class ContactCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, telephone, mobile, adherentId, distinct);
+        return Objects.hash(id, isParDefaut, email, telephone, mobile, adherentId, distinct);
     }
 
     // prettier-ignore
@@ -161,6 +180,7 @@ public class ContactCriteria implements Serializable, Criteria {
     public String toString() {
         return "ContactCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
+            (isParDefaut != null ? "isParDefaut=" + isParDefaut + ", " : "") +
             (email != null ? "email=" + email + ", " : "") +
             (telephone != null ? "telephone=" + telephone + ", " : "") +
             (mobile != null ? "mobile=" + mobile + ", " : "") +

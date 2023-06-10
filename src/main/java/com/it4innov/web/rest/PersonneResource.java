@@ -11,6 +11,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,7 +64,7 @@ public class PersonneResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/personnes")
-    public ResponseEntity<PersonneDTO> createPersonne(@RequestBody PersonneDTO personneDTO) throws URISyntaxException {
+    public ResponseEntity<PersonneDTO> createPersonne(@Valid @RequestBody PersonneDTO personneDTO) throws URISyntaxException {
         log.debug("REST request to save Personne : {}", personneDTO);
         if (personneDTO.getId() != null) {
             throw new BadRequestAlertException("A new personne cannot already have an ID", ENTITY_NAME, "idexists");
@@ -87,7 +89,7 @@ public class PersonneResource {
     @PutMapping("/personnes/{id}")
     public ResponseEntity<PersonneDTO> updatePersonne(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody PersonneDTO personneDTO
+        @Valid @RequestBody PersonneDTO personneDTO
     ) throws URISyntaxException {
         log.debug("REST request to update Personne : {}, {}", id, personneDTO);
         if (personneDTO.getId() == null) {
@@ -122,7 +124,7 @@ public class PersonneResource {
     @PatchMapping(value = "/personnes/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<PersonneDTO> partialUpdatePersonne(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody PersonneDTO personneDTO
+        @NotNull @RequestBody PersonneDTO personneDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update Personne partially : {}, {}", id, personneDTO);
         if (personneDTO.getId() == null) {

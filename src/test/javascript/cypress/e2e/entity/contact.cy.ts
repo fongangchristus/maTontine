@@ -160,11 +160,14 @@ describe('Contact e2e test', () => {
     });
 
     it('should create an instance of Contact', () => {
-      cy.get(`[data-cy="email"]`).type('Archange_Gaillard@hotmail.fr').should('have.value', 'Archange_Gaillard@hotmail.fr');
+      cy.get(`[data-cy="isParDefaut"]`).should('not.be.checked');
+      cy.get(`[data-cy="isParDefaut"]`).click().should('be.checked');
 
-      cy.get(`[data-cy="telephone"]`).type('+33 118157511').should('have.value', '+33 118157511');
+      cy.get(`[data-cy="email"]`).type('Calixte_Duval18@yahoo.fr').should('have.value', 'Calixte_Duval18@yahoo.fr');
 
-      cy.get(`[data-cy="mobile"]`).type('interactive SCSI JBOD').should('have.value', 'interactive SCSI JBOD');
+      cy.get(`[data-cy="telephone"]`).type('+33 515751173').should('have.value', '+33 515751173');
+
+      cy.get(`[data-cy="mobile"]`).type('Tanzanie program').should('have.value', 'Tanzanie program');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

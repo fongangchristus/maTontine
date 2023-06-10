@@ -16,11 +16,23 @@
         <div class="row mb-3">
           <label
             class="form-label"
-            jhiTranslate="maTontineApp.contact.email"
-            for="field_email"
-            [ngbTooltip]="'maTontineApp.contact.help.email' | translate"
-            >Email</label
+            jhiTranslate="maTontineApp.contact.isParDefaut"
+            for="field_isParDefaut"
+            [ngbTooltip]="'maTontineApp.contact.help.isParDefaut' | translate"
+            >Is Par Defaut</label
           >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isParDefaut"
+            id="field_isParDefaut"
+            data-cy="isParDefaut"
+            formControlName="isParDefaut"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="maTontineApp.contact.email" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
         </div>
 

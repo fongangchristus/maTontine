@@ -47,6 +47,15 @@
             <column name="presentation" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="siege_social" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="is_actif" type="boolean">
+                <constraints nullable="true" />
+            </column>
             <column name="monnaie_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -82,6 +91,9 @@
             <column name="fuseau_horaire" type="string"/>
             <column name="langue" type="string"/>
             <column name="presentation" type="string"/>
+            <column name="siege_social" type="string"/>
+            <column name="email" type="string"/>
+            <column name="is_actif" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

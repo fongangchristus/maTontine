@@ -25,6 +25,14 @@
     {
       "fieldName": "dateCloture",
       "fieldType": "Instant"
+    },
+    {
+      "fieldName": "penaliteRetardRnbrsmnt",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tauxInteretPret",
+      "fieldType": "Double"
     }
   ],
   "fluentMethods": true,

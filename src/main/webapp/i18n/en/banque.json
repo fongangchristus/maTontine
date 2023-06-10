@@ -23,6 +23,8 @@
       "description": "Description",
       "dateOuverture": "Date Ouverture",
       "dateCloture": "Date Cloture",
+      "penaliteRetardRnbrsmnt": "Penalite Retard Rnbrsmnt",
+      "tauxInteretPret": "Taux Interet Pret",
       "compteBanque": "Compte Banque",
       "gestionnaireBanque": "Gestionnaire Banque"
     }

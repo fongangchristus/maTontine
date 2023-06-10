@@ -23,6 +23,9 @@ public class Contact implements Serializable {
     /**
      * The firstname attribute.
      */
+    @Column(name = "is_par_defaut")
+    private Boolean isParDefaut;
+
     @Column(name = "email")
     private String email;
 
@@ -52,6 +55,19 @@ public class Contact implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getIsParDefaut() {
+        return this.isParDefaut;
+    }
+
+    public Contact isParDefaut(Boolean isParDefaut) {
+        this.setIsParDefaut(isParDefaut);
+        return this;
+    }
+
+    public void setIsParDefaut(Boolean isParDefaut) {
+        this.isParDefaut = isParDefaut;
     }
 
     public String getEmail() {
@@ -130,6 +146,7 @@ public class Contact implements Serializable {
     public String toString() {
         return "Contact{" +
             "id=" + getId() +
+            ", isParDefaut='" + getIsParDefaut() + "'" +
             ", email='" + getEmail() + "'" +
             ", telephone='" + getTelephone() + "'" +
             ", mobile='" + getMobile() + "'" +

@@ -24,6 +24,10 @@ public class BanqueDTO implements Serializable {
 
     private Instant dateCloture;
 
+    private Double penaliteRetardRnbrsmnt;
+
+    private Double tauxInteretPret;
+
     public Long getId() {
         return id;
     }
@@ -72,6 +76,22 @@ public class BanqueDTO implements Serializable {
         this.dateCloture = dateCloture;
     }
 
+    public Double getPenaliteRetardRnbrsmnt() {
+        return penaliteRetardRnbrsmnt;
+    }
+
+    public void setPenaliteRetardRnbrsmnt(Double penaliteRetardRnbrsmnt) {
+        this.penaliteRetardRnbrsmnt = penaliteRetardRnbrsmnt;
+    }
+
+    public Double getTauxInteretPret() {
+        return tauxInteretPret;
+    }
+
+    public void setTauxInteretPret(Double tauxInteretPret) {
+        this.tauxInteretPret = tauxInteretPret;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,6 +123,8 @@ public class BanqueDTO implements Serializable {
             ", description='" + getDescription() + "'" +
             ", dateOuverture='" + getDateOuverture() + "'" +
             ", dateCloture='" + getDateCloture() + "'" +
+            ", penaliteRetardRnbrsmnt=" + getPenaliteRetardRnbrsmnt() +
+            ", tauxInteretPret=" + getTauxInteretPret() +
             "}";
     }
 }

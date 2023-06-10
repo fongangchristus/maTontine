@@ -63,6 +63,12 @@ public class AssociationCriteria implements Serializable, Criteria {
 
     private StringFilter presentation;
 
+    private StringFilter siegeSocial;
+
+    private StringFilter email;
+
+    private BooleanFilter isActif;
+
     private LongFilter exerciseId;
 
     private LongFilter documentAssociationId;
@@ -86,6 +92,9 @@ public class AssociationCriteria implements Serializable, Criteria {
         this.fuseauHoraire = other.fuseauHoraire == null ? null : other.fuseauHoraire.copy();
         this.langue = other.langue == null ? null : other.langue.copy();
         this.presentation = other.presentation == null ? null : other.presentation.copy();
+        this.siegeSocial = other.siegeSocial == null ? null : other.siegeSocial.copy();
+        this.email = other.email == null ? null : other.email.copy();
+        this.isActif = other.isActif == null ? null : other.isActif.copy();
         this.exerciseId = other.exerciseId == null ? null : other.exerciseId.copy();
         this.documentAssociationId = other.documentAssociationId == null ? null : other.documentAssociationId.copy();
         this.monnaieId = other.monnaieId == null ? null : other.monnaieId.copy();
@@ -277,6 +286,51 @@ public class AssociationCriteria implements Serializable, Criteria {
         this.presentation = presentation;
     }
 
+    public StringFilter getSiegeSocial() {
+        return siegeSocial;
+    }
+
+    public StringFilter siegeSocial() {
+        if (siegeSocial == null) {
+            siegeSocial = new StringFilter();
+        }
+        return siegeSocial;
+    }
+
+    public void setSiegeSocial(StringFilter siegeSocial) {
+        this.siegeSocial = siegeSocial;
+    }
+
+    public StringFilter getEmail() {
+        return email;
+    }
+
+    public StringFilter email() {
+        if (email == null) {
+            email = new StringFilter();
+        }
+        return email;
+    }
+
+    public void setEmail(StringFilter email) {
+        this.email = email;
+    }
+
+    public BooleanFilter getIsActif() {
+        return isActif;
+    }
+
+    public BooleanFilter isActif() {
+        if (isActif == null) {
+            isActif = new BooleanFilter();
+        }
+        return isActif;
+    }
+
+    public void setIsActif(BooleanFilter isActif) {
+        this.isActif = isActif;
+    }
+
     public LongFilter getExerciseId() {
         return exerciseId;
     }
@@ -352,6 +406,9 @@ public class AssociationCriteria implements Serializable, Criteria {
             Objects.equals(fuseauHoraire, that.fuseauHoraire) &&
             Objects.equals(langue, that.langue) &&
             Objects.equals(presentation, that.presentation) &&
+            Objects.equals(siegeSocial, that.siegeSocial) &&
+            Objects.equals(email, that.email) &&
+            Objects.equals(isActif, that.isActif) &&
             Objects.equals(exerciseId, that.exerciseId) &&
             Objects.equals(documentAssociationId, that.documentAssociationId) &&
             Objects.equals(monnaieId, that.monnaieId) &&
@@ -374,6 +431,9 @@ public class AssociationCriteria implements Serializable, Criteria {
             fuseauHoraire,
             langue,
             presentation,
+            siegeSocial,
+            email,
+            isActif,
             exerciseId,
             documentAssociationId,
             monnaieId,
@@ -397,6 +457,9 @@ public class AssociationCriteria implements Serializable, Criteria {
             (fuseauHoraire != null ? "fuseauHoraire=" + fuseauHoraire + ", " : "") +
             (langue != null ? "langue=" + langue + ", " : "") +
             (presentation != null ? "presentation=" + presentation + ", " : "") +
+            (siegeSocial != null ? "siegeSocial=" + siegeSocial + ", " : "") +
+            (email != null ? "email=" + email + ", " : "") +
+            (isActif != null ? "isActif=" + isActif + ", " : "") +
             (exerciseId != null ? "exerciseId=" + exerciseId + ", " : "") +
             (documentAssociationId != null ? "documentAssociationId=" + documentAssociationId + ", " : "") +
             (monnaieId != null ? "monnaieId=" + monnaieId + ", " : "") +

@@ -51,6 +51,14 @@ class BanqueResourceIT {
     private static final Instant DEFAULT_DATE_CLOTURE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE_CLOTURE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final Double DEFAULT_PENALITE_RETARD_RNBRSMNT = 1D;
+    private static final Double UPDATED_PENALITE_RETARD_RNBRSMNT = 2D;
+    private static final Double SMALLER_PENALITE_RETARD_RNBRSMNT = 1D - 1D;
+
+    private static final Double DEFAULT_TAUX_INTERET_PRET = 1D;
+    private static final Double UPDATED_TAUX_INTERET_PRET = 2D;
+    private static final Double SMALLER_TAUX_INTERET_PRET = 1D - 1D;
+
     private static final String ENTITY_API_URL = "/api/banques";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -83,7 +91,9 @@ class BanqueResourceIT {
             .libelle(DEFAULT_LIBELLE)
             .description(DEFAULT_DESCRIPTION)
             .dateOuverture(DEFAULT_DATE_OUVERTURE)
-            .dateCloture(DEFAULT_DATE_CLOTURE);
+            .dateCloture(DEFAULT_DATE_CLOTURE)
+            .penaliteRetardRnbrsmnt(DEFAULT_PENALITE_RETARD_RNBRSMNT)
+            .tauxInteretPret(DEFAULT_TAUX_INTERET_PRET);
         return banque;
     }
 
@@ -99,7 +109,9 @@ class BanqueResourceIT {
             .libelle(UPDATED_LIBELLE)
             .description(UPDATED_DESCRIPTION)
             .dateOuverture(UPDATED_DATE_OUVERTURE)
-            .dateCloture(UPDATED_DATE_CLOTURE);
+            .dateCloture(UPDATED_DATE_CLOTURE)
+            .penaliteRetardRnbrsmnt(UPDATED_PENALITE_RETARD_RNBRSMNT)
+            .tauxInteretPret(UPDATED_TAUX_INTERET_PRET);
         return banque;
     }
 
@@ -127,6 +139,8 @@ class BanqueResourceIT {
         assertThat(testBanque.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testBanque.getDateOuverture()).isEqualTo(DEFAULT_DATE_OUVERTURE);
         assertThat(testBanque.getDateCloture()).isEqualTo(DEFAULT_DATE_CLOTURE);
+        assertThat(testBanque.getPenaliteRetardRnbrsmnt()).isEqualTo(DEFAULT_PENALITE_RETARD_RNBRSMNT);
+        assertThat(testBanque.getTauxInteretPret()).isEqualTo(DEFAULT_TAUX_INTERET_PRET);
     }
 
     @Test
@@ -182,7 +196,9 @@ class BanqueResourceIT {
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].dateOuverture").value(hasItem(DEFAULT_DATE_OUVERTURE.toString())))
-            .andExpect(jsonPath("$.[*].dateCloture").value(hasItem(DEFAULT_DATE_CLOTURE.toString())));
+            .andExpect(jsonPath("$.[*].dateCloture").value(hasItem(DEFAULT_DATE_CLOTURE.toString())))
+            .andExpect(jsonPath("$.[*].penaliteRetardRnbrsmnt").value(hasItem(DEFAULT_PENALITE_RETARD_RNBRSMNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].tauxInteretPret").value(hasItem(DEFAULT_TAUX_INTERET_PRET.doubleValue())));
     }
 
     @Test
@@ -201,7 +217,9 @@ class BanqueResourceIT {
             .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.dateOuverture").value(DEFAULT_DATE_OUVERTURE.toString()))
-            .andExpect(jsonPath("$.dateCloture").value(DEFAULT_DATE_CLOTURE.toString()));
+            .andExpect(jsonPath("$.dateCloture").value(DEFAULT_DATE_CLOTURE.toString()))
+            .andExpect(jsonPath("$.penaliteRetardRnbrsmnt").value(DEFAULT_PENALITE_RETARD_RNBRSMNT.doubleValue()))
+            .andExpect(jsonPath("$.tauxInteretPret").value(DEFAULT_TAUX_INTERET_PRET.doubleValue()));
     }
 
     @Test
@@ -497,6 +515,190 @@ class BanqueResourceIT {
 
     @Test
     @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt equals to DEFAULT_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.equals=" + DEFAULT_PENALITE_RETARD_RNBRSMNT);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt equals to UPDATED_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.equals=" + UPDATED_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsInShouldWork() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt in DEFAULT_PENALITE_RETARD_RNBRSMNT or UPDATED_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound(
+            "penaliteRetardRnbrsmnt.in=" + DEFAULT_PENALITE_RETARD_RNBRSMNT + "," + UPDATED_PENALITE_RETARD_RNBRSMNT
+        );
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt equals to UPDATED_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.in=" + UPDATED_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is not null
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.specified=true");
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is null
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is greater than or equal to DEFAULT_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.greaterThanOrEqual=" + DEFAULT_PENALITE_RETARD_RNBRSMNT);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is greater than or equal to UPDATED_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.greaterThanOrEqual=" + UPDATED_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is less than or equal to DEFAULT_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.lessThanOrEqual=" + DEFAULT_PENALITE_RETARD_RNBRSMNT);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is less than or equal to SMALLER_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.lessThanOrEqual=" + SMALLER_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsLessThanSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is less than DEFAULT_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.lessThan=" + DEFAULT_PENALITE_RETARD_RNBRSMNT);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is less than UPDATED_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.lessThan=" + UPDATED_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByPenaliteRetardRnbrsmntIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is greater than DEFAULT_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldNotBeFound("penaliteRetardRnbrsmnt.greaterThan=" + DEFAULT_PENALITE_RETARD_RNBRSMNT);
+
+        // Get all the banqueList where penaliteRetardRnbrsmnt is greater than SMALLER_PENALITE_RETARD_RNBRSMNT
+        defaultBanqueShouldBeFound("penaliteRetardRnbrsmnt.greaterThan=" + SMALLER_PENALITE_RETARD_RNBRSMNT);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret equals to DEFAULT_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.equals=" + DEFAULT_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret equals to UPDATED_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.equals=" + UPDATED_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsInShouldWork() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret in DEFAULT_TAUX_INTERET_PRET or UPDATED_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.in=" + DEFAULT_TAUX_INTERET_PRET + "," + UPDATED_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret equals to UPDATED_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.in=" + UPDATED_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret is not null
+        defaultBanqueShouldBeFound("tauxInteretPret.specified=true");
+
+        // Get all the banqueList where tauxInteretPret is null
+        defaultBanqueShouldNotBeFound("tauxInteretPret.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret is greater than or equal to DEFAULT_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.greaterThanOrEqual=" + DEFAULT_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret is greater than or equal to UPDATED_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.greaterThanOrEqual=" + UPDATED_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret is less than or equal to DEFAULT_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.lessThanOrEqual=" + DEFAULT_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret is less than or equal to SMALLER_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.lessThanOrEqual=" + SMALLER_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsLessThanSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret is less than DEFAULT_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.lessThan=" + DEFAULT_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret is less than UPDATED_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.lessThan=" + UPDATED_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
+    void getAllBanquesByTauxInteretPretIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        banqueRepository.saveAndFlush(banque);
+
+        // Get all the banqueList where tauxInteretPret is greater than DEFAULT_TAUX_INTERET_PRET
+        defaultBanqueShouldNotBeFound("tauxInteretPret.greaterThan=" + DEFAULT_TAUX_INTERET_PRET);
+
+        // Get all the banqueList where tauxInteretPret is greater than SMALLER_TAUX_INTERET_PRET
+        defaultBanqueShouldBeFound("tauxInteretPret.greaterThan=" + SMALLER_TAUX_INTERET_PRET);
+    }
+
+    @Test
+    @Transactional
     void getAllBanquesByCompteBanqueIsEqualToSomething() throws Exception {
         CompteBanque compteBanque;
         if (TestUtil.findAll(em, CompteBanque.class).isEmpty()) {
@@ -554,7 +756,9 @@ class BanqueResourceIT {
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].dateOuverture").value(hasItem(DEFAULT_DATE_OUVERTURE.toString())))
-            .andExpect(jsonPath("$.[*].dateCloture").value(hasItem(DEFAULT_DATE_CLOTURE.toString())));
+            .andExpect(jsonPath("$.[*].dateCloture").value(hasItem(DEFAULT_DATE_CLOTURE.toString())))
+            .andExpect(jsonPath("$.[*].penaliteRetardRnbrsmnt").value(hasItem(DEFAULT_PENALITE_RETARD_RNBRSMNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].tauxInteretPret").value(hasItem(DEFAULT_TAUX_INTERET_PRET.doubleValue())));
 
         // Check, that the count call also returns 1
         restBanqueMockMvc
@@ -607,7 +811,9 @@ class BanqueResourceIT {
             .libelle(UPDATED_LIBELLE)
             .description(UPDATED_DESCRIPTION)
             .dateOuverture(UPDATED_DATE_OUVERTURE)
-            .dateCloture(UPDATED_DATE_CLOTURE);
+            .dateCloture(UPDATED_DATE_CLOTURE)
+            .penaliteRetardRnbrsmnt(UPDATED_PENALITE_RETARD_RNBRSMNT)
+            .tauxInteretPret(UPDATED_TAUX_INTERET_PRET);
         BanqueDTO banqueDTO = banqueMapper.toDto(updatedBanque);
 
         restBanqueMockMvc
@@ -627,6 +833,8 @@ class BanqueResourceIT {
         assertThat(testBanque.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testBanque.getDateOuverture()).isEqualTo(UPDATED_DATE_OUVERTURE);
         assertThat(testBanque.getDateCloture()).isEqualTo(UPDATED_DATE_CLOTURE);
+        assertThat(testBanque.getPenaliteRetardRnbrsmnt()).isEqualTo(UPDATED_PENALITE_RETARD_RNBRSMNT);
+        assertThat(testBanque.getTauxInteretPret()).isEqualTo(UPDATED_TAUX_INTERET_PRET);
     }
 
     @Test
@@ -706,7 +914,11 @@ class BanqueResourceIT {
         Banque partialUpdatedBanque = new Banque();
         partialUpdatedBanque.setId(banque.getId());
 
-        partialUpdatedBanque.codeAssociation(UPDATED_CODE_ASSOCIATION).description(UPDATED_DESCRIPTION).dateCloture(UPDATED_DATE_CLOTURE);
+        partialUpdatedBanque
+            .codeAssociation(UPDATED_CODE_ASSOCIATION)
+            .description(UPDATED_DESCRIPTION)
+            .dateCloture(UPDATED_DATE_CLOTURE)
+            .tauxInteretPret(UPDATED_TAUX_INTERET_PRET);
 
         restBanqueMockMvc
             .perform(
@@ -725,6 +937,8 @@ class BanqueResourceIT {
         assertThat(testBanque.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testBanque.getDateOuverture()).isEqualTo(DEFAULT_DATE_OUVERTURE);
         assertThat(testBanque.getDateCloture()).isEqualTo(UPDATED_DATE_CLOTURE);
+        assertThat(testBanque.getPenaliteRetardRnbrsmnt()).isEqualTo(DEFAULT_PENALITE_RETARD_RNBRSMNT);
+        assertThat(testBanque.getTauxInteretPret()).isEqualTo(UPDATED_TAUX_INTERET_PRET);
     }
 
     @Test
@@ -744,7 +958,9 @@ class BanqueResourceIT {
             .libelle(UPDATED_LIBELLE)
             .description(UPDATED_DESCRIPTION)
             .dateOuverture(UPDATED_DATE_OUVERTURE)
-            .dateCloture(UPDATED_DATE_CLOTURE);
+            .dateCloture(UPDATED_DATE_CLOTURE)
+            .penaliteRetardRnbrsmnt(UPDATED_PENALITE_RETARD_RNBRSMNT)
+            .tauxInteretPret(UPDATED_TAUX_INTERET_PRET);
 
         restBanqueMockMvc
             .perform(
@@ -763,6 +979,8 @@ class BanqueResourceIT {
         assertThat(testBanque.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testBanque.getDateOuverture()).isEqualTo(UPDATED_DATE_OUVERTURE);
         assertThat(testBanque.getDateCloture()).isEqualTo(UPDATED_DATE_CLOTURE);
+        assertThat(testBanque.getPenaliteRetardRnbrsmnt()).isEqualTo(UPDATED_PENALITE_RETARD_RNBRSMNT);
+        assertThat(testBanque.getTauxInteretPret()).isEqualTo(UPDATED_TAUX_INTERET_PRET);
     }
 
     @Test

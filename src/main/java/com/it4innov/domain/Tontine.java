@@ -2,6 +2,7 @@ package com.it4innov.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.it4innov.domain.enumeration.StatutTontine;
+import com.it4innov.domain.enumeration.TypePenalite;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -38,8 +39,8 @@ public class Tontine implements Serializable {
     @Column(name = "nombre_tour")
     private Integer nombreTour;
 
-    @Column(name = "nombre_max_personne")
-    private Integer nombreMaxPersonne;
+    @Column(name = "nombre_personne")
+    private Integer nombrePersonne;
 
     @Column(name = "marge_beneficiaire")
     private Double margeBeneficiaire;
@@ -47,14 +48,24 @@ public class Tontine implements Serializable {
     @Column(name = "montant_part")
     private Double montantPart;
 
-    @Column(name = "amande_echec")
-    private Double amandeEchec;
+    @Column(name = "montant_cagnote")
+    private Double montantCagnote;
 
-    @Column(name = "date_debut")
-    private LocalDate dateDebut;
+    @Column(name = "penalite_retard_cotisation")
+    private Double penaliteRetardCotisation;
 
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_penalite")
+    private TypePenalite typePenalite;
+
+    @Column(name = "date_creation")
+    private LocalDate dateCreation;
+
+    @Column(name = "date_premier_tour")
+    private LocalDate datePremierTour;
+
+    @Column(name = "date_dernier_tour")
+    private LocalDate dateDernierTour;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "statut_tontine")
@@ -125,17 +136,17 @@ public class Tontine implements Serializable {
         this.nombreTour = nombreTour;
     }
 
-    public Integer getNombreMaxPersonne() {
-        return this.nombreMaxPersonne;
+    public Integer getNombrePersonne() {
+        return this.nombrePersonne;
     }
 
-    public Tontine nombreMaxPersonne(Integer nombreMaxPersonne) {
-        this.setNombreMaxPersonne(nombreMaxPersonne);
+    public Tontine nombrePersonne(Integer nombrePersonne) {
+        this.setNombrePersonne(nombrePersonne);
         return this;
     }
 
-    public void setNombreMaxPersonne(Integer nombreMaxPersonne) {
-        this.nombreMaxPersonne = nombreMaxPersonne;
+    public void setNombrePersonne(Integer nombrePersonne) {
+        this.nombrePersonne = nombrePersonne;
     }
 
     public Double getMargeBeneficiaire() {
@@ -164,43 +175,82 @@ public class Tontine implements Serializable {
         this.montantPart = montantPart;
     }
 
-    public Double getAmandeEchec() {
-        return this.amandeEchec;
+    public Double getMontantCagnote() {
+        return this.montantCagnote;
     }
 
-    public Tontine amandeEchec(Double amandeEchec) {
-        this.setAmandeEchec(amandeEchec);
+    public Tontine montantCagnote(Double montantCagnote) {
+        this.setMontantCagnote(montantCagnote);
         return this;
     }
 
-    public void setAmandeEchec(Double amandeEchec) {
-        this.amandeEchec = amandeEchec;
+    public void setMontantCagnote(Double montantCagnote) {
+        this.montantCagnote = montantCagnote;
     }
 
-    public LocalDate getDateDebut() {
-        return this.dateDebut;
+    public Double getPenaliteRetardCotisation() {
+        return this.penaliteRetardCotisation;
     }
 
-    public Tontine dateDebut(LocalDate dateDebut) {
-        this.setDateDebut(dateDebut);
+    public Tontine penaliteRetardCotisation(Double penaliteRetardCotisation) {
+        this.setPenaliteRetardCotisation(penaliteRetardCotisation);
         return this;
     }
 
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setPenaliteRetardCotisation(Double penaliteRetardCotisation) {
+        this.penaliteRetardCotisation = penaliteRetardCotisation;
     }
 
-    public LocalDate getDateFin() {
-        return this.dateFin;
+    public TypePenalite getTypePenalite() {
+        return this.typePenalite;
     }
 
-    public Tontine dateFin(LocalDate dateFin) {
-        this.setDateFin(dateFin);
+    public Tontine typePenalite(TypePenalite typePenalite) {
+        this.setTypePenalite(typePenalite);
         return this;
     }
 
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
+    public void setTypePenalite(TypePenalite typePenalite) {
+        this.typePenalite = typePenalite;
+    }
+
+    public LocalDate getDateCreation() {
+        return this.dateCreation;
+    }
+
+    public Tontine dateCreation(LocalDate dateCreation) {
+        this.setDateCreation(dateCreation);
+        return this;
+    }
+
+    public void setDateCreation(LocalDate dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public LocalDate getDatePremierTour() {
+        return this.datePremierTour;
+    }
+
+    public Tontine datePremierTour(LocalDate datePremierTour) {
+        this.setDatePremierTour(datePremierTour);
+        return this;
+    }
+
+    public void setDatePremierTour(LocalDate datePremierTour) {
+        this.datePremierTour = datePremierTour;
+    }
+
+    public LocalDate getDateDernierTour() {
+        return this.dateDernierTour;
+    }
+
+    public Tontine dateDernierTour(LocalDate dateDernierTour) {
+        this.setDateDernierTour(dateDernierTour);
+        return this;
+    }
+
+    public void setDateDernierTour(LocalDate dateDernierTour) {
+        this.dateDernierTour = dateDernierTour;
     }
 
     public StatutTontine getStatutTontine() {
@@ -318,12 +368,15 @@ public class Tontine implements Serializable {
             ", codeAssociation='" + getCodeAssociation() + "'" +
             ", libele='" + getLibele() + "'" +
             ", nombreTour=" + getNombreTour() +
-            ", nombreMaxPersonne=" + getNombreMaxPersonne() +
+            ", nombrePersonne=" + getNombrePersonne() +
             ", margeBeneficiaire=" + getMargeBeneficiaire() +
             ", montantPart=" + getMontantPart() +
-            ", amandeEchec=" + getAmandeEchec() +
-            ", dateDebut='" + getDateDebut() + "'" +
-            ", dateFin='" + getDateFin() + "'" +
+            ", montantCagnote=" + getMontantCagnote() +
+            ", penaliteRetardCotisation=" + getPenaliteRetardCotisation() +
+            ", typePenalite='" + getTypePenalite() + "'" +
+            ", dateCreation='" + getDateCreation() + "'" +
+            ", datePremierTour='" + getDatePremierTour() + "'" +
+            ", dateDernierTour='" + getDateDernierTour() + "'" +
             ", statutTontine='" + getStatutTontine() + "'" +
             ", description='" + getDescription() + "'" +
             "}";

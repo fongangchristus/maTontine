@@ -70,6 +70,18 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="penaliteRetardRnbrsmnt">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.banque.penaliteRetardRnbrsmnt">Penalite Retard Rnbrsmnt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tauxInteretPret">
+            <div class="d-flex">
+              <span jhiTranslate="maTontineApp.banque.tauxInteretPret">Taux Interet Pret</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -83,6 +95,8 @@
           <td>{{ banque.description }}</td>
           <td>{{ banque.dateOuverture | formatMediumDatetime }}</td>
           <td>{{ banque.dateCloture | formatMediumDatetime }}</td>
+          <td>{{ banque.penaliteRetardRnbrsmnt }}</td>
+          <td>{{ banque.tauxInteretPret }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button

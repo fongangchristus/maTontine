@@ -1,9 +1,5 @@
 export enum StatutAdhesion {
-  ENCOURS = 'ENCOURS',
+  ACTIVE = 'ACTIVE',
 
-  ANNULE = 'ANNULE',
-
-  PAYE = 'PAYE',
-
-  EXPIRE = 'EXPIRE',
+  DESACTIVE = 'DESACTIVE',
 }

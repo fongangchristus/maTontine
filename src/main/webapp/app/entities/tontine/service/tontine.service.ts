@@ -12,9 +12,10 @@ import { ITontine, NewTontine } from '../tontine.model';
 
 export type PartialUpdateTontine = Partial<ITontine> & Pick<ITontine, 'id'>;
 
-type RestOf<T extends ITontine | NewTontine> = Omit<T, 'dateDebut' | 'dateFin'> & {
-  dateDebut?: string | null;
-  dateFin?: string | null;
+type RestOf<T extends ITontine | NewTontine> = Omit<T, 'dateCreation' | 'datePremierTour' | 'dateDernierTour'> & {
+  dateCreation?: string | null;
+  datePremierTour?: string | null;
+  dateDernierTour?: string | null;
 };
 
 export type RestTontine = RestOf<ITontine>;
@@ -101,16 +102,18 @@ export class TontineService {
   protected convertDateFromClient<T extends ITontine | NewTontine | PartialUpdateTontine>(tontine: T): RestOf<T> {
     return {
       ...tontine,
-      dateDebut: tontine.dateDebut?.format(DATE_FORMAT) ?? null,
-      dateFin: tontine.dateFin?.format(DATE_FORMAT) ?? null,
+      dateCreation: tontine.dateCreation?.format(DATE_FORMAT) ?? null,
+      datePremierTour: tontine.datePremierTour?.format(DATE_FORMAT) ?? null,
+      dateDernierTour: tontine.dateDernierTour?.format(DATE_FORMAT) ?? null,
     };
   }
 
   protected convertDateFromServer(restTontine: RestTontine): ITontine {
     return {
       ...restTontine,
-      dateDebut: restTontine.dateDebut ? dayjs(restTontine.dateDebut) : undefined,
-      dateFin: restTontine.dateFin ? dayjs(restTontine.dateFin) : undefined,
+      dateCreation: restTontine.dateCreation ? dayjs(restTontine.dateCreation) : undefined,
+      datePremierTour: restTontine.datePremierTour ? dayjs(restTontine.datePremierTour) : undefined,
+      dateDernierTour: restTontine.dateDernierTour ? dayjs(restTontine.dateDernierTour) : undefined,
     };
   }
 

@@ -1,6 +1,7 @@
 package com.it4innov.service.criteria;
 
 import com.it4innov.domain.enumeration.StatutTontine;
+import com.it4innov.domain.enumeration.TypePenalite;
 import java.io.Serializable;
 import java.util.Objects;
 import org.springdoc.api.annotations.ParameterObject;
@@ -19,6 +20,23 @@ import tech.jhipster.service.filter.*;
 @ParameterObject
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class TontineCriteria implements Serializable, Criteria {
+
+    /**
+     * Class for filtering TypePenalite
+     */
+    public static class TypePenaliteFilter extends Filter<TypePenalite> {
+
+        public TypePenaliteFilter() {}
+
+        public TypePenaliteFilter(TypePenaliteFilter filter) {
+            super(filter);
+        }
+
+        @Override
+        public TypePenaliteFilter copy() {
+            return new TypePenaliteFilter(this);
+        }
+    }
 
     /**
      * Class for filtering StatutTontine
@@ -47,17 +65,23 @@ public class TontineCriteria implements Serializable, Criteria {
 
     private IntegerFilter nombreTour;
 
-    private IntegerFilter nombreMaxPersonne;
+    private IntegerFilter nombrePersonne;
 
     private DoubleFilter margeBeneficiaire;
 
     private DoubleFilter montantPart;
 
-    private DoubleFilter amandeEchec;
+    private DoubleFilter montantCagnote;
 
-    private LocalDateFilter dateDebut;
+    private DoubleFilter penaliteRetardCotisation;
 
-    private LocalDateFilter dateFin;
+    private TypePenaliteFilter typePenalite;
+
+    private LocalDateFilter dateCreation;
+
+    private LocalDateFilter datePremierTour;
+
+    private LocalDateFilter dateDernierTour;
 
     private StatutTontineFilter statutTontine;
 
@@ -76,12 +100,15 @@ public class TontineCriteria implements Serializable, Criteria {
         this.codeAssociation = other.codeAssociation == null ? null : other.codeAssociation.copy();
         this.libele = other.libele == null ? null : other.libele.copy();
         this.nombreTour = other.nombreTour == null ? null : other.nombreTour.copy();
-        this.nombreMaxPersonne = other.nombreMaxPersonne == null ? null : other.nombreMaxPersonne.copy();
+        this.nombrePersonne = other.nombrePersonne == null ? null : other.nombrePersonne.copy();
         this.margeBeneficiaire = other.margeBeneficiaire == null ? null : other.margeBeneficiaire.copy();
         this.montantPart = other.montantPart == null ? null : other.montantPart.copy();
-        this.amandeEchec = other.amandeEchec == null ? null : other.amandeEchec.copy();
-        this.dateDebut = other.dateDebut == null ? null : other.dateDebut.copy();
-        this.dateFin = other.dateFin == null ? null : other.dateFin.copy();
+        this.montantCagnote = other.montantCagnote == null ? null : other.montantCagnote.copy();
+        this.penaliteRetardCotisation = other.penaliteRetardCotisation == null ? null : other.penaliteRetardCotisation.copy();
+        this.typePenalite = other.typePenalite == null ? null : other.typePenalite.copy();
+        this.dateCreation = other.dateCreation == null ? null : other.dateCreation.copy();
+        this.datePremierTour = other.datePremierTour == null ? null : other.datePremierTour.copy();
+        this.dateDernierTour = other.dateDernierTour == null ? null : other.dateDernierTour.copy();
         this.statutTontine = other.statutTontine == null ? null : other.statutTontine.copy();
         this.description = other.description == null ? null : other.description.copy();
         this.sessionTontineId = other.sessionTontineId == null ? null : other.sessionTontineId.copy();
@@ -154,19 +181,19 @@ public class TontineCriteria implements Serializable, Criteria {
         this.nombreTour = nombreTour;
     }
 
-    public IntegerFilter getNombreMaxPersonne() {
-        return nombreMaxPersonne;
+    public IntegerFilter getNombrePersonne() {
+        return nombrePersonne;
     }
 
-    public IntegerFilter nombreMaxPersonne() {
-        if (nombreMaxPersonne == null) {
-            nombreMaxPersonne = new IntegerFilter();
+    public IntegerFilter nombrePersonne() {
+        if (nombrePersonne == null) {
+            nombrePersonne = new IntegerFilter();
         }
-        return nombreMaxPersonne;
+        return nombrePersonne;
     }
 
-    public void setNombreMaxPersonne(IntegerFilter nombreMaxPersonne) {
-        this.nombreMaxPersonne = nombreMaxPersonne;
+    public void setNombrePersonne(IntegerFilter nombrePersonne) {
+        this.nombrePersonne = nombrePersonne;
     }
 
     public DoubleFilter getMargeBeneficiaire() {
@@ -199,49 +226,94 @@ public class TontineCriteria implements Serializable, Criteria {
         this.montantPart = montantPart;
     }
 
-    public DoubleFilter getAmandeEchec() {
-        return amandeEchec;
+    public DoubleFilter getMontantCagnote() {
+        return montantCagnote;
     }
 
-    public DoubleFilter amandeEchec() {
-        if (amandeEchec == null) {
-            amandeEchec = new DoubleFilter();
+    public DoubleFilter montantCagnote() {
+        if (montantCagnote == null) {
+            montantCagnote = new DoubleFilter();
         }
-        return amandeEchec;
+        return montantCagnote;
     }
 
-    public void setAmandeEchec(DoubleFilter amandeEchec) {
-        this.amandeEchec = amandeEchec;
+    public void setMontantCagnote(DoubleFilter montantCagnote) {
+        this.montantCagnote = montantCagnote;
     }
 
-    public LocalDateFilter getDateDebut() {
-        return dateDebut;
+    public DoubleFilter getPenaliteRetardCotisation() {
+        return penaliteRetardCotisation;
     }
 
-    public LocalDateFilter dateDebut() {
-        if (dateDebut == null) {
-            dateDebut = new LocalDateFilter();
+    public DoubleFilter penaliteRetardCotisation() {
+        if (penaliteRetardCotisation == null) {
+            penaliteRetardCotisation = new DoubleFilter();
         }
-        return dateDebut;
+        return penaliteRetardCotisation;
     }
 
-    public void setDateDebut(LocalDateFilter dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setPenaliteRetardCotisation(DoubleFilter penaliteRetardCotisation) {
+        this.penaliteRetardCotisation = penaliteRetardCotisation;
     }
 
-    public LocalDateFilter getDateFin() {
-        return dateFin;
+    public TypePenaliteFilter getTypePenalite() {
+        return typePenalite;
     }
 
-    public LocalDateFilter dateFin() {
-        if (dateFin == null) {
-            dateFin = new LocalDateFilter();
+    public TypePenaliteFilter typePenalite() {
+        if (typePenalite == null) {
+            typePenalite = new TypePenaliteFilter();
         }
-        return dateFin;
+        return typePenalite;
     }
 
-    public void setDateFin(LocalDateFilter dateFin) {
-        this.dateFin = dateFin;
+    public void setTypePenalite(TypePenaliteFilter typePenalite) {
+        this.typePenalite = typePenalite;
+    }
+
+    public LocalDateFilter getDateCreation() {
+        return dateCreation;
+    }
+
+    public LocalDateFilter dateCreation() {
+        if (dateCreation == null) {
+            dateCreation = new LocalDateFilter();
+        }
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDateFilter dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public LocalDateFilter getDatePremierTour() {
+        return datePremierTour;
+    }
+
+    public LocalDateFilter datePremierTour() {
+        if (datePremierTour == null) {
+            datePremierTour = new LocalDateFilter();
+        }
+        return datePremierTour;
+    }
+
+    public void setDatePremierTour(LocalDateFilter datePremierTour) {
+        this.datePremierTour = datePremierTour;
+    }
+
+    public LocalDateFilter getDateDernierTour() {
+        return dateDernierTour;
+    }
+
+    public LocalDateFilter dateDernierTour() {
+        if (dateDernierTour == null) {
+            dateDernierTour = new LocalDateFilter();
+        }
+        return dateDernierTour;
+    }
+
+    public void setDateDernierTour(LocalDateFilter dateDernierTour) {
+        this.dateDernierTour = dateDernierTour;
     }
 
     public StatutTontineFilter getStatutTontine() {
@@ -326,12 +398,15 @@ public class TontineCriteria implements Serializable, Criteria {
             Objects.equals(codeAssociation, that.codeAssociation) &&
             Objects.equals(libele, that.libele) &&
             Objects.equals(nombreTour, that.nombreTour) &&
-            Objects.equals(nombreMaxPersonne, that.nombreMaxPersonne) &&
+            Objects.equals(nombrePersonne, that.nombrePersonne) &&
             Objects.equals(margeBeneficiaire, that.margeBeneficiaire) &&
             Objects.equals(montantPart, that.montantPart) &&
-            Objects.equals(amandeEchec, that.amandeEchec) &&
-            Objects.equals(dateDebut, that.dateDebut) &&
-            Objects.equals(dateFin, that.dateFin) &&
+            Objects.equals(montantCagnote, that.montantCagnote) &&
+            Objects.equals(penaliteRetardCotisation, that.penaliteRetardCotisation) &&
+            Objects.equals(typePenalite, that.typePenalite) &&
+            Objects.equals(dateCreation, that.dateCreation) &&
+            Objects.equals(datePremierTour, that.datePremierTour) &&
+            Objects.equals(dateDernierTour, that.dateDernierTour) &&
             Objects.equals(statutTontine, that.statutTontine) &&
             Objects.equals(description, that.description) &&
             Objects.equals(sessionTontineId, that.sessionTontineId) &&
@@ -347,12 +422,15 @@ public class TontineCriteria implements Serializable, Criteria {
             codeAssociation,
             libele,
             nombreTour,
-            nombreMaxPersonne,
+            nombrePersonne,
             margeBeneficiaire,
             montantPart,
-            amandeEchec,
-            dateDebut,
-            dateFin,
+            montantCagnote,
+            penaliteRetardCotisation,
+            typePenalite,
+            dateCreation,
+            datePremierTour,
+            dateDernierTour,
             statutTontine,
             description,
             sessionTontineId,
@@ -369,12 +447,15 @@ public class TontineCriteria implements Serializable, Criteria {
             (codeAssociation != null ? "codeAssociation=" + codeAssociation + ", " : "") +
             (libele != null ? "libele=" + libele + ", " : "") +
             (nombreTour != null ? "nombreTour=" + nombreTour + ", " : "") +
-            (nombreMaxPersonne != null ? "nombreMaxPersonne=" + nombreMaxPersonne + ", " : "") +
+            (nombrePersonne != null ? "nombrePersonne=" + nombrePersonne + ", " : "") +
             (margeBeneficiaire != null ? "margeBeneficiaire=" + margeBeneficiaire + ", " : "") +
             (montantPart != null ? "montantPart=" + montantPart + ", " : "") +
-            (amandeEchec != null ? "amandeEchec=" + amandeEchec + ", " : "") +
-            (dateDebut != null ? "dateDebut=" + dateDebut + ", " : "") +
-            (dateFin != null ? "dateFin=" + dateFin + ", " : "") +
+            (montantCagnote != null ? "montantCagnote=" + montantCagnote + ", " : "") +
+            (penaliteRetardCotisation != null ? "penaliteRetardCotisation=" + penaliteRetardCotisation + ", " : "") +
+            (typePenalite != null ? "typePenalite=" + typePenalite + ", " : "") +
+            (dateCreation != null ? "dateCreation=" + dateCreation + ", " : "") +
+            (datePremierTour != null ? "datePremierTour=" + datePremierTour + ", " : "") +
+            (dateDernierTour != null ? "dateDernierTour=" + dateDernierTour + ", " : "") +
             (statutTontine != null ? "statutTontine=" + statutTontine + ", " : "") +
             (description != null ? "description=" + description + ", " : "") +
             (sessionTontineId != null ? "sessionTontineId=" + sessionTontineId + ", " : "") +

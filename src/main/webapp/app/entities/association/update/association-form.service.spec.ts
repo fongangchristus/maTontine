@@ -31,6 +31,9 @@ describe('Association Form Service', () => {
             fuseauHoraire: expect.any(Object),
             langue: expect.any(Object),
             presentation: expect.any(Object),
+            siegeSocial: expect.any(Object),
+            email: expect.any(Object),
+            isActif: expect.any(Object),
             monnaie: expect.any(Object),
           })
         );
@@ -53,6 +56,9 @@ describe('Association Form Service', () => {
             fuseauHoraire: expect.any(Object),
             langue: expect.any(Object),
             presentation: expect.any(Object),
+            siegeSocial: expect.any(Object),
+            email: expect.any(Object),
+            isActif: expect.any(Object),
             monnaie: expect.any(Object),
           })
         );

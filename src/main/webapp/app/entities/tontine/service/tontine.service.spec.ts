@@ -9,8 +9,9 @@ import { TontineService, RestTontine } from './tontine.service';
 
 const requireRestSample: RestTontine = {
   ...sampleWithRequiredData,
-  dateDebut: sampleWithRequiredData.dateDebut?.format(DATE_FORMAT),
-  dateFin: sampleWithRequiredData.dateFin?.format(DATE_FORMAT),
+  dateCreation: sampleWithRequiredData.dateCreation?.format(DATE_FORMAT),
+  datePremierTour: sampleWithRequiredData.datePremierTour?.format(DATE_FORMAT),
+  dateDernierTour: sampleWithRequiredData.dateDernierTour?.format(DATE_FORMAT),
 };
 
 describe('Tontine Service', () => {

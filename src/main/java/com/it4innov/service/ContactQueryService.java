@@ -90,6 +90,9 @@ public class ContactQueryService extends QueryService<Contact> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), Contact_.id));
             }
+            if (criteria.getIsParDefaut() != null) {
+                specification = specification.and(buildSpecification(criteria.getIsParDefaut(), Contact_.isParDefaut));
+            }
             if (criteria.getEmail() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getEmail(), Contact_.email));
             }

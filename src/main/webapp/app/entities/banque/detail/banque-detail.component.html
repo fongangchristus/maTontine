@@ -34,6 +34,14 @@
         <dd>
           <span>{{ banque.dateCloture | formatMediumDatetime }}</span>
         </dd>
+        <dt><span jhiTranslate="maTontineApp.banque.penaliteRetardRnbrsmnt">Penalite Retard Rnbrsmnt</span></dt>
+        <dd>
+          <span>{{ banque.penaliteRetardRnbrsmnt }}</span>
+        </dd>
+        <dt><span jhiTranslate="maTontineApp.banque.tauxInteretPret">Taux Interet Pret</span></dt>
+        <dd>
+          <span>{{ banque.tauxInteretPret }}</span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
